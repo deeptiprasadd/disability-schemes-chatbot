@@ -1,0 +1,33 @@
+name: Daily scrape and update
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - run: pip install -r requirements.txt
+
+      - name: Run scraper
+        run: python scripts/scrape_schemes.py
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: Commit new files
+        run: |
+          git config user.name "scheme-bot"
+          git config user.email "bot@scheme-assistant.in"
+          git add knowledge-base/ scripts/seen_hashes.json
+          git diff --staged --quiet || git commit -m "Auto: scraped new schemes $(date +%Y-%m-%d)"
+          git push
