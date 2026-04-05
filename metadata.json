@@ -1,0 +1,20 @@
+{
+  "project": "Disability Schemes Chatbot",
+  "version": "1.0.0",
+  "last_updated": "auto",
+  "languages_supported": ["en", "hi", "ta", "te", "mr", "bn", "gu", "kn", "ml", "pa"],
+  "disability_types": [
+    "visual impairment",
+    "locomotor disability",
+    "hearing impairment",
+    "intellectual disability",
+    "mental illness",
+    "autism spectrum disorder",
+    "cerebral palsy",
+    "specific learning disability",
+    "multiple disabilities"
+  ],
+  "sources": "knowledge-base/sources.json",
+  "vector_store": "scripts/vector_store/",
+  "helpline": "1800-111-555"
+}
