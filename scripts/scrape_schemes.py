@@ -1,122 +1,154 @@
 import requests
-from bs4 import BeautifulSoup
-import hashlib, os, json
+import json
+import os
+import hashlib
 from datetime import date
+from bs4 import BeautifulSoup
 from openai import OpenAI
+from dotenv import load_dotenv
 
-client = OpenAI()  # uses OPENAI_API_KEY from env
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-SOURCES = [
-    {"url": "https://depwd.gov.in/en/schemes/", "category": "central-schemes"},
-    {"url": "https://scholarships.gov.in/All-Scholarships", "category": "central-schemes"},
-    {"url": "https://swavlambancard.gov.in", "category": "eligibility"},
-]
+SOURCES_FILE = "knowledge-base/sources.json"
+HASHES_FILE  = "scripts/seen_hashes.json"
+HEADERS      = {"User-Agent": "Mozilla/5.0 (compatible; SchemeBot/1.0)"}
 
-SEEN_HASHES_FILE = "scripts/seen_hashes.json"
+def load_json(path, default):
+    return json.load(open(path, encoding="utf-8")) if os.path.exists(path) else default
 
-def load_seen_hashes():
-    if os.path.exists(SEEN_HASHES_FILE):
-        return json.load(open(SEEN_HASHES_FILE))
-    return {}
+def save_json(path, data):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    json.dump(data, open(path, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
 
-def save_seen_hashes(hashes):
-    json.dump(hashes, open(SEEN_HASHES_FILE, "w"), indent=2)
-
-def scrape_page(url):
-    r = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
+def scrape(url):
+    r = requests.get(url, timeout=20, headers=HEADERS)
+    r.raise_for_status()
     soup = BeautifulSoup(r.text, "html.parser")
-    # Remove nav, footer, scripts
-    for tag in soup(["script", "style", "nav", "footer", "header"]):
+    for tag in soup(["script", "style", "nav", "footer", "header", "aside"]):
         tag.decompose()
     return soup.get_text(separator="\n", strip=True)
 
-def content_to_md(raw_text, url, category):
-    """Use GPT-4o-mini to convert raw scraped text into structured .md"""
+def convert_to_markdown(raw_text, url, category):
     prompt = f"""
-You are a government scheme document formatter for India's disability welfare portal.
+You are a government welfare document formatter for India.
+Convert the scraped text below into structured Markdown.
 
-Convert the following raw scraped text from {url} into a clean Markdown file.
-Use EXACTLY this structure:
+For EACH disability scheme found, use this exact format:
 
 ---
-scheme_name: "<name>"
-ministry: "<ministry name>"
+scheme_name: "<full name>"
+ministry: "<ministry or department>"
 category: "{category}"
-disability_types: ["<type1>", "<type2>"]
+disability_types: ["list relevant types, or write 'all'"]
 last_updated: "{date.today()}"
 source_url: "{url}"
 ---
 
 ## Overview
-(2-3 sentences)
+(2-3 sentences about what this scheme is)
 
 ## Benefits
-(bullet points)
+- benefit 1
+- benefit 2
 
 ## Eligibility criteria
-(bullet points)
+- criteria 1
+- criteria 2
 
 ## Required documents
-(numbered list)
+1. document 1
+2. document 2
 
 ## How to apply
-(steps)
+Step by step instructions
 
 ## Contact
-(phone, email if available)
+Phone / email / portal link if available
 
-If the page contains multiple schemes, create one section per scheme separated by ---
+---NEXT SCHEME---
 
-Raw text:
+Repeat the above block for every scheme found on the page.
+If no disability-related scheme is found, reply with exactly: NO_SCHEME_FOUND
+
+Raw text (first 4000 characters):
 {raw_text[:4000]}
 """
-    response = client.chat.completions.create(
+    resp = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.2
+        temperature=0.1
     )
-    return response.choices[0].message.content
+    return resp.choices[0].message.content.strip()
 
-def slug(text):
-    return text.lower().replace(" ", "-").replace("/", "-")[:50]
+def slugify(text):
+    return "".join(
+        c if c.isalnum() or c == "-" else "-"
+        for c in text.lower().strip()
+    )[:50].strip("-")
 
 def run():
-    seen = load_seen_hashes()
+    sources   = load_json(SOURCES_FILE, [])
+    seen      = load_json(HASHES_FILE, {})
     new_files = []
 
-    for source in SOURCES:
-        print(f"Scraping: {source['url']}")
+    for source in sources:
+        if not source.get("active", True):
+            continue
+
+        url      = source["url"]
+        category = source["category"]
+        print(f"\nScraping: {url}")
+
         try:
-            raw = scrape_page(source["url"])
+            raw = scrape(url)
         except Exception as e:
-            print(f"  Failed: {e}")
+            print(f"  ERROR fetching page: {e}")
             continue
 
-        content_hash = hashlib.md5(raw.encode()).hexdigest()
+        content_hash = hashlib.md5(raw.encode("utf-8")).hexdigest()
 
-        # Skip if nothing changed since last run
-        if seen.get(source["url"]) == content_hash:
-            print(f"  No changes detected, skipping.")
+        if seen.get(url) == content_hash:
+            print("  No changes detected, skipping.")
             continue
 
-        seen[source["url"]] = content_hash
+        seen[url] = content_hash
 
-        # Convert to markdown using LLM
-        md_content = content_to_md(raw, source["url"], source["category"])
+        print("  Converting to markdown via LLM...")
+        try:
+            md = convert_to_markdown(raw, url, category)
+        except Exception as e:
+            print(f"  ERROR in LLM call: {e}")
+            continue
 
-        # Save file
-        filename = f"{slug(source['url'].split('/')[-2] or 'scheme')}-{date.today()}.md"
-        filepath = f"{source['category']}/{filename}"
-        os.makedirs(source["category"], exist_ok=True)
+        if "NO_SCHEME_FOUND" in md:
+            print("  No disability schemes found on this page.")
+            continue
 
-        with open(filepath, "w") as f:
-            f.write(md_content)
+        blocks = [b.strip() for b in md.split("---NEXT SCHEME---") if b.strip()]
+        print(f"  Found {len(blocks)} scheme(s).")
 
-        new_files.append(filepath)
-        print(f"  Saved: {filepath}")
+        for i, block in enumerate(blocks):
+            name_lines = [l for l in block.splitlines() if "scheme_name:" in l]
+            if name_lines:
+                raw_name  = name_lines[0].split(":", 1)[-1].strip().strip('"')
+                slug_name = slugify(raw_name) or f"scheme-{i+1}"
+            else:
+                slug_name = f"scheme-{i+1}"
 
-    save_seen_hashes(seen)
-    print(f"\nDone. {len(new_files)} new/updated files.")
+            filename = f"{slug_name}-{date.today()}.md"
+            folder   = f"knowledge-base/{category}"
+            os.makedirs(folder, exist_ok=True)
+            filepath = f"{folder}/{filename}"
+
+            with open(filepath, "w", encoding="utf-8") as f:
+                f.write(block)
+
+            new_files.append(filepath)
+            print(f"  Saved: {filepath}")
+
+    save_json(HASHES_FILE, seen)
+    print(f"\nFinished. {len(new_files)} new/updated file(s) created.")
 
 if __name__ == "__main__":
     run()
