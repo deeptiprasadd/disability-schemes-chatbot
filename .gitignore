@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+scripts/vector_store/
+scripts/seen_hashes.json
+.streamlit/secrets.toml
