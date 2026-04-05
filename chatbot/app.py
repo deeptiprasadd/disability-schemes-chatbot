@@ -3,8 +3,8 @@ import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from chatbot.rag_pipeline import ask
-from scripts.translate import (
-    detect_and_translate_to_english,
+from chatbot.language_utils import (
+    translate_to_english,
     translate_to_language,
     SUPPORTED_LANGUAGES
 )
@@ -56,7 +56,7 @@ if user_input:
             sources = result["sources"]
 
             # Step 3: Translate answer back to user's language
-            final_answer = translate_to_language(answer, lang_code)
+            english_question, detected_lang = translate_to_english(user_input)
 
             # Step 4: Display
             st.markdown(final_answer)
