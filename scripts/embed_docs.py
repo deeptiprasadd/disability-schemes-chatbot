@@ -1,14 +1,11 @@
 import os
-from dotenv import load_dotenv
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_openai import OpenAIEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 
-load_dotenv()
-
-KB_DIR     = "knowledge-base"
-VS_DIR     = "scripts/vector_store"
+KB_DIR = "knowledge-base"
+VS_DIR = "scripts/vector_store"
 
 def run():
     print("Loading documents...")
@@ -31,12 +28,15 @@ def run():
     chunks = splitter.split_documents(docs)
     print(f"  Created {len(chunks)} chunks.")
 
-    print("Embedding and saving vector store...")
-    embeddings = OpenAIEmbeddings(
-        model="text-embedding-3-small",
-        openai_api_key=os.getenv("OPENAI_API_KEY")
+    print("Loading local embedding model (first time downloads ~90MB)...")
+    embeddings = HuggingFaceEmbeddings(
+        model_name="all-MiniLM-L6-v2",
+        model_kwargs={"device": "cpu"}
     )
+
+    print("Embedding and saving vector store...")
     vectorstore = FAISS.from_documents(chunks, embeddings)
+    os.makedirs(VS_DIR, exist_ok=True)
     vectorstore.save_local(VS_DIR)
     print(f"  Vector store saved to {VS_DIR}/")
     print("Done.")

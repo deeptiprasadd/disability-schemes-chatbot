@@ -1,5 +1,7 @@
 import streamlit as st
 import sys, os
+from streamlit_mic_recorder import mic_recorder, speech_to_text
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from chatbot.rag_pipeline import ask
@@ -9,75 +11,111 @@ from chatbot.language_utils import (
     SUPPORTED_LANGUAGES
 )
 
-# --- Page config ---
 st.set_page_config(
     page_title="Disability Schemes Assistant",
     page_icon="♿",
-    layout="centered"
+    layout="wide"
 )
 
-st.title("♿ Disability Schemes Assistant")
-st.caption("Ask about government schemes for persons with disabilities in India — in any language.")
+# Custom CSS for better aesthetics
+st.markdown("""
+    <style>
+    .main {
+        background-color: #f8f9fa;
+    }
+    .stChatMessage {
+        border-radius: 15px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .source-tag {
+        font-size: 0.8rem;
+        color: #6c757d;
+        background: #e9ecef;
+        padding: 2px 8px;
+        border-radius: 10px;
+        margin-right: 5px;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
-# --- Language selector ---
-lang_name = st.selectbox(
-    "Choose your language / अपनी भाषा चुनें",
-    options=list(SUPPORTED_LANGUAGES.keys()),
-    index=0
-)
-lang_code = SUPPORTED_LANGUAGES[lang_name]
+st.title("♿ Disability Schemes Assistant (Advanced)")
+st.caption("Ask about government welfare schemes in India. Optimized for GPU & Hybrid Search.")
 
-# --- Chat history ---
+# Language Selection
+with st.sidebar:
+    st.header("⚙️ Settings")
+    lang_name = st.selectbox(
+        "Preferred Language",
+        options=list(SUPPORTED_LANGUAGES.keys()),
+        index=0
+    )
+    lang_code = SUPPORTED_LANGUAGES[lang_name]
+    
+    st.markdown("---")
+    st.header("🎙️ Voice Search")
+    # Voice search component
+    voice_text = speech_to_text(
+        language=lang_code, 
+        start_prompt="Click to Speak",
+        stop_prompt="Stop Recording",
+        just_once=True,
+        key='speech'
+    )
+
+    st.markdown("---")
+    st.header("ℹ️ About")
+    st.info("Using Hybrid Search (Semantic + Keyword) with FlashRank reranking for maximum accuracy.")
+    st.write("🔥 **GPU-accelerated** pipeline.")
+
+# Session State for History
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Render existing messages
+# Display Messages
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
+        if "sources" in msg and msg["sources"]:
+            sources_html = "".join([f'<span class="source-tag">{s}</span>' for s in msg["sources"]])
+            st.markdown(f"**Sources:** {sources_html}", unsafe_allow_html=True)
 
-# --- User input ---
+# Input logic
 user_input = st.chat_input("Ask your question here...")
 
+# If voice input was detected, use it as the user_input
+if voice_text:
+    user_input = voice_text
+
 if user_input:
-    # Show user message
+    # Add user message to history
     st.session_state.messages.append({"role": "user", "content": user_input})
     with st.chat_message("user"):
         st.markdown(user_input)
 
     with st.chat_message("assistant"):
-        with st.spinner("Looking up schemes..."):
-            # Step 1: Translate question to English
-            english_question, detected_lang = detect_and_translate_to_english(user_input)
+        with st.spinner("Processing your request with advanced retrieval..."):
 
-            # Step 2: Get answer from RAG pipeline
-            result  = ask(english_question)
-            answer  = result["answer"]
-            sources = result["sources"]
-
-            # Step 3: Translate answer back to user's language
+            # Translate to English for retrieval
             english_question, detected_lang = translate_to_english(user_input)
 
-            # Step 4: Display
+            # Get answer from the pipeline (passing history!)
+            result = ask(english_question, chat_history=st.session_state.messages[:-1])
+            answer = result["answer"]
+            sources = result["sources"]
+
+            # Translate back to user's language
+            final_answer = translate_to_language(answer, lang_code)
+
             st.markdown(final_answer)
-
-            # Show source files as expandable
+            
             if sources:
-                with st.expander("Sources from knowledge base"):
-                    for s in sources:
-                        st.write(f"- `{os.path.basename(s)}`")
+                sources_html = "".join([f'<span class="source-tag">{s}</span>' for s in sources])
+                st.markdown(f"**Sources:** {sources_html}", unsafe_allow_html=True)
 
-    st.session_state.messages.append({"role": "assistant", "content": final_answer})
-
-# --- Sidebar info ---
-with st.sidebar:
-    st.header("About")
-    st.write("This assistant helps persons with disabilities find relevant government schemes.")
-    st.write("**Knowledge base:** Auto-updated daily from official govt. portals.")
-    st.markdown("---")
-    st.write("**Key sources:**")
-    st.write("- [DEPwD](https://depwd.gov.in)")
-    st.write("- [UDID Portal](https://swavlambancard.gov.in)")
-    st.write("- [National Scholarship Portal](https://scholarships.gov.in)")
-    st.markdown("---")
-    st.write("**Helpline:** 1800-111-555 (toll-free)")
+    # Save to history
+    st.session_state.messages.append({
+        "role": "assistant",
+        "content": final_answer,
+        "sources": sources
+    })

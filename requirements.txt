@@ -1,20 +1,29 @@
 # Scraping
-requests==2.31.0
-beautifulsoup4==4.12.3
+requests>=2.31.0
+beautifulsoup4>=4.12.3
+groq>=0.5.0
+pypdf>=4.2.0
 
 # Embeddings + RAG
-openai==1.30.0
-langchain==0.2.0
-langchain-openai==0.1.7
-langchain-community==0.2.0
-faiss-cpu==1.8.0
-tiktoken==0.7.0
+openai>=1.30.0
+langchain>=0.2.0
+langchain-openai>=0.1.7
+langchain-community>=0.2.0
+langchain-ollama>=0.1.0
+langchain-huggingface>=0.0.3
+sentence-transformers>=2.0.0
+torchvision>=0.16.0
+faiss-cpu>=1.8.0
+tiktoken>=0.7.0
+rank_bm25>=0.2.2
+flashrank>=0.2.0
 
 # Translation
-deep-translator==1.11.4
+deep-translator>=1.11.4
 
 # Frontend
-streamlit==1.35.0
+streamlit>=1.35.0
+streamlit-mic-recorder>=0.0.20
 
 # Utilities
-python-dotenv==1.0.1
+python-dotenv>=1.0.1
