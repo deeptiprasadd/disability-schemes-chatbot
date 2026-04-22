@@ -4,11 +4,11 @@ import os
 import hashlib
 from datetime import date
 from bs4 import BeautifulSoup
-from openai import OpenAI
+from groq import Groq
 from dotenv import load_dotenv
 
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 SOURCES_FILE = "knowledge-base/sources.json"
 HASHES_FILE  = "scripts/seen_hashes.json"
@@ -21,9 +21,22 @@ def save_json(path, data):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     json.dump(data, open(path, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
 
+import urllib3
+import io
+from pypdf import PdfReader
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 def scrape(url):
-    r = requests.get(url, timeout=20, headers=HEADERS)
+    r = requests.get(url, timeout=30, headers=HEADERS, verify=False)
     r.raise_for_status()
+    
+    if url.lower().endswith(".pdf") or "application/pdf" in r.headers.get("Content-Type", ""):
+        reader = PdfReader(io.BytesIO(r.content))
+        text = ""
+        for page in reader.pages:
+            text += page.extract_text() + "\n"
+        return text.strip()
+    
     soup = BeautifulSoup(r.text, "html.parser")
     for tag in soup(["script", "style", "nav", "footer", "header", "aside"]):
         tag.decompose()
@@ -69,13 +82,13 @@ Phone / email / portal link if available
 ---NEXT SCHEME---
 
 Repeat the above block for every scheme found on the page.
-If no disability-related scheme is found, reply with exactly: NO_SCHEME_FOUND
+If the text is a legal aid document, general rule, or court order, STILL FORMAT it as a single scheme summarizing the rights and instructions. Only reply NO_SCHEME_FOUND if the document is completely empty or an error page.
 
 Raw text (first 4000 characters):
 {raw_text[:4000]}
 """
     resp = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="llama-3.3-70b-versatile",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.1
     )
@@ -145,7 +158,10 @@ def run():
                 f.write(block)
 
             new_files.append(filepath)
-            print(f"  Saved: {filepath}")
+            try:
+                print(f"  Saved: {filepath}")
+            except UnicodeEncodeError:
+                print(f"  Saved: {filepath.encode('ascii', 'ignore').decode('ascii')}")
 
     save_json(HASHES_FILE, seen)
     print(f"\nFinished. {len(new_files)} new/updated file(s) created.")

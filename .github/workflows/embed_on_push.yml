@@ -9,8 +9,12 @@ on:
 jobs:
   embed:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
 
       - uses: actions/setup-python@v4
         with:
@@ -20,8 +24,6 @@ jobs:
 
       - name: Run embedding
         run: python scripts/embed_docs.py
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       - name: Commit updated vector store
         run: |
@@ -29,4 +31,4 @@ jobs:
           git config user.email "bot@scheme-assistant.in"
           git add scripts/vector_store/
           git diff --staged --quiet || git commit -m "Auto: re-embedded vector store $(date +%Y-%m-%d)"
-          git push
+          git push origin HEAD:main

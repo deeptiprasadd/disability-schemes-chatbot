@@ -1,1 +1,107 @@
-
+[
+    {
+        "url": "https://scholarships.gov.in",
+        "category": "scholarships",
+        "active": true
+    },
+    {
+        "url": "https://disabilityaffairs.gov.in",
+        "category": "central-schemes",
+        "active": true
+    },
+    {
+        "url": "https://thenationaltrust.gov.in",
+        "category": "autism-schemes",
+        "active": true
+    },
+    {
+        "url": "https://www.swavlambancard.gov.in",
+        "category": "eligibility",
+        "active": true
+    },
+    {
+        "url": "https://accessibleindia.gov.in",
+        "category": "accessibility",
+        "active": true
+    },
+    {
+        "url": "https://socialjustice.gov.in",
+        "category": "welfare-programs",
+        "active": true
+    },
+    {
+        "url": "https://www.buddy4study.com/article/scholarships-for-students-with-disabilities",
+        "category": "scholarships",
+        "active": true
+    },
+    {
+        "url": "https://actionforautism.org",
+        "category": "ngo-programs",
+        "active": true
+    },
+    {
+        "url": "https://autismsocietyindia.org",
+        "category": "autism-support",
+        "active": true
+    },
+    {
+        "url": "https://niepid.nic.in",
+        "category": "education-rehab",
+        "active": true
+    },
+    {
+        "url": "https://niepmd.tn.nic.in",
+        "category": "disability-education",
+        "active": true
+    },
+    {
+        "url": "https://www.myscheme.gov.in",
+        "category": "central-schemes",
+        "active": true
+    },
+    {
+        "url": "https://aiishmysuru.in",
+        "category": "rehab-programs",
+        "active": true
+    },
+    {
+        "url": "https://discomm.delhi.gov.in/discomm/schemes-and-facilities-persons-disabilities",
+        "category": "state-schemes/delhi",
+        "active": true
+    },
+    {
+        "url": "https://sspy-up.gov.in",
+        "category": "state-schemes/up",
+        "active": true
+    },
+    {
+        "url": "https://divyangkalyan.maharashtra.gov.in/en/scheme",
+        "category": "state-schemes/maharashtra",
+        "active": true
+    },
+    {
+        "url": "https://aicb.org.in/scholarship/",
+        "category": "scholarships",
+        "active": true
+    },
+    {
+        "url": "https://dslsa.org/wp-content/uploads/2025/04/251578.pdf",
+        "category": "legal-aid",
+        "active": true
+    },
+    {
+        "url": "https://share.google/w6yE1zqOgBRsEdCA3",
+        "category": "central-schemes",
+        "active": true
+    },
+    {
+        "url": "https://discomm.delhi.gov.in/discomm/schemes-and-facilities-persons-disabilities",
+        "category": "state-schemes/delhi",
+        "active": true
+    },
+    {
+        "url": "https://www.swavlambancard.gov.in",
+        "category": "eligibility",
+        "active": true
+    }
+]
