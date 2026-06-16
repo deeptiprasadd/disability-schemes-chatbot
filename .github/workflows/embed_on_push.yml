@@ -25,10 +25,8 @@ jobs:
       - name: Run embedding
         run: python scripts/embed_docs.py
 
-      - name: Commit updated vector store
-        run: |
-          git config user.name "embed-bot"
-          git config user.email "bot@scheme-assistant.in"
-          git add scripts/vector_store/
-          git diff --staged --quiet || git commit -m "Auto: re-embedded vector store $(date +%Y-%m-%d)"
-          git push origin HEAD:main
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto: re-embedded vector store"
+          file_pattern: 'scripts/vector_store/'

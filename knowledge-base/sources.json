@@ -12,7 +12,7 @@
     {
         "url": "https://thenationaltrust.gov.in",
         "category": "autism-schemes",
-        "active": true
+        "active": false
     },
     {
         "url": "https://www.swavlambancard.gov.in",
@@ -22,7 +22,7 @@
     {
         "url": "https://accessibleindia.gov.in",
         "category": "accessibility",
-        "active": true
+        "active": false
     },
     {
         "url": "https://socialjustice.gov.in",
@@ -42,7 +42,7 @@
     {
         "url": "https://autismsocietyindia.org",
         "category": "autism-support",
-        "active": true
+        "active": false
     },
     {
         "url": "https://niepid.nic.in",
@@ -60,7 +60,7 @@
         "active": true
     },
     {
-        "url": "https://aiishmysuru.in",
+        "url": "https://www.aiishmysore.in",
         "category": "rehab-programs",
         "active": true
     },
@@ -82,7 +82,7 @@
     {
         "url": "https://aicb.org.in/scholarship/",
         "category": "scholarships",
-        "active": true
+        "active": false
     },
     {
         "url": "https://dslsa.org/wp-content/uploads/2025/04/251578.pdf",
@@ -92,7 +92,7 @@
     {
         "url": "https://share.google/w6yE1zqOgBRsEdCA3",
         "category": "central-schemes",
-        "active": true
+        "active": false
     },
     {
         "url": "https://discomm.delhi.gov.in/discomm/schemes-and-facilities-persons-disabilities",

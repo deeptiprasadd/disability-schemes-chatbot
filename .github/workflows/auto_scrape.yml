@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-python@v4
@@ -26,10 +27,11 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
 
-      - name: Commit new files
-        run: |
-          git config user.name "scheme-bot"
-          git config user.email "bot@scheme-assistant.in"
-          git add knowledge-base/ scripts/seen_hashes.json
-          git diff --staged --quiet || git commit -m "Auto: scraped new schemes $(date +%Y-%m-%d)"
-          git push origin HEAD:main
+      - name: Run embedding
+        run: python scripts/embed_docs.py
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto: scraped new schemes and updated vector store"
+          file_pattern: 'knowledge-base/ scripts/seen_hashes.json scripts/vector_store/'
