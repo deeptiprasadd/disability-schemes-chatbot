@@ -7,6 +7,13 @@ from bs4 import BeautifulSoup
 from groq import Groq
 from dotenv import load_dotenv
 
+import sys
+if sys.stdout.encoding != "utf-8":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
@@ -15,7 +22,14 @@ HASHES_FILE  = "scripts/seen_hashes.json"
 HEADERS      = {"User-Agent": "Mozilla/5.0 (compatible; SchemeBot/1.0)"}
 
 def load_json(path, default):
-    return json.load(open(path, encoding="utf-8")) if os.path.exists(path) else default
+    if not os.path.exists(path):
+        return default
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"  Warning: Failed to load {path} ({e}). Using default.")
+        return default
 
 def save_json(path, data):
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -94,11 +108,15 @@ Raw text (first 4000 characters):
     )
     return resp.choices[0].message.content.strip()
 
+import re
+
 def slugify(text):
-    return "".join(
+    slug = "".join(
         c if c.isalnum() or c == "-" else "-"
         for c in text.lower().strip()
-    )[:50].strip("-")
+    )
+    slug = re.sub(r"-+", "-", slug)
+    return slug[:50].strip("-")
 
 def run():
     sources   = load_json(SOURCES_FILE, [])
@@ -117,6 +135,10 @@ def run():
             raw = scrape(url)
         except Exception as e:
             print(f"  ERROR fetching page: {e}")
+            continue
+
+        if not raw or not raw.strip():
+            print("  Empty content, skipping.")
             continue
 
         content_hash = hashlib.md5(raw.encode("utf-8")).hexdigest()
@@ -153,6 +175,12 @@ def run():
             folder   = f"knowledge-base/{category}"
             os.makedirs(folder, exist_ok=True)
             filepath = f"{folder}/{filename}"
+
+            counter = 1
+            while os.path.exists(filepath):
+                filename = f"{slug_name}-{date.today()}_{counter}.md"
+                filepath = f"{folder}/{filename}"
+                counter += 1
 
             with open(filepath, "w", encoding="utf-8") as f:
                 f.write(block)
