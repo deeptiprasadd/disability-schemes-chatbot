@@ -9,6 +9,7 @@ openai>=1.30.0
 langchain>=0.2.0
 langchain-openai>=0.1.7
 langchain-community>=0.2.0
+langchain-classic>=1.0.0
 langchain-ollama>=0.1.0
 langchain-groq>=0.1.0
 langchain-huggingface>=0.0.3
@@ -24,7 +25,7 @@ deep-translator>=1.11.4
 
 # Frontend
 streamlit>=1.35.0
-streamlit-mic-recorder>=0.0.20
+streamlit-mic-recorder>=0.0.8
 
 # Utilities
 python-dotenv>=1.0.1
