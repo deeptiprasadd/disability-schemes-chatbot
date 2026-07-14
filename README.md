@@ -84,5 +84,3 @@ The chatbot provides information relevant to a wide range of disabilities, inclu
 - **LLM**: Llama-3.1-8b-instant
 - **Embeddings**: all-MiniLM-L6-v2
 
-## 📞 Support Helpline
-For immediate assistance, the official helpline is **1800-111-555**.
