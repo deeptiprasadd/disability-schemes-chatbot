@@ -1,14 +1,53 @@
 import os
 import torch
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.retrievers import BM25Retriever
 from langchain_classic.retrievers import EnsembleRetriever, ContextualCompressionRetriever
 from langchain_community.document_compressors.flashrank_rerank import FlashrankRerank
-from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 
 load_dotenv()
+
+
+def make_llm(temperature: float = 0.1):
+    """
+    Build the chat model from environment configuration so the app is not
+    hard-locked to a single provider (the root cause of a total outage when
+    Groq is unreachable — e.g. a VPN IP, a region block, or a Groq outage).
+
+    Controlled by LLM_PROVIDER (default "groq"):
+      * groq   -> Groq cloud (GROQ_MODEL, default llama-3.1-8b-instant)
+      * ollama -> a LOCAL model, no external network at all
+                  (OLLAMA_MODEL default llama3.1, OLLAMA_BASE_URL default
+                   http://localhost:11434). Works even behind a VPN.
+      * openai -> any OpenAI-compatible endpoint (OPENAI_MODEL, OPENAI_BASE_URL)
+
+    Default stays Groq, so existing behaviour is unchanged unless configured.
+    """
+    provider = os.getenv("LLM_PROVIDER", "groq").strip().lower()
+
+    if provider == "ollama":
+        from langchain_ollama import ChatOllama
+        return ChatOllama(
+            model=os.getenv("OLLAMA_MODEL", "llama3.1"),
+            base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
+            temperature=temperature,
+        )
+
+    if provider == "openai":
+        from langchain_openai import ChatOpenAI
+        return ChatOpenAI(
+            model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
+            base_url=os.getenv("OPENAI_BASE_URL") or None,
+            temperature=temperature,
+        )
+
+    from langchain_groq import ChatGroq
+    return ChatGroq(
+        model=os.getenv("GROQ_MODEL", "llama-3.1-8b-instant"),
+        temperature=temperature,
+    )
 
 from langchain_core.prompts import PromptTemplate, ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser
@@ -47,6 +86,15 @@ CRITICAL RULES:
    - ✅ **Who can apply**: List specific eligibility criteria.
    - 📝 **How to apply**: Simple, numbered steps.
    - **Further Questions**: At the very end, if you are missing age or disability %, ask for them to provide more accurate info.
+
+4. **ADAPTIVE CONVERSATION**:
+   - Read the conversation so far carefully. NEVER re-ask for a detail (age, disability type/%, state, income, education status) the user has already given — use it.
+   - If the question is broad (e.g., "what schemes exist?") and key details are unknown, give a short useful overview FIRST, then ask at most 2 targeted follow-up questions.
+   - If the user's request is fully specified, answer directly and ask nothing.
+   - Match the user's level of detail: short question, concise answer.
+
+Conversation so far:
+{chat_history}
 
 Context:
 {context}
@@ -112,10 +160,7 @@ def load_pipeline():
         base_retriever=_ensemble_retriever
     )
 
-    llm = ChatGroq(
-        model="llama-3.1-8b-instant",
-        temperature=0.1,
-    )
+    llm = make_llm(temperature=0.1)
 
     condense_prompt = PromptTemplate.from_template(CONDENSE_QUESTION_PROMPT)
     answer_prompt = PromptTemplate.from_template(SYSTEM_PROMPT)
@@ -134,16 +179,19 @@ def load_pipeline():
         chain = condense_prompt | llm | StrOutputParser()
         return chain.invoke({"chat_history": history_str, "question": input_dict["question"]})
 
-    from langchain_core.runnables import RunnablePassthrough
-
     # The Final Pipeline
     _chain = (
         RunnablePassthrough.assign(
             standalone_question=RunnableLambda(condense_question)
         )
         | RunnablePassthrough.assign(
-            context=lambda x: format_docs(compression_retriever.invoke(x["standalone_question"])),
-            question=lambda x: x["standalone_question"]
+            context=lambda x: (
+                format_docs(compression_retriever.invoke(x["standalone_question"]))
+                + (f"\n---\nDocument uploaded by the user:\n{x['extra_context'][:6000]}\n"
+                   if x.get("extra_context") else "")
+            ),
+            question=lambda x: x["standalone_question"],
+            chat_history=lambda x: _history_to_str(x.get("chat_history")),
         )
         | answer_prompt
         | llm
@@ -153,32 +201,55 @@ def load_pipeline():
     print("Advanced Pipeline ready.")
     return _chain
 
-def ask(question: str, chat_history: list = None) -> dict:
-    chain = load_pipeline()
-    
-    # Convert session history to LangChain messages
-    formatted_history = []
-    if chat_history:
-        for msg in chat_history:
-            if msg["role"] == "user":
-                formatted_history.append(HumanMessage(content=msg["content"]))
-            else:
-                formatted_history.append(AIMessage(content=msg["content"]))
+def _to_lc_messages(chat_history: list) -> list:
+    """Convert [{'role','content'}] session history to LangChain messages."""
+    messages = []
+    for msg in chat_history or []:
+        cls = HumanMessage if msg["role"] == "user" else AIMessage
+        messages.append(cls(content=msg["content"]))
+    return messages
 
-    answer = chain.invoke({
-        "question": question,
-        "chat_history": formatted_history
-    })
 
-    # For sources, we use the retriever directly with the final question
-    # (Simplified: we'll just use the ensemble retriever's top results)
+def _history_to_str(messages) -> str:
+    """Render the last few turns for the answer prompt (keeps tokens bounded)."""
+    if not messages:
+        return "(no prior conversation)"
+    lines = []
+    for m in messages[-8:]:
+        role = "User" if isinstance(m, HumanMessage) else "Assistant"
+        lines.append(f"{role}: {m.content}")
+    return "\n".join(lines)
+
+
+def get_sources(question: str) -> list:
+    """Top source filenames for a question, via the hybrid retriever."""
+    if _ensemble_retriever is None:
+        load_pipeline()
     docs = _ensemble_retriever.invoke(question)
-    sources = list({
+    return list({
         os.path.basename(doc.metadata.get("source", ""))
         for doc in docs
     })
 
+
+def ask(question: str, chat_history: list = None, extra_context: str = None) -> dict:
+    chain = load_pipeline()
+    answer = chain.invoke({
+        "question": question,
+        "chat_history": _to_lc_messages(chat_history),
+        "extra_context": extra_context,
+    })
     return {
         "answer":  answer,
-        "sources": sources
+        "sources": get_sources(question),
     }
+
+
+def ask_stream(question: str, chat_history: list = None, extra_context: str = None):
+    """Yield answer tokens as they are generated (for st.write_stream)."""
+    chain = load_pipeline()
+    yield from chain.stream({
+        "question": question,
+        "chat_history": _to_lc_messages(chat_history),
+        "extra_context": extra_context,
+    })

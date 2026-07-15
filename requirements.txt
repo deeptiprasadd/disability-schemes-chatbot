@@ -5,14 +5,19 @@ groq>=0.5.0
 pypdf>=4.2.0
 
 # Embeddings + RAG
+# langchain family pinned to a mutually compatible 1.x set. The old >=0.2.0
+# floors mixed with langchain-classic>=1.0 forced pip into heavy resolver
+# backtracking (and sometimes an unsolvable set) on clean CI runners.
 openai>=1.30.0
-langchain>=0.2.0
-langchain-openai>=0.1.7
-langchain-community>=0.2.0
-langchain-classic>=1.0.0
-langchain-ollama>=0.1.0
-langchain-groq>=0.1.0
-langchain-huggingface>=0.0.3
+langchain==1.2.15
+langchain-core==1.2.28
+langchain-community==0.4.1
+langchain-text-splitters==1.1.1
+langchain-classic==1.0.3
+langchain-openai==1.1.12
+langchain-ollama==1.1.0
+langchain-groq>=1.0.0,<2.0.0
+langchain-huggingface==1.2.1
 sentence-transformers>=2.0.0
 torchvision>=0.16.0
 faiss-cpu>=1.8.0
@@ -23,9 +28,16 @@ flashrank>=0.2.0
 # Translation
 deep-translator>=1.11.4
 
-# Frontend
-streamlit>=1.35.0
-streamlit-mic-recorder>=0.0.8
+# Web app (FastAPI backend + vanilla JS frontend)
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9
+
+# Voice (STT via Groq Whisper API, TTS via gTTS) + language detection
+gtts>=2.5.0
+langdetect>=1.0.9
+
+
 
 # Utilities
 python-dotenv>=1.0.1
