@@ -1,6 +1,7 @@
 .env
 __pycache__/
 *.pyc
-scripts/vector_store/
-scripts/seen_hashes.json
+# NOTE: scripts/vector_store/ and scripts/seen_hashes.json are intentionally
+# NOT ignored -- the auto_scrape.yml and embed_on_push.yml workflows commit
+# them back to the repo, so ignoring them made git-auto-commit-action fail.
 .streamlit/secrets.toml
