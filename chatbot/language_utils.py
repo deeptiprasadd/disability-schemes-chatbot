@@ -1,5 +1,9 @@
 
 from deep_translator import GoogleTranslator
+from langdetect import detect, DetectorFactory
+
+# Make langdetect deterministic across runs (it is randomized by default).
+DetectorFactory.seed = 0
 
 SUPPORTED_LANGUAGES = {
     "English":   "en",
@@ -47,3 +51,31 @@ def translate_to_language(text: str, lang_code: str) -> str:
 def get_language_code(language_name: str) -> str:
     """Returns language code from display name. Defaults to 'en'."""
     return SUPPORTED_LANGUAGES.get(language_name, "en")
+
+def detect_language(text: str) -> str:
+    """
+    Detect the language of `text`, returning an ISO-639-1 code.
+    Only returns codes we support; anything else (or failure) falls back to 'en'.
+    """
+    try:
+        code = detect(text)
+        return code if code in SUPPORTED_LANGUAGES.values() else "en"
+    except Exception:
+        return "en"
+
+
+def detect_language(text: str) -> str:
+    """
+    Best-effort ISO-639-1 language detection for typed text.
+
+    Used when the user leaves the language on "Auto-detect" and types (rather
+    than speaks). For voice, the language comes from Whisper instead, which is
+    more reliable. Falls back to 'en' on empty input or detection failure.
+    """
+    if not text or not text.strip():
+        return "en"
+    try:
+        # langdetect can return region-tagged codes like 'zh-cn'; keep the base.
+        return detect(text).split("-")[0]
+    except Exception:
+        return "en"

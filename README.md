@@ -7,13 +7,14 @@ An empathetic, user-friendly assistant designed to provide clear, simple, and di
 - **Hybrid Search Retrieval**: Combines semantic search (FAISS) and keyword search (BM25) to accurately find relevant scheme details.
 - **Reranking**: Uses FlashRank to rerank retrieved documents, ensuring the most pertinent information is provided to the LLM.
 - **Multilingual Support**: Supports multiple Indian languages (English, Hindi, Tamil, Telugu, Marathi, Bengali, Gujarati, Kannada, Malayalam, Punjabi) with seamless translation using `deep-translator`.
-- **Voice Search Integration**: Users can ask questions via voice using the `streamlit-mic-recorder`.
+- **Voice Search Integration**: Users can ask questions via voice using MediaRecorder API and Groq Whisper.
 - **Empathetic & Accurate Responses**: Strict system prompts prevent hallucinations and ensure responses are tailored to the user's specific constraints (e.g., age, disability type, education status).
 - **Source Citations**: Clearly displays the sources from which the information was retrieved.
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: Streamlit
+- **Frontend**: Vanilla JS, HTML, CSS
+- **Backend**: FastAPI (Python)
 - **LLM**: Llama 3.1 8B (via Groq API for fast inference)
 - **Embeddings**: HuggingFace (`all-MiniLM-L6-v2`)
 - **Vector Store**: FAISS (GPU-accelerated if CUDA is available, fallback to CPU)
@@ -37,7 +38,7 @@ The chatbot provides information relevant to a wide range of disabilities, inclu
 ## ⚙️ How It Works (Working Pipeline)
 
 1. **Data Ingestion & Embedding**: Official sources are scraped and parsed. The data is embedded using HuggingFace models and stored locally in a FAISS vector store.
-2. **User Input**: The user interacts with the Streamlit app via text or voice in their preferred language.
+2. **User Input**: The user interacts with the web app via text or voice in their preferred language.
 3. **Translation**: The input is translated to English to maintain high retrieval and generation quality.
 4. **Hybrid Retrieval**: An `EnsembleRetriever` fetches documents using FAISS (Semantic, 70% weight) and BM25 (Keyword, 30% weight).
 5. **Reranking**: `FlashrankRerank` compresses and reranks the retrieved documents to surface the absolute best context.
@@ -75,8 +76,9 @@ The chatbot provides information relevant to a wide range of disabilities, inclu
 
 6. **Run the Application**:
    ```bash
-   streamlit run chatbot/app.py
+   uvicorn server.main:app --port 8000
    ```
+   Open `http://localhost:8000` in your browser.
 
 ## 📦 Version Information
 

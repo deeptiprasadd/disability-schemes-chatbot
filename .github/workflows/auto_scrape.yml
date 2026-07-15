@@ -11,21 +11,35 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
 
-      - run: pip install -r requirements.txt
+      - name: Verify GROQ_API_KEY secret is configured
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          if [ -z "$GROQ_API_KEY" ]; then
+            echo "::error::GROQ_API_KEY secret is not set. Add it under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      - name: Install scrape dependencies
+        run: pip install -r requirements-scrape.txt
 
       - name: Run scraper
         run: python scripts/scrape_schemes.py
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+      - name: Install embed dependencies
+        run: pip install -r requirements-embed.txt
 
       - name: Run embedding
         run: python scripts/embed_docs.py

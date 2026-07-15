@@ -15,7 +15,14 @@ if sys.stdout.encoding != "utf-8":
         pass
 
 load_dotenv()
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+_GROQ_KEY = os.getenv("GROQ_API_KEY")
+if not _GROQ_KEY:
+    # Fail fast instead of letting every LLM call error out and get swallowed,
+    # which made CI runs pass green while producing zero files.
+    print("ERROR: GROQ_API_KEY is not set. Set it as an env var / GitHub secret.")
+    sys.exit(1)
+client = Groq(api_key=_GROQ_KEY)
 
 SOURCES_FILE = "knowledge-base/sources.json"
 HASHES_FILE  = "scripts/seen_hashes.json"
@@ -123,17 +130,20 @@ def run():
     seen      = load_json(HASHES_FILE, {})
     new_files = []
 
-    for source in sources:
-        if not source.get("active", True):
-            continue
+    active    = [s for s in sources if s.get("active", True)]
+    fetched   = 0   # sources we successfully downloaded
+    fetch_err = 0   # sources that failed to download (e.g. IP block / timeout)
 
+    for source in active:
         url      = source["url"]
         category = source["category"]
         print(f"\nScraping: {url}")
 
         try:
             raw = scrape(url)
+            fetched += 1
         except Exception as e:
+            fetch_err += 1
             print(f"  ERROR fetching page: {e}")
             continue
 
@@ -192,7 +202,17 @@ def run():
                 print(f"  Saved: {filepath.encode('ascii', 'ignore').decode('ascii')}")
 
     save_json(HASHES_FILE, seen)
-    print(f"\nFinished. {len(new_files)} new/updated file(s) created.")
+    print(
+        f"\nFinished. {len(new_files)} new/updated file(s) created. "
+        f"Sources: {fetched} fetched, {fetch_err} failed, {len(active)} active."
+    )
+
+    # A total blackout (every active source failed to download) almost always
+    # means the runner's IP is blocked or the sites are down -- surface it as a
+    # failed job instead of a green run that quietly changed nothing.
+    if active and fetched == 0:
+        print("ERROR: every active source failed to download. Failing the job.")
+        sys.exit(1)
 
 if __name__ == "__main__":
     run()

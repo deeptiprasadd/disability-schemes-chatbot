@@ -1,0 +1,8 @@
+# Minimal deps for scripts/scrape_schemes.py (used by the scrape CI job).
+# Deliberately does NOT pull torch / streamlit / faiss — the scraper only
+# fetches pages and calls the Groq API.
+requests>=2.31.0
+beautifulsoup4>=4.12.3
+groq>=0.5.0
+pypdf>=4.2.0
+python-dotenv>=1.0.1
