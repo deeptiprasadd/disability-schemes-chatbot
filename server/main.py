@@ -27,7 +27,8 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 # Reuse the existing, tested pipeline + helpers unchanged.
-from chatbot.rag_pipeline import ask_stream, get_sources
+from chatbot.rag_pipeline import ask_stream, get_sources, generate_followups, route_for
+from chatbot.link_utils import sanitize_answer_links
 from chatbot.language_utils import (
     translate_to_english,
     translate_to_language,
@@ -59,6 +60,13 @@ class TTSRequest(BaseModel):
     lang: str = "en"
 
 
+class FollowupRequest(BaseModel):
+    question: str               # the English question, for best LLM quality
+    answer: str                 # the English answer
+    history: list[Message] = []
+    lang: str = "en"            # language to present the suggestions in
+
+
 # --------------------------------------------------------------------------- helpers
 def _sse(payload: dict) -> str:
     """Encode one Server-Sent Event."""
@@ -84,18 +92,36 @@ def chat(req: ChatRequest):
             target = req.lang if req.lang and req.lang != "auto" else detect_language(req.message)
 
             history = [m.model_dump() for m in req.history]
+
+            # Classify once, then reuse: the route decides whether we retrieved,
+            # and therefore whether citations are meaningful for this answer.
+            route = route_for(english_q, history)
+
+            link_result: dict = {}
             parts: list[str] = []
-            for token in ask_stream(english_q, chat_history=history, extra_context=req.doc_text):
+            for token in ask_stream(english_q, chat_history=history,
+                                    extra_context=req.doc_text, route=route,
+                                    result=link_result):
                 parts.append(token)
                 yield _sse({"type": "token", "text": token})
 
             english_answer = "".join(parts)
+            # A URL can span several streamed tokens, so verification is applied
+            # to the assembled text — this is why the client replaces the live
+            # streamed text with the "final" event's answer (same as translation).
+            if route.needs_retrieval:
+                english_answer = sanitize_answer_links(
+                    english_answer, link_result.get("verified_urls", set())
+                )
             translated = translate_to_language(english_answer, target)
             yield _sse({
                 "type": "final",
                 "answer": translated,
                 "english": english_answer,
-                "sources": get_sources(english_q),
+                "english_question": english_q,
+                # No retrieval -> no citations, rather than misleading ones.
+                "sources": get_sources(english_q) if route.needs_retrieval else [],
+                "intent": route.intent.value,
                 "lang": target,
                 "tts_available": target in GTTS_SUPPORTED,
             })
@@ -107,6 +133,20 @@ def chat(req: ChatRequest):
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
+
+
+@app.post("/api/followups")
+def followups(req: FollowupRequest):
+    """
+    Contextual follow-up questions for the latest turn. Called separately from
+    /api/chat so the answer renders immediately and the chips arrive after.
+    """
+    items = generate_followups(
+        req.question, req.answer, [m.model_dump() for m in req.history]
+    )
+    if req.lang and req.lang != "en":
+        items = [translate_to_language(i, req.lang) or i for i in items]
+    return {"followups": items}
 
 
 @app.post("/api/transcribe")
