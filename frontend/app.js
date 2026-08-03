@@ -98,13 +98,17 @@ function renderChat() {
   const c = current();
   els.chat.querySelectorAll(".msg-row").forEach((n) => n.remove());
   els.empty.style.display = c.messages.length ? "none" : "block";
-  for (const m of c.messages) addBubble(m.role, m.content, m.sources, m.audio);
+  c.messages.forEach((m, i) => {
+    // Only the most recent answer keeps its follow-up chips, like ChatGPT.
+    const isLast = i === c.messages.length - 1 && m.role === "assistant";
+    addBubble(m.role, m.content, m.sources, m.audio, isLast ? m.followups : null);
+  });
   els.chat.scrollTop = els.chat.scrollHeight;
 }
 
 function renderAll() { renderSidebar(); renderChat(); }
 
-function addBubble(role, markdown, sources, audioUrl) {
+function addBubble(role, markdown, sources, audioUrl, followups) {
   const row = document.createElement("div");
   row.className = `msg-row ${role}`;
   const avatar = role === "user" ? "🧑" : "♿";
@@ -128,9 +132,52 @@ function addBubble(role, markdown, sources, audioUrl) {
 
   row.innerHTML = `<div class="avatar" aria-hidden="true">${avatar}</div>`;
   row.appendChild(body);
+  if (followups && followups.length) row.appendChild(buildChips(followups));
   els.chat.appendChild(row);
+  highlight(body);
   els.chat.scrollTop = els.chat.scrollHeight;
   return body;
+}
+
+/* Clickable follow-up question chips shown under an assistant answer. */
+function buildChips(items) {
+  const wrap = document.createElement("div");
+  wrap.className = "followups";
+  wrap.setAttribute("role", "group");
+  wrap.setAttribute("aria-label", "Suggested follow-up questions");
+  items.forEach((q, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip";
+    b.style.animationDelay = `${i * 60}ms`;
+    b.textContent = q;
+    b.onclick = () => send(q);
+    wrap.appendChild(b);
+  });
+  return wrap;
+}
+
+/* Fetch follow-ups for the latest turn and attach them under the answer. */
+async function loadFollowups(row, finalEvt, historyBefore, msg) {
+  try {
+    const res = await fetch("/api/followups", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        question: finalEvt.english_question || "",
+        answer: finalEvt.english || "",
+        history: historyBefore,
+        lang: finalEvt.lang || "en",
+      }),
+    });
+    const data = await res.json();
+    if (data.followups && data.followups.length) {
+      msg.followups = data.followups;
+      save();
+      row.appendChild(buildChips(data.followups));
+      els.chat.scrollTop = els.chat.scrollHeight;
+    }
+  } catch { /* chips are optional; ignore failures */ }
 }
 
 function renderMarkdown(md) {
@@ -164,9 +211,15 @@ async function send(forcedText, forcedLang) {
   if (!text || els.send.disabled) return;
 
   const c = current();
+  // Chips belong to the previous turn only — clear them before the new one.
+  els.chat.querySelectorAll(".followups").forEach((n) => n.remove());
+  c.messages.forEach((m) => delete m.followups);
+
+  const historyBefore = c.messages.map((m) => ({ role: m.role, content: m.content }));
   c.messages.push({ role: "user", content: text });
   if (c.title === "New chat") c.title = text.slice(0, 42) + (text.length > 42 ? "…" : "");
   els.input.value = ""; els.input.style.height = "auto";
+  els.empty.style.display = "none";
   addBubble("user", text);
   renderSidebar(); save();
 
@@ -221,6 +274,9 @@ async function send(forcedText, forcedLang) {
     save();
     setStatus("");
 
+    // Contextual follow-up chips (non-blocking — the answer is already shown).
+    if (final) loadFollowups(assistantBody.parentElement, final, historyBefore, msg);
+
     // Text-to-speech in the user's language.
     if (els.tts.checked && final) {
       if (final.tts_available) await speak(answer, final.lang, assistantBody, msg);
@@ -262,7 +318,8 @@ async function speak(text, lang, bodyEl, msg) {
     const res = await fetch("/api/tts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: stripMarkdown(text), lang }),
+      // Sent raw: the server strips Markdown/emoji and adds natural pauses.
+      body: JSON.stringify({ text, lang }),
     });
     if (res.status === 204) { setStatus(""); return; }
     const blob = await res.blob();
@@ -275,11 +332,6 @@ async function speak(text, lang, bodyEl, msg) {
     setStatus("");
   } catch { setStatus(""); }
 }
-function stripMarkdown(t) {
-  return t.replace(/```[\s\S]*?```/g, " code example omitted. ")
-          .replace(/[*_#>`~\[\]]+/g, " ").replace(/\s{2,}/g, " ").trim();
-}
-
 /* --------------------------------------------------------------- voice input */
 let mediaRecorder = null, chunks = [];
 els.mic.addEventListener("click", toggleMic);

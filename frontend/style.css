@@ -92,7 +92,15 @@ body { font-family: var(--font); color: var(--text); background: var(--bg); }
 /* ============================================================ chat */
 .chat { flex: 1; overflow-y: auto; padding: 24px 16px 8px; }
 .chat-inner, .msg-row { max-width: 780px; margin: 0 auto; }
-.msg-row { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+.msg-row {
+  display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;
+  align-items: flex-start; animation: msg-in .3s ease both;
+}
+@keyframes msg-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .msg-row, .chip { animation: none; }
+  .chip { transition: none; }
+}
 .avatar {
   flex: none; width: 32px; height: 32px; border-radius: 50%;
   display: grid; place-items: center; font-size: 1rem;
@@ -113,6 +121,52 @@ body { font-family: var(--font); color: var(--text); background: var(--bg); }
 }
 @media (prefers-color-scheme: dark) { .bubble pre { background: #14141a; } }
 .bubble code { font-family: "Cascadia Code", Consolas, monospace; font-size: .88em; }
+
+/* ---- readable formatting inside answers ---- */
+.msg-row.assistant .bubble > :first-child { margin-top: 0; }
+.msg-row.assistant .bubble > :last-child { margin-bottom: 0; }
+.bubble h2, .bubble h3 {
+  font-size: .95rem; font-weight: 700; letter-spacing: .01em;
+  margin: 1.15rem 0 .5rem; padding-bottom: .3rem;
+  border-bottom: 1px solid var(--border);
+}
+.bubble h2:first-child, .bubble h3:first-child { margin-top: 0; }
+.bubble p { margin: .55rem 0; line-height: 1.65; }
+.bubble ul, .bubble ol { margin: .5rem 0; padding-left: 1.35rem; }
+.bubble li { margin: .32rem 0; line-height: 1.6; }
+.bubble li::marker { color: var(--accent); font-weight: 700; }
+.bubble strong { font-weight: 700; color: var(--text); }
+.bubble blockquote {
+  margin: .7rem 0; padding: .55rem .85rem;
+  border-left: 3px solid var(--accent);
+  background: rgba(76, 139, 245, .09); border-radius: 0 8px 8px 0;
+}
+.bubble blockquote p { margin: 0; }
+.bubble table { border-collapse: collapse; width: 100%; margin: .6rem 0; font-size: .9rem; }
+.bubble th, .bubble td { border: 1px solid var(--border); padding: .4rem .6rem; text-align: left; }
+.bubble th { background: var(--bg-side); }
+
+/* ---- follow-up question chips ---- */
+.followups {
+  flex: 0 0 100%;            /* forces the chips onto their own row */
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 2px 0 4px 44px;    /* aligns under the bubble, past the avatar */
+}
+.chip {
+  font: inherit; font-size: .84rem; color: var(--text);
+  background: var(--bg-side); border: 1px solid var(--border);
+  border-radius: 999px; padding: .45rem .9rem; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease;
+  animation: chip-in .32s ease both;
+}
+.chip::before { content: "✦"; color: var(--accent); font-size: .78rem; }
+.chip:hover {
+  background: rgba(76, 139, 245, .12);
+  border-color: var(--accent); transform: translateY(-1px);
+}
+.chip:active { transform: translateY(0); }
+@keyframes chip-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 .sources { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
 .source-tag {
@@ -139,9 +193,15 @@ body { font-family: var(--font); color: var(--text); background: var(--bg); }
 .suggestions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
 .suggestion {
   text-align: left; background: var(--bg-side); border: 1px solid var(--border);
-  border-radius: 12px; padding: .8rem .9rem; cursor: pointer; font-size: .9rem; color: var(--text);
+  border-radius: 12px; padding: .85rem .95rem; cursor: pointer; font-size: .9rem;
+  color: var(--text); line-height: 1.4;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
 }
-.suggestion:hover { border-color: var(--accent); }
+.suggestion:hover {
+  border-color: var(--accent); background: rgba(76, 139, 245, .08);
+  transform: translateY(-2px); box-shadow: var(--shadow);
+}
+@media (max-width: 620px) { .suggestions { grid-template-columns: 1fr; } }
 
 /* ============================================================ composer */
 .composer {

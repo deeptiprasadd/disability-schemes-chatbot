@@ -19,12 +19,61 @@ premium neural voices and full Odia/Assamese coverage (needs a paid key).
 
 import io
 import os
+import re
 
 from dotenv import load_dotenv
 from gtts import gTTS
 from groq import Groq
 
 load_dotenv()
+
+# Emoji / pictographs — spoken aloud they become noise like "smiling face".
+_EMOJI_RE = re.compile(
+    "[\U0001F300-\U0001FAFF\U00002600-\U000027BF\U0001F1E6-\U0001F1FF←-⇿⬀-⯿]"
+)
+
+
+def normalize_for_speech(text: str) -> str:
+    """
+    Turn Markdown into text that sounds natural when spoken.
+
+    Removes every character a TTS engine would otherwise read out loud
+    ("asterisk asterisk", "hash", "hyphen") and rebuilds the answer as plain
+    sentences. Each line is terminated with a full stop so the engine pauses
+    between sections instead of running everything together.
+    """
+    if not text:
+        return ""
+
+    t = text
+    t = re.sub(r"```.*?```", " ", t, flags=re.DOTALL)        # fenced code blocks
+    t = re.sub(r"`([^`]*)`", r"\1", t)                        # inline code
+    t = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", t)               # images
+    t = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", t)            # links -> link text
+    t = re.sub(r"https?://\S+", " ", t)                       # bare URLs
+    t = _EMOJI_RE.sub(" ", t)
+
+    spoken = []
+    for raw_line in t.splitlines():
+        line = raw_line.strip()
+        if not line or set(line) <= {"-", "=", "*", "_", "|", " "}:
+            continue  # blank lines and horizontal rules / table borders
+        line = re.sub(r"^#{1,6}\s*", "", line)                # headings
+        line = re.sub(r"^>\s*", "", line)                     # blockquotes
+        line = re.sub(r"^\s*(?:[-*•]|\d+[.)])\s+", "", line)  # bullets / numbering
+        line = re.sub(r"\*\*([^*]+)\*\*", r"\1", line)        # bold
+        line = re.sub(r"\*([^*]+)\*", r"\1", line)            # italics
+        line = re.sub(r"__([^_]+)__", r"\1", line)
+        line = line.replace("|", " ")
+        line = re.sub(r"[*_#`~]+", " ", line)                 # any stragglers
+        line = re.sub(r"\s{2,}", " ", line).strip(" -–—:;,")
+        if not line:
+            continue
+        if line[-1] not in ".!?":
+            line += "."                                       # natural pause
+        spoken.append(line)
+
+    return re.sub(r"\s{2,}", " ", " ".join(spoken)).strip()
 
 # Whisper's `language` field comes back as an English NAME (e.g. "hindi") on
 # Groq, but we map to ISO-639-1 codes used everywhere else (translation, TTS).
@@ -90,9 +139,13 @@ def synthesize_speech(text: str, lang_code: str) -> bytes | None:
     code = (lang_code or "en").lower()
     if code not in GTTS_SUPPORTED:
         return None
+    # Strip Markdown/emoji so the voice never reads formatting characters.
+    speech_text = normalize_for_speech(text)
+    if not speech_text:
+        return None
     try:
         buf = io.BytesIO()
-        gTTS(text=text, lang=code, slow=False).write_to_fp(buf)
+        gTTS(text=speech_text, lang=code, slow=False).write_to_fp(buf)
         buf.seek(0)
         return buf.read()
     except Exception as e:

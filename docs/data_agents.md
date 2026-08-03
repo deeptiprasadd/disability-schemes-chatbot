@@ -63,6 +63,8 @@ Once documents are stored, they must be converted into vector embeddings for sem
 * Orchestrates the update pipeline by running `scrape_schemes.py` first, followed by `embed_docs.py` as separate subprocesses.
 * Can be run via the Windows batch script [run_updates.bat](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/run_updates.bat) located in the project root.
 
+> **Note**: `embed_docs.py` writes the index that the live app loads from `scripts/vector_store/`. Restart the server after re-embedding so the new index is picked up.
+
 ---
 
 ## 🎯 Fine-Tuning Dataset Generator: `prepare_finetune_data.py`
@@ -73,6 +75,37 @@ This script parses the Markdown database to generate instruction-tuning data. Th
   2. **Benefits**: `What are the benefits provided under the <Scheme Name>?` $\rightarrow$ Outputs the parsed `## Benefits` section.
   3. **Eligibility**: `Who is eligible for the <Scheme Name> in India?` $\rightarrow$ Outputs the parsed `## Eligibility criteria` section.
 * **Output**: Saves the dataset as an Alpaca-style JSONL file at [finetune_dataset.jsonl](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/scripts/finetune_dataset.jsonl).
+
+---
+
+## 🔄 Automation: GitHub Actions
+
+Two workflows keep the knowledge base current without manual intervention.
+
+### `auto_scrape.yml` — Monthly scrape and update
+Runs on a cron schedule (`0 0 1 * *`) and on manual dispatch:
+1. Installs dependencies.
+2. Runs `scrape_schemes.py` with `GROQ_API_KEY` from repository secrets.
+3. Runs `embed_docs.py` to rebuild the index.
+4. Commits `knowledge-base/`, `scripts/seen_hashes.json` and `scripts/vector_store/` back to `main` via `git-auto-commit-action`.
+
+### `embed_on_push.yml` — Re-embed on push
+Triggers whenever `knowledge-base/**` changes on `main`, rebuilding and committing the vector store.
+
+### ⚠️ Critical `.gitignore` constraint
+Both workflows **commit** `scripts/vector_store/` and `scripts/seen_hashes.json`. Those paths must therefore **never be listed in `.gitignore`**. When they were ignored, `git add` on an ignored path exited with status `1`, and every scheduled run failed at the final step with:
+
+```
+The following paths are ignored by one of your .gitignore files:
+scripts/seen_hashes.json
+scripts/vector_store
+Error: Invalid status code: 1
+```
+
+The scrape and embed steps had already succeeded — only the commit failed. Keep those two paths un-ignored.
+
+### Expected partial failures
+Several `.gov.in` portals silently drop connections from GitHub's datacenter IP ranges, producing `ConnectTimeout` or `Connection refused` for a handful of sources on every run. This is **normal and non-fatal**: `scrape_schemes.py` catches errors per source and continues, so a run still succeeds with the sources that do respond.
 
 ---
 
