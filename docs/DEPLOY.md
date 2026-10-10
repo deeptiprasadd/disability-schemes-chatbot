@@ -69,7 +69,7 @@ All of these use the same [`Dockerfile`](../Dockerfile); set `GROQ_API_KEY` on t
 
 ## Own domain (optional)
 
-Buy a domain (e.g. `divyangsahayak.in`, about ₹500–1,000 a year) from any registrar. In Render open the service → **Settings → Custom Domains**, add it, and create the DNS record Render shows. Render issues the HTTPS certificate.
+Buy a domain (e.g. `snehsaathi.in`, about ₹500–1,000 a year) from any registrar. In Render open the service → **Settings → Custom Domains**, add it, and create the DNS record Render shows. Render issues the HTTPS certificate. The Android app is tied to one address, so after a domain change rebuild it for the new address (see [ANDROID_APP.md](ANDROID_APP.md)).
 
 ## Play Store listing (optional)
 

@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.snehsaathi.app",
+        "sha256_cert_fingerprints": ["D2:D3:43:59:C3:1A:13:98:C6:F9:F3:57:01:49:26:29:31:C7:BB:3B:24:82:0A:56:05:C7:CC:10:97:21:A6:55"]
+      }
+    }]

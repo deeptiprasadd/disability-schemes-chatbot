@@ -94,7 +94,7 @@ One responsive page, no separate mobile app:
 | 1024–1279px | Conversation · matches panel; chat history moves into a drawer |
 | < 1024px | Conversation only; matches open as a drawer (tablet) or bottom sheet (phone) |
 
-Phones get a voice-first home screen (topic tiles, language chips, a large mic button) and a 17px base font. Icons are an SVG sprite (`frontend/icons.svg`, Tabler Icons, MIT).
+Phones get a voice-first home screen (topic tiles, language chips, a large mic button). Base text is 18px on every screen size (not the usual 16px), for older readers. Icons are an SVG sprite (`frontend/icons.svg`, Tabler Icons, MIT).
 
 ### Matched schemes (`chatbot/insights.py`)
 
@@ -120,7 +120,7 @@ The LLM is instructed to emit structured Markdown, which the stylesheet renders 
 - `aria-label` on every icon control; `aria-pressed` on the mic; `aria-current` on the active conversation.
 - Visible `:focus-visible` outlines throughout; full keyboard operation (Enter sends, Shift+Enter newlines).
 - `prefers-reduced-motion` disables all animation.
-- `prefers-color-scheme` light/dark themes, plus a **High contrast** toggle (pure black/white) and a three-step **Text size** control, both remembered per browser.
+- One light theme ("Lotus & Indigo"; there is no dark mode), plus a **High contrast** toggle (pure black/white) and a three-step **Text size** control (18px, A+, A++), both remembered per browser.
 - Drawers and the bottom sheet close with Escape and return focus to the control that opened them.
 
 ---

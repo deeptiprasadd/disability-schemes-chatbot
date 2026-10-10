@@ -9,3 +9,7 @@ __pycache__
 test_output.txt
 research
 scripts/finetune_dataset.jsonl
+# Android signing keys must never end up inside an image either
+*.keystore
+*.jks
+signing-key-info.txt

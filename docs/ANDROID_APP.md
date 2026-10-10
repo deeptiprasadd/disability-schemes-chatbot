@@ -9,12 +9,27 @@ The app is built with **[PWABuilder](https://www.pwabuilder.com)** (free, from M
 ## 1. Build the app (about 10 minutes)
 
 1. Open <https://sneh-saathi.onrender.com> once first, so the free server wakes up.
-2. Go to <https://www.pwabuilder.com>, paste that address, and start the check.
-3. Choose **Package for stores → Android** and **Generate package**. Suggested options (PWABuilder's wording may differ slightly):
-   - **Package ID:** `com.snehsaathi.app` (if you buy the domain `snehsaathi.in`, `in.snehsaathi.app` fits too). It can never change after release.
-   - **App name:** `Sneh Saathi`. **Launcher name:** `Sneh Saathi`.
-   - **Signing key:** **Create new**.
-4. Download the zip. It contains:
+2. Go to <https://www.pwabuilder.com>, paste that address, and start the check. It shows a report card with **0 errors**. Its two warnings can be ignored:
+   - *"Add a service worker"* is a false alarm: the site has one (`frontend/sw.js`, registered after the page loads, which PWABuilder's check misses).
+   - *"Add screenshots"* only improves Chrome's install dialog; it does not affect the app.
+3. Click **Package For Stores**, then **Generate Package** under **Google Play**. Stay on the **Google Play** tab (*Other Android* makes an unsigned APK that phones will not install).
+4. Change these fields; leave the rest as PWABuilder filled them in from the manifest (host `sneh-saathi.onrender.com`, start URL `/`, indigo `#3F3D9E` colours, the 512 px and maskable icons):
+
+| Field | Default | Set it to |
+|---|---|---|
+| Package ID | `com.onrender.sneh_saathi.twa` | **`com.snehsaathi.app`**. It can never change after release. |
+| App name / Short name | `Sneh Saathi` | keep |
+| Version / Version code | `1.0.0.0` / `1` | keep for the first build; raise both for every rebuild |
+| *All Settings →* Notification delegation | on | **off** (the app sends no notifications) |
+| Display mode | Standalone | keep |
+| Signing key | New | keep **New** |
+| Key alias | `my-key-alias` | `sneh-saathi` |
+| Key full name | `Sneh Saathi Admin` | your name |
+| Key organization | `Sneh Saathi · स्नेह साथी` | **`Sneh Saathi`** (plain English letters; Hindi and `·` can upset the signing tool) |
+| Key organizational unit | `Engineering` | e.g. `M.Tech Project` |
+| Key country code | `US` | **`IN`** |
+
+5. Click **Download Package** and save the zip. It contains:
 
 | File | What it is |
 |---|---|
@@ -23,7 +38,7 @@ The app is built with **[PWABuilder](https://www.pwabuilder.com)** (free, from M
 | `assetlinks.json` | Proof for Android that the app and the website belong together |
 | `signing.keystore` + `signing-key-info.txt` | **Your signing key and its passwords** |
 
-> ⚠️ **Keep `signing.keystore` and `signing-key-info.txt` safe and private** (for example in a password manager or an offline backup). Every future update must be signed with the same key: lose it and you can never update the app; leak it and someone else could publish fake updates. `.gitignore` already blocks these files from git.
+> ⚠️ **Keep `signing.keystore` and `signing-key-info.txt` safe and private** (for example in a password manager or an offline backup). Every future update must be signed with the same key: lose it and you can never update the app; leak it and someone else could publish fake updates. Store them **outside the project folder**. `.gitignore` and `.dockerignore` block them as a second line of defence.
 
 ## 2. Put the app on your website
 
@@ -34,10 +49,20 @@ Copy two files from the zip into the project, with exactly these names:
 | `assetlinks.json` | `frontend/android/assetlinks.json` |
 | the `.apk` file | `frontend/android/sneh-saathi.apk` |
 
-Then commit and push (see the commands at the end). After Render redeploys:
+Then commit and push them (a few MB; Render needs them in git to serve them):
+
+```bash
+git add frontend/android/assetlinks.json frontend/android/sneh-saathi.apk
+git commit -m "Add Sneh Saathi Android app and asset links"
+git push
+```
+
+After Render redeploys (about 5 minutes):
 
 - `https://sneh-saathi.onrender.com/.well-known/assetlinks.json` returns the file, so the app opens **full-screen without a browser bar**.
 - Android visitors see a **"Download Android app (APK)"** link in the *Get the app* card on the home screen.
+
+If the installed app shows an address bar at the top, Android could not match the app to the site: check that `assetlinks.json` contains `com.snehsaathi.app` and is the one from the same zip as the APK.
 
 ## 3. Installing the APK on a phone
 

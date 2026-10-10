@@ -1,10 +1,10 @@
 # 🤖 Data Ingestion, Processing, & Testing Agents Guide
 
 This guide details the background agents and scripts responsible for populating the database, indexing files for search, creating fine-tuning datasets, and executing automated pipeline tests. The primary files discussed are:
-1. **Scraping Agent**: [scrape_schemes.py](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/scripts/scrape_schemes.py)
-2. **Indexing & Update Agents**: [embed_docs.py](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/scripts/embed_docs.py) & [update_all.py](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/scripts/update_all.py)
-3. **Dataset Generator Agent**: [prepare_finetune_data.py](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/scripts/prepare_finetune_data.py)
-4. **Verification Testing Agent**: [test_logic.py](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/scripts/test_logic.py)
+1. **Scraping Agent**: [scrape_schemes.py](../scripts/scrape_schemes.py)
+2. **Indexing & Update Agents**: [embed_docs.py](../scripts/embed_docs.py) & [update_all.py](../scripts/update_all.py)
+3. **Dataset Generator Agent**: [prepare_finetune_data.py](../scripts/prepare_finetune_data.py)
+4. **Verification Testing Agent**: [test_logic.py](../scripts/test_logic.py)
 
 ---
 
@@ -20,7 +20,7 @@ flowchart LR
     HashCheck -->|Yes| LLM[LLM Formatting Agent: GPT-OSS 120B]
     LLM --> Write[Save to knowledge-base/]
     Write --> IndexAgent[embed_docs.py]
-    IndexAgent -->|Recursive Text Splitter| Embed[Sentence Transformer Model]
+    IndexAgent -->|Recursive Text Splitter| Embed[all-MiniLM-L6-v2, ONNX]
     Embed --> DB[(FAISS Vector Database)]
 ```
 
@@ -31,9 +31,9 @@ flowchart LR
 This agent handles web scraping and structures unstructured government documents into clean Markdown.
 
 ### 1. Ingestion Phase
-* The agent reads target portals from [sources.json](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/knowledge-base/sources.json).
+* The agent reads target portals from [sources.json](../knowledge-base/sources.json).
 * It downloads page contents using `requests` or processes PDF links using `pypdf.PdfReader` to extract raw text page-by-page.
-* It calculates the MD5 hash of the raw text and checks it against [seen_hashes.json](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/scripts/seen_hashes.json). If the hash matches, it skips the URL to save API tokens.
+* It calculates the MD5 hash of the raw text and checks it against [seen_hashes.json](../scripts/seen_hashes.json). If the hash matches, it skips the URL to save API tokens.
 
 ### 2. LLM Structuring Phase
 * If changes are detected, the agent sends the raw text to `openai/gpt-oss-120b` on Groq (override with `GROQ_SCRAPE_MODEL`).
@@ -70,12 +70,13 @@ Once documents are stored, they must be converted into vector embeddings for sem
 ### 1. Chunking & Indexing (`embed_docs.py`)
 * **Loading**: Recursively loads all `.md` files under `knowledge-base/` using LangChain's `DirectoryLoader` and `TextLoader`.
 * **Splitting**: Segments documents into 500-character blocks with 50-character overlap using `RecursiveCharacterTextSplitter`. Splitting prioritizes Markdown markers (`\n##`, `\n###`, `\n-`) to preserve table lists and bullet points.
-* **Vector Generation**: Generates 384-dimensional vector embeddings using the `all-MiniLM-L6-v2` Sentence Transformer model.
-* **Save**: Writes the compiled index to [scripts/vector_store/](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/scripts/vector_store/) (saving `index.faiss` and `index.pkl`).
+* **Scheme labels**: Prefixes every chunk with the scheme it belongs to (e.g. `[Scheme: NIRAMAYA Health Insurance Scheme | For: autism, …]`) and stores `scheme_name` in its metadata, so a chunk that never names its scheme can still be matched to it.
+* **Vector Generation**: Generates 384-dimensional vector embeddings with `all-MiniLM-L6-v2`, run as ONNX through fastembed (`chatbot/embeddings.py`, the same model the server searches with; no PyTorch).
+* **Save**: Writes the compiled index to [scripts/vector_store/](../scripts/vector_store/) (saving `index.faiss` and `index.pkl`).
 
 ### 2. Update Coordinator (`update_all.py`)
 * Orchestrates the update pipeline by running `scrape_schemes.py` first, followed by `embed_docs.py` as separate subprocesses.
-* Can be run via the Windows batch script [run_updates.bat](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/run_updates.bat) located in the project root.
+* Can be run via the Windows batch script [run_updates.bat](../run_updates.bat) located in the project root.
 
 > **Note**: `embed_docs.py` writes the index that the live app loads from `scripts/vector_store/`. Restart the server after re-embedding so the new index is picked up.
 
@@ -88,7 +89,7 @@ This script parses the Markdown database to generate instruction-tuning data. Th
   1. **General Info**: `Provide a detailed overview of the <Scheme Name>.` $\rightarrow$ Outputs the full Markdown content.
   2. **Benefits**: `What are the benefits provided under the <Scheme Name>?` $\rightarrow$ Outputs the parsed `## Benefits` section.
   3. **Eligibility**: `Who is eligible for the <Scheme Name> in India?` $\rightarrow$ Outputs the parsed `## Eligibility criteria` section.
-* **Output**: Saves the dataset as an Alpaca-style JSONL file at [finetune_dataset.jsonl](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/scripts/finetune_dataset.jsonl).
+* **Output**: Saves the dataset as an Alpaca-style JSONL file at [finetune_dataset.jsonl](../scripts/finetune_dataset.jsonl).
 
 ---
 
