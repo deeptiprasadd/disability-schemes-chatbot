@@ -338,6 +338,19 @@ a.source-tag:hover { color: var(--brand-strong); border-color: var(--brand-line)
 .big-mic-label { font-weight: 650; font-size: 1.05rem; }
 
 .examples { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.get-app {
+  order: 9; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  padding: 14px 16px; border-radius: 14px;
+  background: var(--brand-soft); border: 1px solid var(--brand-line);
+}
+.get-app-icon { width: 48px; height: 48px; border-radius: 12px; flex: none; }
+.get-app-text { flex: 1 1 200px; min-width: 0; }
+.get-app-title { margin: 0; font-size: 1rem; color: var(--brand-strong); }
+.get-app-how { margin: 2px 0 0; font-size: .875rem; color: var(--text); }
+.get-app-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.get-app-actions .btn-primary { flex: none; }
+.get-app-apk { font-size: .875rem; font-weight: 600; color: var(--brand-strong); }
+@media (max-width: 767px) { .get-app { order: 4; } }
 .home-note {
   order: 10; margin: 0; padding-top: 12px; border-top: 1px solid var(--border);
   font-size: .8125rem; color: var(--text-dim); line-height: 1.5;

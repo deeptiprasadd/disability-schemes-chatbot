@@ -77,7 +77,7 @@ Then open **http://localhost:8000**. Run from the project root — the pipeline 
 
 ## 🌍 Putting it online
 
-The app is containerised (`Dockerfile`) and installable on phones as a web app. To publish it, with automatic redeploys from GitHub, follow **[docs/DEPLOY.md](docs/DEPLOY.md)** (free on Render, about 400 MB of RAM).
+The app is containerised (`Dockerfile`) and installable on phones as a web app. To publish it, with automatic redeploys from GitHub, follow **[docs/DEPLOY.md](docs/DEPLOY.md)** (free on Render, about 400 MB of RAM). To offer a downloadable Android app (APK / Play Store), see **[docs/ANDROID_APP.md](docs/ANDROID_APP.md)**.
 
 ---
 

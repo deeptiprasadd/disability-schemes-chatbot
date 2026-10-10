@@ -5,3 +5,9 @@ __pycache__/
 # NOT ignored -- the auto_scrape.yml and embed_on_push.yml workflows commit
 # them back to the repo, so ignoring them made git-auto-commit-action fail.
 .streamlit/secrets.toml
+
+# Android app signing keys from PWABuilder: keep them safe OUTSIDE git.
+# Anyone with the key could publish fake updates; losing it blocks real ones.
+*.keystore
+*.jks
+signing-key-info.txt

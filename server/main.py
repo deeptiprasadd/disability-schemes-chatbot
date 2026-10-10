@@ -26,7 +26,7 @@ import traceback
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, File, Request, UploadFile
-from fastapi.responses import JSONResponse, Response, StreamingResponse
+from fastapi.responses import FileResponse, JSONResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -338,6 +338,37 @@ async def upload(request: Request, file: UploadFile = File(...)):
         return {"name": name, "text": "", "chars": 0,
                 "error": "Couldn't read that file. Try a PDF with selectable text, or a .txt file."}
     return {"name": name, "text": text[:guard.MAX_DOC_CHARS], "chars": len(text)}
+
+
+# --------------------------------------------------------------------------- Android app
+# The Android app (built with PWABuilder, see docs/ANDROID_APP.md) is a Trusted
+# Web Activity: it opens this site full-screen, without a browser bar, only if
+# the site vouches for the app's signing key in assetlinks.json.
+ANDROID_DIR = os.path.join(FRONTEND_DIR, "android")
+APK_NAME = "disability-schemes-assistant.apk"
+
+
+@app.get("/.well-known/assetlinks.json")
+def assetlinks():
+    path = os.path.join(ANDROID_DIR, "assetlinks.json")
+    if not os.path.exists(path):
+        return JSONResponse([], status_code=404)
+    with open(path, encoding="utf-8") as f:
+        return JSONResponse(json.load(f))
+
+
+@app.get("/api/app-info")
+def app_info():
+    """Tells the page whether a downloadable APK exists, so it can offer it."""
+    return {"apk": f"/download/{APK_NAME}" if os.path.exists(os.path.join(ANDROID_DIR, APK_NAME)) else None}
+
+
+@app.get(f"/download/{APK_NAME}")
+def download_apk():
+    path = os.path.join(ANDROID_DIR, APK_NAME)
+    if not os.path.exists(path):
+        return JSONResponse({"error": "The Android app is not available yet."}, status_code=404)
+    return FileResponse(path, media_type="application/vnd.android.package-archive", filename=APK_NAME)
 
 
 # Static front end mounted last so the /api/* routes above take precedence.

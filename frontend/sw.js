@@ -8,7 +8,7 @@
  * offline" message when a question cannot be sent.
  * ========================================================================= */
 
-const CACHE = "dsa-shell-v1";
+const CACHE = "dsa-shell-v2";
 const SHELL = ["/", "/style.css", "/app.js", "/icons.svg", "/manifest.json", "/icon-192.png"];
 
 self.addEventListener("install", (event) => {

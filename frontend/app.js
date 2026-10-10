@@ -877,27 +877,55 @@ if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
 }
 
-// Chrome/Edge/Android offer installation through this event. Show our own
-// button, since many people never find "Add to Home screen" in the menu.
-// (Guarded: right after an update a browser can briefly pair a cached older
-// page, which has no button, with this newer script.)
+// Chrome/Edge/Android offer installation through `beforeinstallprompt`. Show
+// our own buttons (top bar + "Get the app" card on the home screen), since many
+// people never find "Add to Home screen" in the browser menu. iPhones have no
+// such event, so the card explains Share -> Add to Home Screen instead.
+// (Elements are looked up defensively: right after an update a browser can
+// briefly pair a cached older page with this newer script.)
 let installPrompt = null;
-const installBtn = $("#install-btn");
-if (installBtn) {
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    installPrompt = e;
-    installBtn.hidden = false;
-  });
-  installBtn.addEventListener("click", async () => {
-    if (!installPrompt) return;
-    installPrompt.prompt();
-    await installPrompt.userChoice.catch(() => {});
-    installPrompt = null;
-    installBtn.hidden = true;
-  });
-  window.addEventListener("appinstalled", () => { installBtn.hidden = true; });
+const installButtons = [$("#install-btn"), $("#get-app-install")].filter(Boolean);
+const getApp = $("#get-app");
+const isInstalled = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent)
+  || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const isAndroid = /android/i.test(navigator.userAgent);
+
+function setupGetApp() {
+  if (!getApp || isInstalled()) return;  // already running as the installed app
+  const how = $("#get-app-how");
+  how.textContent = isIOS
+    ? "On iPhone: tap the Share button at the bottom of Safari, then \"Add to Home Screen\"."
+    : "Open your browser menu (⋮) and tap \"Install app\" or \"Add to Home screen\". "
+      + "It gets its own icon and opens full-screen.";
+  getApp.hidden = false;
+  // Offer the downloadable APK on Android once one has been published.
+  if (isAndroid) {
+    fetch("/api/app-info").then((r) => r.json()).then((info) => {
+      const link = $("#get-app-apk");
+      if (info.apk && link) { link.href = info.apk; link.hidden = false; }
+    }).catch(() => {});
+  }
 }
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  installPrompt = e;
+  installButtons.forEach((b) => { b.hidden = false; });
+  const how = $("#get-app-how");
+  if (how) how.textContent = "Install it to get an icon on your home screen. It opens full-screen, like any app.";
+});
+installButtons.forEach((b) => b.addEventListener("click", async () => {
+  if (!installPrompt) return;
+  installPrompt.prompt();
+  await installPrompt.userChoice.catch(() => {});
+  installPrompt = null;
+  installButtons.forEach((btn) => { btn.hidden = true; });
+}));
+window.addEventListener("appinstalled", () => {
+  installButtons.forEach((b) => { b.hidden = true; });
+  if (getApp) getApp.hidden = true;
+});
 
 /* --------------------------------------------------------------- init */
 window.addEventListener("DOMContentLoaded", async () => {
@@ -907,6 +935,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (pref("dsa_tts") === "0") els.tts.click();
   if (matchMedia("(max-width: 479px)").matches) els.input.placeholder = "Type or tap the mic";
   buildHome();
+  setupGetApp();
   renderAll();
   await loadLanguages();
   setLanguage(pref("dsa_lang") || "auto");
