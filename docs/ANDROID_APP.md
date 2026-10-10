@@ -8,11 +8,11 @@ The app is built with **[PWABuilder](https://www.pwabuilder.com)** (free, from M
 
 ## 1. Build the app (about 10 minutes)
 
-1. Open <https://disability-schemes-assistant.onrender.com> once first, so the free server wakes up.
+1. Open <https://sneh-saathi.onrender.com> once first, so the free server wakes up.
 2. Go to <https://www.pwabuilder.com>, paste that address, and start the check.
 3. Choose **Package for stores → Android** and **Generate package**. Suggested options (PWABuilder's wording may differ slightly):
-   - **Package ID:** `com.onrender.disability_schemes_assistant` (or your own, e.g. `in.yourname.schemeshelp`). It can never change after release.
-   - **App name:** `Disability Schemes Assistant`. **Launcher name:** `Schemes Help`.
+   - **Package ID:** `com.snehsaathi.app` (if you buy the domain `snehsaathi.in`, `in.snehsaathi.app` fits too). It can never change after release.
+   - **App name:** `Sneh Saathi`. **Launcher name:** `Sneh Saathi`.
    - **Signing key:** **Create new**.
 4. Download the zip. It contains:
 
@@ -32,11 +32,11 @@ Copy two files from the zip into the project, with exactly these names:
 | From the zip | To |
 |---|---|
 | `assetlinks.json` | `frontend/android/assetlinks.json` |
-| the `.apk` file | `frontend/android/disability-schemes-assistant.apk` |
+| the `.apk` file | `frontend/android/sneh-saathi.apk` |
 
 Then commit and push (see the commands at the end). After Render redeploys:
 
-- `https://disability-schemes-assistant.onrender.com/.well-known/assetlinks.json` returns the file, so the app opens **full-screen without a browser bar**.
+- `https://sneh-saathi.onrender.com/.well-known/assetlinks.json` returns the file, so the app opens **full-screen without a browser bar**.
 - Android visitors see a **"Download Android app (APK)"** link in the *Get the app* card on the home screen.
 
 ## 3. Installing the APK on a phone
@@ -45,7 +45,7 @@ Then commit and push (see the commands at the end). After Render redeploys:
 2. Open the downloaded file. Android asks to **allow installs from this source** (Chrome): allow it once.
 3. Tap **Install**. Because the app is not from the Play Store, Play Protect may show a warning; choose **Install anyway**.
 
-The app then appears on the home screen as **Schemes Help**.
+The app then appears on the home screen as **Sneh Saathi**.
 
 > Many people are wary of installing APKs from outside the Play Store. The website's **Install app** button gives the same experience without any warnings, so the APK is mainly for people who expect a "real app" download, and for your project demonstration.
 

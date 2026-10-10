@@ -8,8 +8,9 @@
  * offline" message when a question cannot be sent.
  * ========================================================================= */
 
-const CACHE = "dsa-shell-v2";
-const SHELL = ["/", "/style.css", "/app.js", "/icons.svg", "/manifest.json", "/icon-192.png"];
+const CACHE = "sneh-saathi-v3";
+const SHELL = ["/", "/style.css", "/fonts/fonts.css", "/i18n.js", "/app.js", "/icons.svg",
+               "/manifest.json", "/icon-192.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

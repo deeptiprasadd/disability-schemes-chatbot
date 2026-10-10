@@ -3,54 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Disability Schemes Assistant</title>
+  <title>Sneh Saathi · स्नेह साथी</title>
   <meta name="description"
-        content="Government welfare schemes for persons with disabilities in India — ask by text or voice, in any Indian language." />
-  <meta name="theme-color" content="#0F6E56" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#0F1513" media="(prefers-color-scheme: dark)" />
-  <!-- Inline favicon: avoids the /favicon.ico 404 without an extra request -->
-  <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230F6E56'/><circle cx='16' cy='9' r='2.4' fill='white'/><path d='M12 14l4 1.4 4-1.4M16 15.4v3.4l-3 4.6M16 18.8l3 4.6' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+        content="Sneh Saathi helps persons with disabilities and their families find government schemes, schools and support in India. Ask by text or voice, in 13 Indian languages." />
+  <meta name="theme-color" content="#3F3D9E" />
+  <meta name="color-scheme" content="light" />
+  <link rel="icon" type="image/png" href="/icon-192.png" />
   <!-- Installable app (PWA): home-screen icon, standalone window, offline shell -->
   <link rel="manifest" href="/manifest.json" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="Schemes Help" />
+  <meta name="apple-mobile-web-app-title" content="Sneh Saathi" />
+  <!-- Self-hosted fonts: Baloo 2 (name, headings) + Mukta (text). The two
+       preloaded files are needed on every page: the Hindi name and English text. -->
+  <link rel="preload" href="/fonts/baloo2-devanagari.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/mukta-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
   <link rel="stylesheet" href="/style.css" />
   <!-- Markdown rendering + code highlighting (production CDN; can be vendored) -->
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css" />
   <script defer src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+  <script defer src="/i18n.js"></script>
   <script defer src="/app.js"></script>
 </head>
 <body>
   <!-- Skip link for keyboard / screen-reader users -->
-  <a class="skip-link" href="#input">Skip to message box</a>
+  <a class="skip-link" href="#input" data-i18n="skip">Skip to message box</a>
 
   <div class="app">
     <!-- ================================================ Top bar -->
     <header class="topbar">
-      <button id="menu-toggle" class="icon-btn only-drawer" type="button"
+      <button id="menu-toggle" class="icon-btn only-drawer" type="button" data-i18n-aria="openMenu"
               aria-label="Open chats and settings" aria-controls="sidebar" aria-expanded="false">
         <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-menu-2"/></svg>
       </button>
 
       <div class="brand">
-        <span class="brand-mark" aria-hidden="true"><svg class="icon"><use href="/icons.svg#i-accessible"/></svg></span>
+        <img class="brand-mark" src="/icon-192.png" alt="" width="42" height="42" />
         <span class="brand-text">
-          <h1 class="brand-name">
-            <span class="long">Disability Schemes Assistant</span>
-            <span class="short">Schemes Assistant</span>
-          </h1>
-          <span class="brand-tag">Official sources · 13 Indian languages</span>
+          <h1 class="brand-name"><span lang="hi">स्नेह साथी</span><span class="en" lang="en">Sneh Saathi</span></h1>
+          <span class="brand-tag" data-i18n="brandTag">Government schemes made simple · 13 Indian languages</span>
         </span>
       </div>
 
       <div class="topbar-tools">
         <button id="install-btn" class="tool-btn" type="button" hidden>
           <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-download"/></svg>
-          <span class="tool-label">Install app</span>
+          <span class="tool-label" data-i18n="install">Install app</span>
         </button>
         <button id="text-size" class="tool-btn" type="button" aria-label="Text size: normal">
           <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-text-size"/></svg>
@@ -58,19 +59,19 @@
         </button>
         <button id="contrast-toggle" class="tool-btn" type="button" aria-pressed="false">
           <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-contrast"/></svg>
-          <span class="tool-label">High contrast</span>
+          <span class="tool-label" data-i18n="contrast">High contrast</span>
         </button>
         <button id="tts-toggle" class="tool-btn" type="button" aria-pressed="true">
           <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-volume"/></svg>
-          <span class="tool-label">Speak answers</span>
+          <span class="tool-label" data-i18n="speak">Speak answers</span>
         </button>
-        <button id="new-chat-top" class="icon-btn only-drawer" type="button" aria-label="New chat">
+        <button id="new-chat-top" class="icon-btn only-drawer" type="button" aria-label="New chat" data-i18n-aria="newChat">
           <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg>
         </button>
         <button id="panel-toggle" class="matches-btn only-sheet" type="button"
                 aria-controls="insights" aria-expanded="false">
           <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-list-details"/></svg>
-          <span>Matches</span>
+          <span data-i18n="matches">Matches</span>
           <span id="match-badge" class="badge" hidden>0</span>
         </button>
       </div>
@@ -80,26 +81,26 @@
     <aside class="history" id="sidebar" aria-label="Chats and settings">
       <div class="history-head">
         <button id="new-chat" class="btn-primary" type="button">
-          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg>New chat
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg><span data-i18n="newChat">New chat</span>
         </button>
-        <button id="sidebar-close" class="icon-btn only-drawer" type="button" aria-label="Close chats and settings">
+        <button id="sidebar-close" class="icon-btn only-drawer" type="button" aria-label="Close chats and settings" data-i18n-aria="closeMenu">
           <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-x"/></svg>
         </button>
       </div>
 
       <nav class="conversations" aria-labelledby="recent-title">
-        <h2 class="side-title" id="recent-title">Recent chats</h2>
+        <h2 class="side-title" id="recent-title" data-i18n="recentChats">Recent chats</h2>
         <ul id="conversation-list" role="list"></ul>
       </nav>
 
       <div class="settings">
-        <h2 class="side-title">Settings</h2>
-        <label for="lang-select">Answer language</label>
+        <h2 class="side-title" data-i18n="settings">Settings</h2>
+        <label for="lang-select" data-i18n="answerLanguage">Answer language</label>
         <select id="lang-select" aria-describedby="lang-help">
-          <option value="auto" selected>Auto-detect (recommended)</option>
+          <option value="auto" selected data-i18n="autoDetect">Auto-detect (recommended)</option>
         </select>
-        <p id="lang-help" class="hint">Detected from your voice or text unless you choose one.</p>
-        <p class="hint privacy-note">Your chats are saved only in this browser, on this device.</p>
+        <p id="lang-help" class="hint" data-i18n="langHelp">Detected from your voice or text unless you choose one.</p>
+        <p class="hint privacy-note" data-i18n="privacy">Your chats are saved only in this browser, on this device.</p>
       </div>
     </aside>
 
@@ -108,15 +109,15 @@
       <section id="chat" class="chat" role="log" aria-live="polite" aria-label="Conversation">
         <div id="empty-state" class="home">
           <div class="home-hero">
-            <h2 class="home-title">Namaste</h2>
-            <p class="home-sub">How can I help you today?</p>
-            <p class="home-lede">Ask about pensions, scholarships, the UDID card, aids and devices,
-               or any government scheme for persons with disabilities. Type or speak in any Indian language.</p>
+            <h2 class="home-title" data-i18n="greeting">Namaste</h2>
+            <p class="home-sub" data-i18n="homeSub">How can I help you today?</p>
+            <p class="home-lede" data-i18n="homeLede">Ask about pensions, scholarships, the UDID card, aids and devices,
+               schools, or any government scheme for persons with disabilities. Type or speak in any Indian language.</p>
           </div>
 
-          <div class="lang-chips" id="lang-chips" role="group" aria-label="Answer language"></div>
+          <div class="lang-chips" id="lang-chips" role="group" aria-label="Answer language" data-i18n-aria="answerLanguage"></div>
 
-          <div class="topics" id="topics" role="group" aria-label="Popular topics"></div>
+          <div class="topics" id="topics" role="group" aria-label="Popular topics" data-i18n-aria="topicsAria"></div>
 
           <div class="home-mic">
             <button id="home-mic" class="big-mic" type="button" aria-pressed="false"
@@ -126,24 +127,24 @@
             <span class="big-mic-label" aria-hidden="true">Tap and speak</span>
           </div>
 
-          <div class="examples" id="suggestions" role="group" aria-label="Example questions"></div>
+          <div class="examples" id="suggestions" role="group" aria-label="Example questions" data-i18n-aria="examplesAria"></div>
 
           <section id="get-app" class="get-app" aria-labelledby="get-app-title" hidden>
             <img class="get-app-icon" src="/icon-192.png" alt="" width="48" height="48" />
             <div class="get-app-text">
-              <h3 id="get-app-title" class="get-app-title">Get the app on your phone</h3>
+              <h3 id="get-app-title" class="get-app-title" data-i18n="getAppTitle">Get the app on your phone</h3>
               <p id="get-app-how" class="get-app-how"></p>
             </div>
             <div class="get-app-actions">
               <button id="get-app-install" class="btn-primary" type="button" hidden>
-                <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-download"/></svg>Install app
+                <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-download"/></svg><span data-i18n="install">Install app</span>
               </button>
-              <a id="get-app-apk" class="get-app-apk" href="#" hidden>Download Android app (APK)</a>
+              <a id="get-app-apk" class="get-app-apk" href="#" hidden data-i18n="getAppApk">Download Android app (APK)</a>
             </div>
           </section>
 
-          <p class="home-note">Independent student project, not a government website. Answers come from
-             official government sources; confirm on the official portal before applying.
+          <p class="home-note" data-i18n="homeNote">Sneh Saathi is an independent student project, not a government website.
+             Answers come from official government sources; confirm on the official portal before applying.
              Your chats stay in this browser.</p>
         </div>
       </section>
@@ -153,24 +154,24 @@
         <div id="doc-chip" class="doc-chip" hidden>
           <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-file-text"/></svg>
           <span id="doc-name"></span>
-          <button id="doc-remove" class="icon-btn sm" type="button" aria-label="Stop using this document">
+          <button id="doc-remove" class="icon-btn sm" type="button" aria-label="Stop using this document" data-i18n-aria="stopDoc">
             <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-x"/></svg>
           </button>
         </div>
         <form id="composer" class="composer" aria-label="Send a message">
           <input type="file" id="doc-upload" class="sr-only" accept=".pdf,.txt,.md"
-                 aria-label="Ask about a document (PDF or text)" />
-          <label class="icon-btn attach" for="doc-upload" title="Ask about a document (PDF or text)" aria-hidden="true">
+                 aria-label="Ask about a document (PDF or text)" data-i18n-aria="attach" />
+          <label class="icon-btn attach" for="doc-upload" title="Ask about a document (PDF or text)" data-i18n-title="attach" aria-hidden="true">
             <svg class="icon"><use href="/icons.svg#i-paperclip"/></svg>
           </label>
           <textarea id="input" rows="1" autocomplete="off"
-                    placeholder="Ask about any scheme…"
-                    aria-label="Message"></textarea>
+                    placeholder="Ask about any scheme…" data-i18n-ph="placeholder"
+                    aria-label="Message" data-i18n-aria="message"></textarea>
           <button id="mic-btn" class="mic-btn" type="button"
                   aria-label="Ask by voice" aria-pressed="false">
             <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-microphone"/></svg>
           </button>
-          <button id="send-btn" class="send-btn" type="submit" aria-label="Send message">
+          <button id="send-btn" class="send-btn" type="submit" aria-label="Send message" data-i18n-aria="send">
             <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-send"/></svg>
           </button>
         </form>
@@ -182,37 +183,37 @@
     <aside class="insights" id="insights" aria-labelledby="insights-title">
       <div class="sheet-grip only-sheet" aria-hidden="true"></div>
       <div class="panel-head">
-        <h2 id="insights-title">Your matches</h2>
-        <button id="panel-close" class="icon-btn only-sheet" type="button" aria-label="Close matches">
+        <h2 id="insights-title" data-i18n="yourMatches">Your matches</h2>
+        <button id="panel-close" class="icon-btn only-sheet" type="button" aria-label="Close matches" data-i18n-aria="closeMatches">
           <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-x"/></svg>
         </button>
       </div>
 
       <section class="panel-sec" aria-labelledby="profile-title">
-        <h3 class="sec-title" id="profile-title">Your profile</h3>
+        <h3 class="sec-title" id="profile-title" data-i18n="profileTitle">Your profile</h3>
         <ul id="profile-chips" class="profile" role="list"></ul>
-        <p id="profile-empty" class="hint">Tell me your state, age, type of disability and family income.
-           I'll check which schemes you qualify for.</p>
+        <p id="profile-empty" class="hint" data-i18n="profileEmpty">Tell us your state, age, type of disability and family income.
+           We'll check which schemes you qualify for.</p>
       </section>
 
       <section class="panel-sec" aria-labelledby="schemes-title">
-        <h3 class="sec-title" id="schemes-title">Matched schemes</h3>
+        <h3 class="sec-title" id="schemes-title" data-i18n="schemesTitle">Matched schemes</h3>
         <div id="schemes-loading" class="loading" hidden>
           <span class="skeleton"></span><span class="skeleton"></span>
-          <span class="sr-only">Checking schemes…</span>
+          <span class="sr-only" data-i18n="checkingSchemes">Checking schemes…</span>
         </div>
         <ul id="scheme-list" class="schemes" role="list" aria-live="polite"></ul>
-        <p id="schemes-empty" class="hint">Matching schemes will appear here as we talk.</p>
+        <p id="schemes-empty" class="hint" data-i18n="schemesEmpty">Matching schemes will appear here as we talk.</p>
       </section>
 
       <section class="panel-sec" aria-labelledby="sources-title" id="sources-sec" hidden>
-        <h3 class="sec-title" id="sources-title">Sources used</h3>
+        <h3 class="sec-title" id="sources-title" data-i18n="sourcesTitle">Sources used</h3>
         <ul id="source-list" class="source-list" role="list"></ul>
       </section>
 
       <p class="panel-note">
         <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-alert-circle"/></svg>
-        Eligibility is a guide based on what you've shared. Confirm on the official portal before applying.
+        <span data-i18n="panelNote">Eligibility is a guide based on what you've shared. Confirm on the official portal before applying.</span>
       </p>
     </aside>
 

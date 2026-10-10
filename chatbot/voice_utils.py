@@ -1,5 +1,5 @@
 """
-Voice utilities for the Disability Schemes Assistant.
+Voice utilities for Sneh Saathi.
 
 Two responsibilities, kept free of any Streamlit imports so they can be unit
 tested and reused:

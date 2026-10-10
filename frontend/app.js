@@ -1,5 +1,6 @@
 /* =========================================================================
- * Disability Schemes Assistant — front-end logic (vanilla JS).
+ * Sneh Saathi (स्नेह साथी) — front-end logic (vanilla JS).
+ * Interface text comes from i18n.js via t(); answers come in the user's language.
  * Talks to the FastAPI backend: /api/chat (SSE), /api/followups,
  * /api/insights, /api/transcribe, /api/tts, /api/upload.
  * Conversations persist in localStorage.
@@ -47,33 +48,17 @@ const els = {
   scrim: $("#scrim"),
 };
 
-const TOPICS = [
-  { icon: "cash", name: "Pension", hint: "Monthly financial support", q: "Which disability pension schemes can I get?" },
-  { icon: "school", name: "Scholarship", hint: "School, college and abroad", q: "What scholarships are available for students with disabilities?" },
-  { icon: "id", name: "UDID card", hint: "Apply, track, download", q: "How do I apply for a UDID card?" },
-  { icon: "accessible", name: "Aids and devices", hint: "Wheelchairs, hearing aids", q: "How can I get free aids and appliances like a wheelchair or hearing aid?" },
-  { icon: "heart-handshake", name: "Health cover", hint: "Insurance and treatment", q: "What health insurance schemes are there for persons with disabilities?" },
-  { icon: "briefcase", name: "Jobs and skills", hint: "Loans, training, reservation", q: "What job, loan and skill training schemes are there for persons with disabilities?" },
-];
-
-const EXAMPLES = [
-  "I'm 34, live in Delhi and have 60% locomotor disability. Which pension can I get?",
-  "Scholarships for a visually impaired college student?",
-  "Health insurance for a child with autism?",
-  "What are my rights under the RPwD Act 2016?",
-];
-
 // Native names, so people can find their own language at a glance.
 const NATIVE = {
   en: "English", hi: "हिन्दी", ta: "தமிழ்", te: "తెలుగు", mr: "मराठी", bn: "বাংলা",
   gu: "ગુજરાતી", kn: "ಕನ್ನಡ", ml: "മലയാളം", pa: "ਪੰਜਾਬੀ", or: "ଓଡ଼ିଆ", as: "অসমীয়া", ur: "اردو",
 };
 const HOME_LANGS = ["auto", "en", "hi", "ta", "bn", "mr", "te"];
-const TEXT_SIZES = [["", "normal"], ["lg", "large"], ["xl", "extra large"]];
+const TEXT_SIZES = [["", "sizeNormal"], ["lg", "sizeLarge"], ["xl", "sizeXl"]];
 const STATUS = {
-  eligible: { icon: "circle-check", label: "Eligible" },
-  check: { icon: "alert-circle", label: "Check details" },
-  not_eligible: { icon: "circle-x", label: "Not eligible" },
+  eligible: { icon: "circle-check", label: "eligible" },
+  check: { icon: "alert-circle", label: "checkDetails" },
+  not_eligible: { icon: "circle-x", label: "notEligible" },
 };
 
 /* --------------------------------------------------------------- helpers */
@@ -147,14 +132,14 @@ function renderSidebar() {
     const open = document.createElement("button");
     open.type = "button";
     open.className = "conv-open";
-    open.textContent = c.title;
+    open.textContent = c.title === "New chat" ? t("newChat") : c.title;  // "New chat" is the untitled marker
     if (id === state.currentId) open.setAttribute("aria-current", "page");
     open.onclick = () => { state.currentId = id; save(); renderAll(); closeDrawers(); };
 
     const del = document.createElement("button");
     del.type = "button";
     del.className = "icon-btn";
-    del.setAttribute("aria-label", `Delete chat: ${c.title}`);
+    del.setAttribute("aria-label", t("deleteChat", { title: c.title === "New chat" ? t("newChat") : c.title }));
     del.innerHTML = icon("trash");
     del.onclick = () => deleteConversation(id);
 
@@ -228,7 +213,7 @@ function fillAssistant(row, msg, { followups } = {}) {
   if (links.length) {
     const s = document.createElement("div");
     s.className = "msg-sources";
-    s.setAttribute("aria-label", "Sources");
+    s.setAttribute("aria-label", t("sources"));
     s.innerHTML = links.slice(0, 4).map(sourceTag).join("");
     main.appendChild(s);
   }
@@ -239,19 +224,19 @@ function fillAssistant(row, msg, { followups } = {}) {
   listen.type = "button";
   listen.className = "act-btn listen";
   listen.setAttribute("aria-pressed", "false");
-  listen.innerHTML = `${icon("volume")}<span>Listen</span>`;
+  listen.innerHTML = `${icon("volume")}<span data-i18n="listen">${t("listen")}</span>`;
   listen.onclick = () => toggleListen(listen, msg);
 
   const copy = document.createElement("button");
   copy.type = "button";
   copy.className = "act-btn";
-  copy.innerHTML = `${icon("copy")}<span>Copy</span>`;
+  copy.innerHTML = `${icon("copy")}<span data-i18n="copy">${t("copy")}</span>`;
   copy.onclick = async () => {
     try {
       await navigator.clipboard.writeText(msg.content);
-      copy.querySelector("span").textContent = "Copied";
-      setTimeout(() => { copy.querySelector("span").textContent = "Copy"; }, 1600);
-    } catch { setStatus("Couldn't copy. Select the text and copy it instead.", true); }
+      copy.querySelector("span").textContent = t("copied");
+      setTimeout(() => { copy.querySelector("span").textContent = t("copy"); }, 1600);
+    } catch { setStatus(t("copyFailed"), true); }
   };
   actions.append(listen, copy);
   if (msg.lang && msg.lang !== "en" && NATIVE[msg.lang]) {
@@ -281,10 +266,15 @@ function addMatchesPill(row, count) {
   const b = document.createElement("button");
   b.type = "button";
   b.className = "matches-pill";
-  b.innerHTML = `${icon("list-details")}<span>See ${count} matching scheme${count > 1 ? "s" : ""}</span>`;
+  b.dataset.count = count;  // kept so the label can be re-translated
+  b.innerHTML = `${icon("list-details")}<span>${pillText(count)}</span>`;
   b.onclick = () => openPanel(b);
   const actions = row.querySelector(".msg-actions");
   actions.after(b);
+}
+
+function pillText(count) {
+  return count > 1 ? t("seeMatches", { n: count }) : t("seeMatch");
 }
 
 /* Clickable follow-up question chips shown under the latest answer. */
@@ -292,7 +282,7 @@ function buildChips(items) {
   const wrap = document.createElement("div");
   wrap.className = "followups";
   wrap.setAttribute("role", "group");
-  wrap.setAttribute("aria-label", "Suggested follow-up questions");
+  wrap.setAttribute("aria-label", t("followupsAria"));
   items.forEach((q, i) => {
     const b = document.createElement("button");
     b.type = "button";
@@ -315,7 +305,9 @@ function highlight(scope) {
 }
 
 /* --------------------------------------------------------------- render: matches panel */
-function renderInsights(loading = false) {
+let insightsLoading = false;
+
+function renderInsights(loading = insightsLoading) {
   const ins = current().insights || { profile: [], schemes: [], sources: [] };
 
   els.profile.innerHTML = (ins.profile || []).map((p) =>
@@ -333,7 +325,7 @@ function renderInsights(loading = false) {
   const eligible = (ins.schemes || []).filter((s) => s.status !== "not_eligible").length;
   els.badge.hidden = !eligible;
   els.badge.textContent = eligible;
-  els.panelToggle.setAttribute("aria-label", eligible ? `Matches: ${eligible} schemes` : "Matches");
+  els.panelToggle.setAttribute("aria-label", eligible ? t("matchesCount", { n: eligible }) : t("matches"));
 
   // Several scheme files share a portal; list each site once.
   const seen = new Set();
@@ -357,19 +349,19 @@ function schemeCard(s) {
   li.className = `scheme ${s.status}`;
   li.innerHTML = `
     ${url
-      ? `<a class="scheme-name" href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(s.name)}${icon("external-link")}<span class="sr-only"> (opens official site)</span></a>`
+      ? `<a class="scheme-name" href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(s.name)}${icon("external-link")}<span class="sr-only"> ${t("opensOfficial")}</span></a>`
       : `<span class="scheme-name">${escapeHtml(s.name)}</span>`}
     ${s.benefit ? `<div class="scheme-benefit" dir="auto">${escapeHtml(s.benefit)}</div>` : ""}
     ${s.reason ? `<div class="scheme-reason" dir="auto">${escapeHtml(s.reason)}</div>` : ""}
     <div class="scheme-foot">
-      <span class="status ${s.status}">${icon(st.icon)}${st.label}</span>
+      <span class="status ${s.status}">${icon(st.icon)}${t(st.label)}</span>
     </div>`;
   const ask = document.createElement("button");
   ask.type = "button";
   ask.className = "link-btn";
-  ask.textContent = "Ask about this";
-  ask.setAttribute("aria-label", `Ask about ${s.name}`);
-  ask.onclick = () => { closeDrawers(); send(`Tell me more about ${s.name}: benefits, eligibility and how to apply.`); };
+  ask.textContent = t("askAboutThis");
+  ask.setAttribute("aria-label", t("askAboutAria", { name: s.name }));
+  ask.onclick = () => { closeDrawers(); send(t("askAboutQ", { name: s.name })); };
   li.querySelector(".scheme-foot").appendChild(ask);
   return li;
 }
@@ -377,6 +369,7 @@ function schemeCard(s) {
 /* Fetch profile + matched schemes for the latest turn (non-blocking). */
 async function loadInsights(row, finalEvt, historyBefore, conv) {
   const isCurrent = () => conv === current();
+  insightsLoading = true;
   if (isCurrent()) renderInsights(true);
   try {
     const res = await fetch("/api/insights", {
@@ -400,6 +393,7 @@ async function loadInsights(row, finalEvt, historyBefore, conv) {
     const n = (data.schemes || []).filter((s) => s.status !== "not_eligible").length;
     if (row.isConnected) addMatchesPill(row, n);
   } catch { /* the panel is optional; keep its previous state */ }
+  insightsLoading = false;
   if (isCurrent()) renderInsights(false);
 }
 
@@ -423,17 +417,17 @@ class ChatError extends Error {
 }
 
 // Failures the server can't report because the request never got an answer.
-const CLIENT_ERRORS = {
-  offline: "You seem to be offline. Check your internet connection, then try again.",
-  network: "Couldn't reach the assistant. Check that the server is running and your connection works, then try again.",
-  server: "The assistant ran into a problem on the server. Try again in a moment.",
-};
-
 function toChatError(err) {
   if (err instanceof ChatError) return err;
-  if (!navigator.onLine) return new ChatError(CLIENT_ERRORS.offline, "offline");
-  if (err instanceof TypeError) return new ChatError(CLIENT_ERRORS.network, "network"); // fetch() could not connect
-  return new ChatError(CLIENT_ERRORS.server, "client");
+  if (!navigator.onLine) return new ChatError(t("err_offline"), "offline");
+  if (err instanceof TypeError) return new ChatError(t("err_network"), "network"); // fetch() could not connect
+  return new ChatError(t("err_server"), "client");
+}
+
+// The server's messages are English; show our own wording when we have one.
+function errorText(err) {
+  const key = `err_${err.code}`;
+  return key in STRINGS.en ? t(key) : err.message;
 }
 
 /* Replace the assistant bubble with a readable error and a Try again button. */
@@ -443,21 +437,21 @@ function showError(row, err, onRetry) {
   main.querySelectorAll(":scope > :not(.bubble)").forEach((n) => n.remove());
   const bubble = row.querySelector(".bubble");
   bubble.setAttribute("role", "alert");
-  bubble.innerHTML = `<p class="err-title">${icon("alert-circle")}<span>Couldn't get an answer</span></p>
-    <p>${escapeHtml(err.message)}</p>`;
+  bubble.innerHTML = `<p class="err-title">${icon("alert-circle")}<span data-i18n="noAnswer">${t("noAnswer")}</span></p>
+    <p>${escapeHtml(errorText(err))}</p>`;
 
   const actions = document.createElement("div");
   actions.className = "msg-actions";
   const retry = document.createElement("button");
   retry.type = "button";
   retry.className = "act-btn";
-  retry.innerHTML = `${icon("refresh")}<span>Try again</span>`;
+  retry.innerHTML = `${icon("refresh")}<span data-i18n="tryAgain">${t("tryAgain")}</span>`;
   retry.onclick = onRetry;
   actions.appendChild(retry);
   if (err.code) {
     const code = document.createElement("span");
     code.className = "err-code";
-    code.textContent = `Error code: ${err.code}`;
+    code.textContent = t("errorCode", { code: err.code });
     actions.appendChild(code);
   }
   main.appendChild(actions);
@@ -487,8 +481,8 @@ async function send(forcedText, forcedLang) {
 
   const row = addAssistantRow();
   const bubble = row.querySelector(".bubble");
-  bubble.innerHTML = `<div class="typing" role="status" aria-label="Assistant is typing"><span></span><span></span><span></span></div>`;
-  setStatus("Thinking…");
+  bubble.innerHTML = `<div class="typing" role="status" aria-label="${t("typing")}"><span></span><span></span><span></span></div>`;
+  setStatus(t("thinking"));
 
   const payload = {
     message: text,
@@ -503,7 +497,7 @@ async function send(forcedText, forcedLang) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    if (!res.ok || !res.body) throw new ChatError(CLIENT_ERRORS.server, `http_${res.status}`);
+    if (!res.ok || !res.body) throw new ChatError(t("err_server"), `http_${res.status}`);
 
     let streamed = "";
     let final = null;
@@ -532,6 +526,13 @@ async function send(forcedText, forcedLang) {
     setStatus("");
     scrollDown();
 
+    // On Auto, follow the language people actually write in: a Hindi question
+    // switches the interface to Hindi (and an English one back).
+    if (final && els.lang.value === "auto" && ["hi", "en"].includes(final.lang) && final.lang !== UI_LANG) {
+      pref("dsa_ui", final.lang);
+      applyUiLanguage();
+    }
+
     if (final) {
       // Follow-up chips and the matches panel load in parallel, after the answer.
       loadFollowups(row, final, historyBefore, msg);
@@ -539,7 +540,7 @@ async function send(forcedText, forcedLang) {
 
       if (isSpeakOn()) {
         if (final.tts_available) toggleListen(listenBtn, msg);
-        else setStatus("Voice output isn't available for this language yet.");
+        else setStatus(t("noVoice"));
       }
     }
   } catch (err) {
@@ -607,7 +608,9 @@ let playingBtn = null;
 function setListenState(btn, playing) {
   if (!btn) return;
   btn.setAttribute("aria-pressed", String(playing));
-  btn.innerHTML = playing ? `${icon("player-stop")}<span>Stop</span>` : `${icon("volume")}<span>Listen</span>`;
+  btn.innerHTML = playing
+    ? `${icon("player-stop")}<span data-i18n="stop">${t("stop")}</span>`
+    : `${icon("volume")}<span data-i18n="listen">${t("listen")}</span>`;
 }
 function stopAudio() {
   player.pause();
@@ -621,7 +624,7 @@ async function toggleListen(btn, msg) {
   stopAudio();
   if (!msg.audio) {
     btn.setAttribute("aria-busy", "true");
-    setStatus("Preparing audio…");
+    setStatus(t("preparingAudio"));
     try {
       const res = await fetch("/api/tts", {
         method: "POST",
@@ -629,12 +632,12 @@ async function toggleListen(btn, msg) {
         // Sent raw: the server strips Markdown/emoji and adds natural pauses.
         body: JSON.stringify({ text: msg.content, lang: msg.lang || "en" }),
       });
-      if (res.status === 204) { setStatus("Voice output isn't available for this language yet."); return; }
+      if (res.status === 204) { setStatus(t("noVoice")); return; }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       msg.audio = URL.createObjectURL(await res.blob());
       setStatus("");
     } catch {
-      setStatus("Couldn't prepare the audio. Try again.", true);
+      setStatus(t("audioFailed"), true);
       return;
     } finally {
       btn.removeAttribute("aria-busy");
@@ -664,15 +667,16 @@ els.homeMic.addEventListener("click", toggleMic);
 function setMicState(on) {
   for (const b of [els.mic, els.homeMic]) {
     b.setAttribute("aria-pressed", String(on));
-    b.setAttribute("aria-label", on ? "Stop recording" : "Ask by voice");
+    b.setAttribute("aria-label", on ? t("stopRecording") : t("askByVoice"));
     b.querySelector("use").setAttribute("href", `/icons.svg#i-${on ? "player-stop" : "microphone"}`);
   }
-  document.querySelector(".big-mic-label").textContent = on ? "Listening… tap to stop" : "Tap and speak";
+  document.querySelector(".big-mic-label").textContent = on ? t("listeningTap") : t("tapAndSpeak");
 }
+const isRecording = () => !!mediaRecorder && mediaRecorder.state === "recording";
 
 async function toggleMic() {
   if (mediaRecorder && mediaRecorder.state === "recording") { mediaRecorder.stop(); return; }
-  if (!navigator.mediaDevices?.getUserMedia) { setStatus("Voice input isn't supported in this browser.", true); return; }
+  if (!navigator.mediaDevices?.getUserMedia) { setStatus(t("micUnsupported"), true); return; }
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     stopAudio();
@@ -682,15 +686,15 @@ async function toggleMic() {
     mediaRecorder.onstop = () => { stream.getTracks().forEach((t) => t.stop()); transcribe(); };
     mediaRecorder.start();
     setMicState(true);
-    setStatus("Listening… tap the mic again to stop.");
+    setStatus(t("listening"));
   } catch {
-    setStatus("Microphone permission was denied. Allow it in your browser settings.", true);
+    setStatus(t("micDenied"), true);
   }
 }
 
 async function transcribe() {
   setMicState(false);
-  setStatus("Transcribing and detecting your language…");
+  setStatus(t("transcribing"));
   const blob = new Blob(chunks, { type: "audio/webm" });
   const fd = new FormData();
   fd.append("file", blob, "audio.webm");
@@ -698,9 +702,9 @@ async function transcribe() {
     const res = await fetch("/api/transcribe", { method: "POST", body: fd });
     const data = await res.json();
     if (data.text) { setStatus(""); send(data.text, data.lang || "auto"); }
-    else setStatus(data.error || "Couldn't hear that clearly. Try again.", true);
-  } catch (err) {
-    setStatus("Transcription failed: " + err.message, true);
+    else setStatus(data.error ? (UI_LANG === "en" ? data.error : t("notHeard")) : t("notHeard"), true);
+  } catch {
+    setStatus(t("transcribeFailed"), true);
   }
 }
 
@@ -708,7 +712,7 @@ async function transcribe() {
 els.upload.addEventListener("change", async () => {
   const file = els.upload.files[0];
   if (!file) return;
-  setStatus(`Reading “${file.name}”…`);
+  setStatus(t("reading", { name: file.name }));
   const fd = new FormData(); fd.append("file", file);
   try {
     const res = await fetch("/api/upload", { method: "POST", body: fd });
@@ -716,11 +720,11 @@ els.upload.addEventListener("change", async () => {
     if (data.text) {
       current().docText = data.text; current().docName = data.name; save();
       renderDoc();
-      setStatus(`Ask anything about “${data.name}”.`);
+      setStatus(t("askAboutDoc", { name: data.name }));
     } else {
-      setStatus(data.error || "Couldn't read that file. Try a PDF or text file.", true);
+      setStatus(data.error && UI_LANG === "en" ? data.error : t("unreadable"), true);
     }
-  } catch { setStatus("Upload failed. Try again.", true); }
+  } catch { setStatus(t("uploadFailed"), true); }
   els.upload.value = "";
 });
 els.docRemove.addEventListener("click", () => {
@@ -730,7 +734,7 @@ els.docRemove.addEventListener("click", () => {
 function renderDoc() {
   const name = current().docName;
   els.docChip.hidden = !name;
-  els.docName.textContent = name ? `Using “${name}” in this chat` : "";
+  els.docName.textContent = name ? t("usingDoc", { name }) : "";
 }
 
 /* --------------------------------------------------------------- drawers + sheet */
@@ -780,10 +784,10 @@ els.newChatTop.addEventListener("click", startNewChat);
 
 /* --------------------------------------------------------------- display settings */
 function applyTextSize(i) {
-  const [val, label] = TEXT_SIZES[i];
+  const [val, key] = TEXT_SIZES[i];
   if (val) document.documentElement.dataset.text = val; else delete document.documentElement.dataset.text;
-  els.textSize.setAttribute("aria-label", `Text size: ${label}`);
-  els.textSize.querySelector(".tool-label").textContent = i ? `Text: ${label}` : "Text size";
+  els.textSize.setAttribute("aria-label", t("textSizeAria", { size: t(key) }));
+  els.textSize.querySelector(".tool-label").textContent = i ? t("textSizeLabel", { size: t(key) }) : t("textSize");
   els.textSize.setAttribute("aria-pressed", String(i > 0));
 }
 els.textSize.addEventListener("click", () => {
@@ -804,18 +808,18 @@ els.contrast.addEventListener("click", () => {
 /* --------------------------------------------------------------- home screen */
 function buildHome() {
   els.topics.innerHTML = "";
-  for (const t of TOPICS) {
+  for (const topic of t("topics")) {
     const b = document.createElement("button");
     b.type = "button";
     b.className = "topic";
-    b.innerHTML = `<span class="topic-icon">${icon(t.icon)}</span>
-      <span class="topic-name">${escapeHtml(t.name)}</span>
-      <span class="topic-hint">${escapeHtml(t.hint)}</span>`;
-    b.onclick = () => send(t.q);
+    b.innerHTML = `<span class="topic-icon">${icon(topic.icon)}</span>
+      <span class="topic-name">${escapeHtml(topic.name)}</span>
+      <span class="topic-hint">${escapeHtml(topic.hint)}</span>`;
+    b.onclick = () => send(topic.q);
     els.topics.appendChild(b);
   }
   els.suggestions.innerHTML = "";
-  for (const s of EXAMPLES) {
+  for (const s of t("examples")) {
     const b = document.createElement("button");
     b.className = "example"; b.type = "button"; b.textContent = s;
     b.onclick = () => send(s);
@@ -827,16 +831,16 @@ function buildHome() {
     b.type = "button";
     b.className = "lang-chip";
     b.dataset.lang = code;
-    b.textContent = code === "auto" ? "Auto" : NATIVE[code];
-    if (code === "auto") b.setAttribute("aria-label", "Auto-detect language");
+    b.textContent = code === "auto" ? t("autoChip") : NATIVE[code];
+    if (code === "auto") b.setAttribute("aria-label", t("autoChipAria"));
     b.onclick = () => setLanguage(code);
     els.langChips.appendChild(b);
   }
   const more = document.createElement("button");
   more.type = "button";
   more.className = "lang-chip";
-  more.textContent = "More…";
-  more.setAttribute("aria-label", "More languages");
+  more.textContent = t("moreChip");
+  more.setAttribute("aria-label", t("moreChipAria"));
   more.onclick = () => {
     if (!matchMedia("(min-width: 1280px)").matches) openDrawer(els.sidebar, more);
     els.lang.focus();
@@ -848,7 +852,38 @@ function buildHome() {
 function setLanguage(code) {
   els.lang.value = [...els.lang.options].some((o) => o.value === code) ? code : "auto";
   pref("dsa_lang", els.lang.value);
-  syncLangChips();
+  if (code === "hi" || code === "en") pref("dsa_ui", code);
+  applyUiLanguage();
+}
+
+/* --------------------------------------------------------------- interface language */
+// हिन्दी chosen -> Hindi interface. Another language -> English interface (the
+// answers still come in that language). Auto -> what the user last wrote in,
+// else the phone's own language.
+function chooseUiLang() {
+  const sel = els.lang.value;
+  if (sel === "hi") return "hi";
+  if (sel !== "auto") return "en";
+  const saved = pref("dsa_ui");
+  if (saved === "hi" || saved === "en") return saved;
+  return /^hi\b/i.test(navigator.language || "") ? "hi" : "en";
+}
+
+function applyUiLanguage(lang = chooseUiLang()) {
+  UI_LANG = lang;
+  translatePage();
+  // Generated parts, and texts that depend on state, are rebuilt here. The chat
+  // itself is not re-rendered, so an answer being read aloud keeps playing.
+  buildHome();
+  renderSidebar();
+  renderInsights();
+  renderDoc();
+  refreshGetApp();
+  setMicState(isRecording());
+  applyTextSize(Number(pref("dsa_text") || 0) % TEXT_SIZES.length);
+  els.chat.querySelectorAll(".matches-pill").forEach((pill) => {
+    pill.querySelector("span").textContent = pillText(Number(pill.dataset.count));
+  });
 }
 function syncLangChips() {
   els.langChips.querySelectorAll("[data-lang]").forEach((b) =>
@@ -891,13 +926,14 @@ const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent)
   || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 const isAndroid = /android/i.test(navigator.userAgent);
 
+function refreshGetApp() {
+  const how = $("#get-app-how");
+  if (how) how.textContent = t(installPrompt ? "getAppReady" : isIOS ? "getAppIOS" : "getAppMenu");
+}
+
 function setupGetApp() {
   if (!getApp || isInstalled()) return;  // already running as the installed app
-  const how = $("#get-app-how");
-  how.textContent = isIOS
-    ? "On iPhone: tap the Share button at the bottom of Safari, then \"Add to Home Screen\"."
-    : "Open your browser menu (⋮) and tap \"Install app\" or \"Add to Home screen\". "
-      + "It gets its own icon and opens full-screen.";
+  refreshGetApp();
   getApp.hidden = false;
   // Offer the downloadable APK on Android once one has been published.
   if (isAndroid) {
@@ -912,8 +948,7 @@ window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   installPrompt = e;
   installButtons.forEach((b) => { b.hidden = false; });
-  const how = $("#get-app-how");
-  if (how) how.textContent = "Install it to get an icon on your home screen. It opens full-screen, like any app.";
+  refreshGetApp();
 });
 installButtons.forEach((b) => b.addEventListener("click", async () => {
   if (!installPrompt) return;
@@ -933,7 +968,9 @@ window.addEventListener("DOMContentLoaded", async () => {
   applyTextSize(Number(pref("dsa_text") || 0) % TEXT_SIZES.length);
   applyContrast(pref("dsa_contrast") === "1");
   if (pref("dsa_tts") === "0") els.tts.click();
-  if (matchMedia("(max-width: 479px)").matches) els.input.placeholder = "Type or tap the mic";
+  if (matchMedia("(max-width: 479px)").matches) els.input.dataset.i18nPh = "placeholderShort";
+  UI_LANG = chooseUiLang();   // first paint in the right language (the select is still "auto")
+  translatePage();
   buildHome();
   setupGetApp();
   renderAll();

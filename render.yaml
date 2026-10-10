@@ -3,7 +3,7 @@
 # Every push to main (including the monthly scraper's commits) redeploys it.
 services:
   - type: web
-    name: disability-schemes-assistant
+    name: sneh-saathi
     runtime: docker
     plan: free
     region: singapore          # closest Render region to India

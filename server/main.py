@@ -1,5 +1,5 @@
 """
-FastAPI backend for the Disability Schemes Assistant.
+FastAPI backend for Sneh Saathi (स्नेह साथी).
 
 Exposes the existing RAG pipeline + voice utilities over a small HTTP API and
 serves the vanilla JS front end. Run from the PROJECT ROOT (the RAG pipeline
@@ -62,7 +62,7 @@ async def lifespan(_app):
     yield
 
 
-app = FastAPI(title="Disability Schemes Assistant API", lifespan=lifespan)
+app = FastAPI(title="Sneh Saathi API", lifespan=lifespan)
 
 
 @app.middleware("http")
@@ -345,7 +345,7 @@ async def upload(request: Request, file: UploadFile = File(...)):
 # Web Activity: it opens this site full-screen, without a browser bar, only if
 # the site vouches for the app's signing key in assetlinks.json.
 ANDROID_DIR = os.path.join(FRONTEND_DIR, "android")
-APK_NAME = "disability-schemes-assistant.apk"
+APK_NAME = "sneh-saathi.apk"
 
 
 @app.get("/.well-known/assetlinks.json")

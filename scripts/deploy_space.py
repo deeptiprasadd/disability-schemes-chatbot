@@ -8,7 +8,7 @@ is kept for anyone who has PRO.
 From your PC (one time):
     venv\\Scripts\\pip install huggingface_hub
     venv\\Scripts\\hf auth login            (paste a token with WRITE access)
-    venv\\Scripts\\python scripts\\deploy_space.py <your-username>/disability-schemes-assistant
+    venv\\Scripts\\python scripts\\deploy_space.py <your-username>/sneh-saathi
 
 The Space builds the Dockerfile. GROQ_API_KEY must be added as a Space secret
 (Space -> Settings -> Variables and secrets); pass --set-groq-secret to copy it
@@ -24,7 +24,7 @@ from huggingface_hub import HfApi
 
 # Hugging Face reads this header from the Space's README to know how to build it.
 SPACE_HEADER = """---
-title: Disability Schemes Assistant
+title: Sneh Saathi
 emoji: ♿
 colorFrom: green
 colorTo: blue

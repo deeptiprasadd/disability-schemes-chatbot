@@ -8,11 +8,13 @@ This guide publishes the chatbot as a **public website** that anyone can open, a
 
 When you are done you will have:
 
-- a public link such as `https://disability-schemes-assistant.onrender.com`
+- a public link such as `https://sneh-saathi.onrender.com`
 - an **"Install app"** button (Android, Chrome, Edge) and **Add to Home Screen** (iPhone)
 - automatic updates: Render rebuilds on every push to GitHub, including the monthly scraper's commits
 
 ---
+
+> **Moving from the old name?** Render cannot change the `.onrender.com` address of an existing service, so the rename to Sneh Saathi means a new service: follow step 2 (it creates `sneh-saathi` from `render.yaml`), check it works, then open the old `disability-schemes-assistant` service → **Settings → Delete Web Service**. Build the Android app only after the final address works: the app is tied to it.
 
 ## 1. Put the code on GitHub
 

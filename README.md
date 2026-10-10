@@ -1,4 +1,6 @@
-# ♿ Disability Schemes Chatbot
+# ♿ Sneh Saathi (स्नेह साथी)
+
+*"Caring companion": a disability schemes chatbot for India.*
 
 An empathetic, accessible AI assistant that helps persons with disabilities in India find the government welfare schemes they qualify for. Ask by **text or voice, in any Indian language** — the assistant detects the language automatically, answers from official government sources only, and reads the answer back aloud.
 
