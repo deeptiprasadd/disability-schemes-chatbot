@@ -1,0 +1,4386 @@
+{
+ "fetched": "2026-10-10",
+ "sources": {
+  "national_trust_registered_organisations": "https://thenationaltrust.gov.in/content/registered_organization.php",
+  "depwd_national_institutes_and_crcs": "https://depwd.gov.in/en/national-institutes/"
+ },
+ "national_trust_registered_organisations": [
+  {
+   "state": "Andhra Pradesh",
+   "district": "Krishna",
+   "name": "SIRISHA REHABILITATION CENTRE",
+   "address": "DNO 3 /57, Veerankilock,, PAMIDIMUKKALA(MD), VEERANKILOCK - 521250",
+   "contact": "M IMMANUEL srcpamidi@yahoo.com 9441413161",
+   "schemes": [
+    "Vikaas",
+    "Disha",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Andhra Pradesh",
+   "district": "Vishakhapatnam",
+   "name": "Sreya Foundation",
+   "address": "D.No.9-11-8/30, Sivajipalem, opp road Sivajipark main gate, VISAKHAPATNAM - 530017",
+   "contact": "Dr. Usha Devi.P sreyafoundation@yahoo.co.in 9290457978",
+   "schemes": [
+    "Samarth",
+    "Badhte Kadam",
+    "Vikaas",
+    "Disha"
+   ]
+  },
+  {
+   "state": "Andhra Pradesh",
+   "district": "Guntur",
+   "name": "Sri Dakshinya Bhava Samithi",
+   "address": "Madhavi Nilayam, Swarna Bharathi Nagar, J.K.C. College Road, New RTO office, Guntur - 522006",
+   "contact": "Dr. T. Venkateswara Rao dakshinya1995@yahoo.com 7702977499",
+   "schemes": [
+    "Gharaunda",
+    "Samarth",
+    "Vikaas",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Andhra Pradesh",
+   "district": "Anantapur",
+   "name": "RURAL DEVELOPMENT TRUST",
+   "address": "DOOR NO:28-4-443, VIJAYANAGAR COLONY, BANGALORE HIGHWAY, ANANTAPUR - 515001",
+   "contact": "Mr.M.Thippeswamy dasarath@rdt.co.in 9441051801",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Andhra Pradesh",
+   "district": "Vishakhapatnam",
+   "name": "The Ability People",
+   "address": "Door no. 49-27-10,, Sashi Raj Palace,, Madhura Nagar, Near Sitammapet Jn., Visakhapatnam - 530016",
+   "contact": "DILIP KUMAR PATRO UNA theabilitypeople@gmail.com 9177363600",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Andhra Pradesh",
+   "district": "Srikakulam",
+   "name": "Sunlight Educational Society",
+   "address": "Opp M I G 65, A P H B Colony, Near Santhoshimatha Temple, Srikakulam - 532001",
+   "contact": "B N R sekhar vijbhs@gmail.com 9989998602",
+   "schemes": [
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Andhra Pradesh",
+   "district": "Godavari East",
+   "name": "SANTHIVARDHANA MINISTRIES",
+   "address": "4-152, Pulimeru Village, Chadalada Post, Peddapuram Mandal, East Godavari District - 533433",
+   "contact": "R. Veerababu santhivardhana_ministries@yahoo.co.in 9177899997",
+   "schemes": []
+  },
+  {
+   "state": "Andhra Pradesh",
+   "district": "Krishna",
+   "name": "Assisi Health Care Society",
+   "address": "335c, Lakshmipuram main, Milk Chilling Centre, Tiruvur - 521235",
+   "contact": "Sr Elsy Thomas delcyputhenpurayil@gmail.com 9912070844",
+   "schemes": [
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Andhra Pradesh",
+   "district": "Krishna",
+   "name": "Ankitha Charitable Trust",
+   "address": "Plot No: 12, D.No: 74-24-14/4, Yarlagadda Apparao Street,, Opp : Time Hospital Road, Ashok Nagar, Vijayawada - 520007",
+   "contact": "B. Jhansi Lakshmi saipremavijayawada@gmail.com 9849524249",
+   "schemes": []
+  },
+  {
+   "state": "Assam",
+   "district": "Kamrup Metro",
+   "name": "PASS (An Organization Of Parents For Welfare Of Persons With Intellectual And Dev Disabilities",
+   "address": "NA, RK MISSION ASHRAM ROAD BIRUBARI, NEAR SHISHU SARATHI SCHOOL, GUWAHATI - 781016",
+   "contact": "SRIBAS DHAR pass.guwahati@gmail.com 9435144104",
+   "schemes": []
+  },
+  {
+   "state": "Assam",
+   "district": "Nalbari",
+   "name": "Society for Human Development",
+   "address": "115, Alternative Road (Satra MV to Hotel Premoda), Near Kamal Sarma resident, Nalbari - 781335",
+   "contact": "Pranmoy Kumar Sarma pranmoys@gmail.com 9435027557",
+   "schemes": []
+  },
+  {
+   "state": "Assam",
+   "district": "Cachar",
+   "name": "Deshbandhu Club",
+   "address": "Behara Bazar, P.O. Behara Bazar, Behara Bazar, Silchar - 788817",
+   "contact": "Dr. Sanjib Sikidar deshabandhuclub@rediffmail.com 9435174392",
+   "schemes": [
+    "Samarth",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Assam",
+   "district": "Kamrup Metro",
+   "name": "SHISHU SAROTHI CENTRE FOR REHABILITATION AND TRAINING FOR MULTIPLE DISABILITY",
+   "address": "000, Ramakrishna Mission Road, opp to Tripura Bhawan, Guwahati - 781016",
+   "contact": "KETAKI BARDALAI shishusarothi@gmail.com 9435040607",
+   "schemes": []
+  },
+  {
+   "state": "Assam",
+   "district": "Kamrup Metro",
+   "name": "ASHADEEP",
+   "address": "3B, Piya Apartment, Kanaklata Path,, Near Big Bazar, Guwahati - 781007",
+   "contact": "Mr. Mukul Ch Goswami anjanagos@yahoo.co.in 9864077861",
+   "schemes": []
+  },
+  {
+   "state": "Assam",
+   "district": "Kamrup Metro",
+   "name": "PROJONMO",
+   "address": "HOUSE NO 9, ANKUR PATH , SURVEY, SURVEY, GUWAHATI - 781028",
+   "contact": "MS. ASHOKA SARMA projonmo334@gmail.com 9864122512",
+   "schemes": []
+  },
+  {
+   "state": "Assam",
+   "district": "Sivasagar",
+   "name": "KAUMUDALAYA",
+   "address": "7, Dubarani ali, Ranghar Chariali, Sivasagar - 785640",
+   "contact": "RUNJUN CHUTIA runjun.chutia1969@gmail.com 8638074910",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Assam",
+   "district": "Kamrup Metro",
+   "name": "Sahayika Sishu Nirdeshan Kendra",
+   "address": "house no 3, Sahayika Sishu Nirdeshan Kendra,Govt Press Road, Bamunimaidam, Guwahati 781021, near Govt Press, Guwahati - 781021",
+   "contact": "Subodh Sharma utpalasharma@hotmail.com 9435192317",
+   "schemes": [
+    "Disha"
+   ]
+  },
+  {
+   "state": "Bihar",
+   "district": "Sitamarhi",
+   "name": "AAROGYAA FOUNDATION FOR HEALTH PROMOTION AND COMMUNITY BASED REHABILITATION",
+   "address": "COAT BAZAR, WARD No 13, MAHARANI STHAN, SITAMARHI - 843302",
+   "contact": "DR RAJESH KUMAR SUMAN aarogyaafoundation@gmail.com 9934691872",
+   "schemes": [
+    "Badhte Kadam",
+    "Sahyogi",
+    "Disha",
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Bihar",
+   "district": "Patna",
+   "name": "Child Concern",
+   "address": "103, Sheela Complex, New Bahadurpur, Bazar Samiti Road, Rajendra Nagar, Shyam Mandir, Patna - 800016",
+   "contact": "Sulekha Kumari childconcernindia@gmail.com 9934977499",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Bihar",
+   "district": "Patna",
+   "name": "BIHAR ASSOCIATION OF PERSON WITH DISABILITIES",
+   "address": "Patel Colony, Sandalpur, Mahendru, Bahadurpur, Mahendru, Patna - 800006",
+   "contact": "HIRDAY YADAV biharassociationofpwd@gmail.com 9386208309",
+   "schemes": []
+  },
+  {
+   "state": "Bihar",
+   "district": "West Champaran",
+   "name": "TAPOVAN BAHUVIKLANG PUNARVAS SANSTHAN",
+   "address": "142, Tapovan Nagar, S.P Colony, Kharsal - 2, Muffasil, Bettiah, Near Saraswati Nagar, Bettiah - 845438",
+   "contact": "VIKRAM KUMAR SINGH info.tapovanbihar@gmail.com 9852167545",
+   "schemes": [
+    "Disha",
+    "Vikaas",
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Bihar",
+   "district": "Patna",
+   "name": "SAMARPAN SPECIAL SCHOOL FOR AUTISM CP MR SLOW LEARNER DEAF AND LEARNING DISABILITIES",
+   "address": "SAMARPAN, ILLAHIBAGH, NEW BUS STAND BARIYA,, PATNA GAYA ROAD, West South of Badshahi Pan, PO--BARIYA, Patna - 800007",
+   "contact": "SANTOSH KUMAR SINHA samarpanindia100@gmail.com 7991189522",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Bihar",
+   "district": "Buxar",
+   "name": "DEV EDUCATION AND WELFARE TRUST",
+   "address": "CHINI MILL, , BUXAR, Buxar - 802103",
+   "contact": "SUNITA DEVI byasmunidubey01@gmail.com 9234344588",
+   "schemes": []
+  },
+  {
+   "state": "Bihar",
+   "district": "Patna",
+   "name": "LAXMI SMRITI SEWA SANSTHAN",
+   "address": "H/O SRI MITHILESH KUMAR SINGH, MITHAPUR B AREA BENGALI ROAD PATNA, NEAR HOPE HOSPITAL, Patna - 800001",
+   "contact": "DR HEMENDU KUMAR SINGH lsss_society@rediffmail.com 9507035981",
+   "schemes": [
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Bihar",
+   "district": "Muzaffarpur",
+   "name": "RANI LAXMI BAI MAHILA VIKAS SAMITI",
+   "address": "SAPHAL, SUSTA RAILWAY CROSSING, RAM DAYALU NAGAR, OPPOSITE HOTEL ATITHI, MUZAFFARPUR - 842002",
+   "contact": "USHA MANAKI saphal.muzaffarpur@gmail.com 9334767851",
+   "schemes": []
+  },
+  {
+   "state": "Bihar",
+   "district": "Patna",
+   "name": "AASTHA CHARITABLE AND WELFARE SOCIETY",
+   "address": "OPP PILLAR NO-56 NEAR MACHALI MARKET, RAZA BAZAR, MACCHALI MARKET, PATNA - 800014",
+   "contact": "DR UMA SHANKAR SINHA druma.shankarsinha@gmail.com 9334106629",
+   "schemes": [
+    "Badhte Kadam",
+    "Sahyogi",
+    "Disha",
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Chandigarh",
+   "district": "Chandigarh",
+   "name": "Indian National Portage Association",
+   "address": "Room No. - 14-15, Karuna Sadan, Ist Floor, Room No. - 14-15, Sector - 11 - B, Chandigarh - 160011",
+   "contact": "TEHAL KOHLI tehalkohli@gmail.com 9417372091",
+   "schemes": [
+    "Disha"
+   ]
+  },
+  {
+   "state": "Chhattisgarh",
+   "district": "Raigarh",
+   "name": "UNNAYAK SEVA SAMITI",
+   "address": "960/22, BEHIND UPBHOKTA FORAM, SECOND TRANSFORMER KELO VIHAR COLONY, RAIGARH - 496001",
+   "contact": "SIDHANTA SHANKAR MOHANTY ussrgh@gmail.com 9827976100",
+   "schemes": [
+    "Gharaunda",
+    "Disha",
+    "Samarth",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Chhattisgarh",
+   "district": "Korba",
+   "name": "Ankur Special School - Unit of Ankur Korba",
+   "address": "Behind Ambedkar Bhavan Mudapar, SECL, Korba, Behind Ambedkar Bhavan Mudapar, SECL, Korba, SECL Mudapar, Korba - 495677",
+   "contact": "Sanjay Budhia ankurkorba@gmail.com 9826134703",
+   "schemes": []
+  },
+  {
+   "state": "Chhattisgarh",
+   "district": "Durg",
+   "name": "BRIGHT SIKSHAN AND MANAV KALYAN SAMITI",
+   "address": "121, BARAI PARA DURG, FRONT OF MARWADI SCHOOL DURG, DURG - 491001",
+   "contact": "RAJU RAJPUT brightmrhischool@gmail.com 9200252191",
+   "schemes": []
+  },
+  {
+   "state": "Chhattisgarh",
+   "district": "Durg",
+   "name": "KALYANI SOCIAL WELFARE AND RESEARCH ORGANIZATION",
+   "address": "QR. NO. 4A, STREET NO. 67, NEAR SAI MAHAVIDYALAYA, BHILAI NAGAR, DURG - 490006",
+   "contact": "AJAY KUMAR kalyaniindiaorg@gmail.com 9425556961",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Chhattisgarh",
+   "district": "Raipur",
+   "name": "Aakanksha Lions Institute of Learning and Empowerment a unit of Lions Club Raipur Sewa Samiti",
+   "address": "Aakanksha Parisar, Avanti Vihar, New Kachna Road, Raipur - 492001",
+   "contact": "Krishna Kumar Nayak aakankshalsmh@yahoo.com 9826845678",
+   "schemes": []
+  },
+  {
+   "state": "Chhattisgarh",
+   "district": "Surguja",
+   "name": "Anamika Welfare Society",
+   "address": "26, Deviganj Road, Behind of Anamika Mobile, Ambikapur - 497001",
+   "contact": "Reeta Agrawal anamika.welfaresociety07@gmail.com 9926134076",
+   "schemes": []
+  },
+  {
+   "state": "Chhattisgarh",
+   "district": "Raipur",
+   "name": "JAGRUK PARENTS ASSOCIATION",
+   "address": "I -10 RAJEEV NAGAR, SHANKAR NAGAR, SHANKAR NAGAR, RAIPUR - 492007",
+   "contact": "DR. MEETA MUKHERJEE AND MR. RAJ KISHOR CHAUDHARY piyalifoundation@gmail.com 9827128346",
+   "schemes": []
+  },
+  {
+   "state": "Chhattisgarh",
+   "district": "Gariyaband",
+   "name": "PRERAK SAMITI",
+   "address": "SAKSHAM , REHABILITATION TRAINING CENTER FOR PERSON WITH DISABILITY, GARIABAND ROAD, RAJIM, NEAR SINDHOURI CHOWK, Rajim - 493885",
+   "contact": "Mr. R G Sinha prerak.gbd@gmail.com 9424218653",
+   "schemes": []
+  },
+  {
+   "state": "Chhattisgarh",
+   "district": "SARANGARH BILAIGARH",
+   "name": "PRANJAL WELFARE FOUNDATION",
+   "address": "299, DR. SHYAMA PRASAD MUKHERJI, WARD NO.-15, SARANGARH, SARANGARH - 496445",
+   "contact": "HEERA DEVI NIRALA pranjal13993@rediffmail.com 9302310718",
+   "schemes": []
+  },
+  {
+   "state": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+   "district": "Diu",
+   "name": "The Society For Welfare Of Children with Special Needs",
+   "address": "44/1-c, Diu, Diu, DDRC Building, Near Govt. Hospital, Diu, Diu - 362520",
+   "contact": "USMANBHAI .M.VORA hiteshbagdahitesh@gmail.com 9825537025",
+   "schemes": []
+  },
+  {
+   "state": "Goa",
+   "district": "South Goa",
+   "name": "KESHAV SEVA SADHANA",
+   "address": "191, OM DURGANAGAR, BORIM PONDA, PONDA - 403401",
+   "contact": "LAXMAN V. BEHARE nanabehare@gmail.com 8390643165",
+   "schemes": []
+  },
+  {
+   "state": "Goa",
+   "district": "North Goa",
+   "name": "Sangath",
+   "address": "451/168, Bhatkar vaddo, Socorro Porvorim, Porvorim - 403501",
+   "contact": "Ms. Monica Bariya contactus@sangath.in 9881499458",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Vadodara",
+   "name": "renitaben charitable trust",
+   "address": "VILLAGE PALASWADA,, NAVI NAGRI, BEHIND ANAND MANAGAL HANUMAN TEMPLE, VADODARA - 391107",
+   "contact": "shraddhaben trivedi renitabencharitabletrust@gmail.com 9638393736",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Ahmadabad",
+   "name": "Shah Jaswantlal Jiwanlal Charitable Trust",
+   "address": "301,302,303 Aagam Complex, APMC Market Road, B/s Vasna Police Station, Vasna, Ahmedabad - 380051",
+   "contact": "Yashesh Shah jjctrehab@gmail.com 9825877370",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Rajkot",
+   "name": "The Society For The Mentally Retarded",
+   "address": "Opp B T savani Kidney Hospital, University Road, Nera SNK School, Rajkot - 360005",
+   "contact": "Hitesh N Kanabar mentally@rediffmail.com 9825218252",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Ahmadabad",
+   "name": "NATIONAL SOCIETY FOR EQUAL OPPORTUNITIES FOR THE HANDICAPPED GUJARAT",
+   "address": "NASEOH (GUJARAT), BESIDES NAVRANGPURA BUS STAND, OPP. NAVRANGPURA POST-OFFICE, AHMEDABAD - 380009",
+   "contact": "Maulesh Shah naseohgujarat@gmail.com 9825027701",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Bhavnagar",
+   "name": "Ankur Special School For Mentally Retarded Children",
+   "address": "PLOT NO. 1945, NEAR WORKING WOMENS HOSTEL, SARDARNAGAR CIRCLE, BHAVNAGAR - 364002",
+   "contact": "Alpeshbhai K Sheth ankurmrschool.bvn@gmail.com 9925537878",
+   "schemes": [
+    "Vikaas",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Surat",
+   "name": "Mavjat Parents Association Of Mentally Challenged Persons and Charitable Trust",
+   "address": "22 SUGAM SOCIETY ,, ADAJAN PATIYA, RANDER ROAD, SURAT, SURAT - 396009",
+   "contact": "NIlesh R Vyash mavjat@gmail.com 9824959644",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Bhavnagar",
+   "name": "Smt. Parsanben Narandas Ramji Shah(Talajawala) Society for Relief Rehabilitation of the Disabled",
+   "address": "Nataraj Research Center and Training College Campus, Nr. Sardar Patel School, ,, Kaliyabid, Bhavnagar - 364002",
+   "contact": "Paras C Shah pnrsociety.cpschool@gmail.com 9327543757",
+   "schemes": [
+    "Vikaas",
+    "Disha",
+    "Badhte Kadam",
+    "Sahyogi",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Gir Somnath",
+   "name": "JEEVANDEEP HEALTH EDUCATION AND CHARITABLE TRUST KODINAR",
+   "address": "24-25, AT. Gohil ni Khan (OG Area) , Jeevandeep, Near Chorwadi Mandir, Bypass Road, Kodinar, KODINAR - 362725",
+   "contact": "Sidik Chavda jeevandeepkodinar@gmail.com 9898320881",
+   "schemes": [
+    "Disha",
+    "Vikaas",
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Navsari",
+   "name": "MANAV KALYAN TRUST NAVSARI GUJARAT",
+   "address": "C.L.PARIKH MAMTA MANDIR MAHESHBHAI KOTHARI MARG, AT PO - VIJALPORE, TA. JALALPORE, NAVSARI - 396450",
+   "contact": "VIRATKUMAR PRAVINCHANDRA KOTHARI manavkalyantrust@yahoo.co.in 9712283860",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Ahmadabad",
+   "name": "Blind Peoples Association (India)",
+   "address": "Andhjan Mandal, 132 Ring Road, Opp. IIMA, Vastrapur, Ahmedbad, Jagdish Chowk,, Ahmedabad - 380015",
+   "contact": "Dr. Bhushan Punani mihirjgd@gmail.com 9925144885",
+   "schemes": [
+    "Disha",
+    "Badhte Kadam",
+    "Sahyogi",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Rajkot",
+   "name": "Prayas Parents Association For Children With Special Needs",
+   "address": "School no. 69 old building, ambaji kadva plot no - 2, krishnanagar main road, rajkot - 360004",
+   "contact": "pooja sureshbhai patel infoprayasassociation3605@gmail.com 8128138092",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Kachchh-Bhuj",
+   "name": "Shree Gramay Seva Sangthan",
+   "address": "1047, Chitrod road, Near I.T.I. Collage, Rapar - 370165",
+   "contact": "Kothari Shaileshkumar Chimanlal kothari6111962@gmail.com 9998450060",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "SABAR KANTHA",
+   "name": "NATIONAL ASSOCIATION FOR THE BLIND",
+   "address": "BHASKAR BHAVAN ,, DALJITNAGAR, NEAR POST OFFICE,, IDAR - 383430",
+   "contact": "MRS SONABEN TDOSHI nabsabarkantha@gmail.com 9408222363",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Dahod",
+   "name": "Blind Welfare Council",
+   "address": "695/1, Mandaav Road, Opp. - Panchmukhi Hanuman Temple, P.O. Box - 115, Dahod - 389151",
+   "contact": "Yusufi F Kapadiya bwcdahod@gmail.com 9429146152",
+   "schemes": [
+    "Disha",
+    "Vikaas",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Bhavnagar",
+   "name": "Parth Yuva Mandal",
+   "address": "Shop No. 3, Hillson Residency, Behind Sports Complex,, Kaliyabid, Bhavnagar - 364002",
+   "contact": "Budheliya Mehul Dhirajlal parthyuvango@gmail.com 9925530400",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Gandhinagar",
+   "name": "SADHNA-Parents Association for Mentally Challenged Persons",
+   "address": "Plot No. 106/2,, Sector-3/A,, Nr. Ambaji Temple, Gandhinagar - 382006",
+   "contact": "Gangarambhai k. Patel bprasad1655@yahoo.com 9898594350",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Ahmadabad",
+   "name": "SELF CARE",
+   "address": "SHOP NO, GF-6, SHOP NO, GF-6, AYANA COMPLEX OPP SUVARNAVILLA BUNGLOWS,100 FT THALTEJ-HEBATPUR, THALTEJ, NEAR SHELL PETROL PUMP, AHMEDABAD - 380059",
+   "contact": "JUHI PARESH KISHNANI selfcare2009@gmail.com 9898066390",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Surat",
+   "name": "Navchetan Trust",
+   "address": "B 147 Dindayal Society, Palanpurpatiya, Rander Road, Surat - 395009",
+   "contact": "Pragnesh T.Patel ptpatel153@gmail.com 9825861181",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Ahmadabad",
+   "name": "NAVJEEVAN CHARITABLE TRUST",
+   "address": "Survey No. 5, Thakor Vas,, Nr,Shiv mandir Memnagar Gam, B/h Jogni Temple Gully,MEMNAGAR, Ahmedabad - 380052",
+   "contact": "DR. SUBHASH APTE nileshnavjeevan@gmail.com 9824263608",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Morbi",
+   "name": "SHREE NAVJIVAN VIKLANG SEVASHRAY",
+   "address": "Opp.220 K.v Substation, GIDC Area, Halvad, Halvad - 363330",
+   "contact": "JITENDRA G JOSHI navjeevan.joshy@gmail.com 9558965101",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Kachchh-Bhuj",
+   "name": "THE CHILD WELFARE TRUST",
+   "address": "C-10, Mundra Relocation Site, Near Pramukh Swami Char Rasta, Bhuj - 370001",
+   "contact": "Madhuri Kulkarni shahdimple1976@gmail.com 9869524283",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Ahmadabad",
+   "name": "SAMDRUSHTI KSHAMTA VIKAS EVAM ANUSANDHAN MANDAL GUJARAT SAKSHAM",
+   "address": "Dr Hedgewar Smarak Bhavan, Baloyakaka Marg, Kankariya, Ahmedabad - 380028",
+   "contact": "NITINKUMAR BALBHADRABHAI JANI sakshamgujarat2008@gmail.com 9426543718",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Junagadh",
+   "name": "SANTVAN VIKLANG VIKAS MANDAL JUNAGADH",
+   "address": "santvan viklang vikas mandal junagadh, gulab nagar, dhoraji road, makhiyala, junagadh - 362011",
+   "contact": "Parmar Nilamben Harjibhai santvan.guj@gmail.com 9726105487",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Rajkot",
+   "name": "aekrang childrens development institute",
+   "address": "53, STREET NO. 4, VISHWAKARMA SOCIETY, SADHUVASVANI ROAD, Rajkot - 360005",
+   "contact": "Deepika Prajapati aekrang.institute@gmail.com 9137690064",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Surat",
+   "name": "SHRADHHA WELFARE AND EDUCATION TRUST",
+   "address": "95, VISHWANAGAR SOCIETY GANESHPURA, SAYAN ROAD AMROLI, SURAT - 394107",
+   "contact": "SOLANKI JAYASUKHKUMAR KARSHANBHAI JSOLANKI1979@GMAIL.COM 9879664643",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Junagadh",
+   "name": "Ashadeep Charitable Foundation",
+   "address": "Red Cross Building, Azad Chawk, Junagadh, Junagadh - 362001",
+   "contact": "Dr. Bakul Buch bakulbuch@gmail.com 9825220330",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Vadodara",
+   "name": "Bal Bhavan Society",
+   "address": "Bal Bhavan Society, B/h. Sayajibaug, Karelibaug, Karelibaug, Vadodara - 390018",
+   "contact": "Mrs. Shweta Vyas balbhavanbrd@gmail.com 9099923158",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "SABAR KANTHA",
+   "name": "SABARKANTHA CHARITABLE TRUST Sanchalit INSTITUTION FOR MENTALLY RETARDED CHILDREN",
+   "address": "NR ADARI CIRAMICS PLOT 12, B H KRISHNA HOTEL, HIMATNAGAR (M), HIMMATNAGAR - 383001",
+   "contact": "KUNJBIHARIBHAI JASHBHAI PATEL mr21hmt@gmail.com 9426282767",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Morbi",
+   "name": "DIVYA DRASHTI FOUNDATION",
+   "address": "464/1, Sapakda Ghar No, Sapakda, Halvad, Morbi - 363330",
+   "contact": "SHAILEE Y. DAVE dave.shailee@yahoo.in 9727437956",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Vadodara",
+   "name": "Medical Care Centre Trust",
+   "address": "K.G. Patel Children Hospital, Jalaram Marg,, Karelibaug,, Vadodara - 390018",
+   "contact": "Dr. Jagdish Patel hasmukhrathawa78@gmail.com 8140073278",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Gujarat",
+   "district": "Kachchh-Bhuj",
+   "name": "SHRI NAVCHETAN ANDHJAN MANDAL",
+   "address": "Divyang VIDYA VIHAR, Bhuj Anjar Highway, OPP.- MOTHER DAIRY, MADHAPAR, TALUKA- BHUJ DIST- KUCHCHH - 370020",
+   "contact": "Laljibhai Prajapati info@navchetan.org 9825226598",
+   "schemes": []
+  },
+  {
+   "state": "Gujarat",
+   "district": "Ahmadabad",
+   "name": "Health & Care Foundation",
+   "address": "Indukaka IPCO wala Seva Sansthan, Pavansut socity, Opp.Rajwadu Hotel, Jivraj Park, Ahmedabad - 380051",
+   "contact": "Dr.Prakash Bhatt poliofoundation@gmail.com 9825349108",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Haryana",
+   "district": "Sirsa",
+   "name": "BHAI KANAHAIYA MANAV SEWA TRUST",
+   "address": "14/74, Maal Godam Road, Near Salasar Dham Mandir, Sirsa - 125055",
+   "contact": "Gurvinder Singh singhgurvinder576@gmail.com 9254140102",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Haryana",
+   "district": "Sonipat",
+   "name": "Modern Education Society",
+   "address": "#241, Street No - 01, Gopalpur Road Kharkhoda, Sonepat - 131402",
+   "contact": "Kailash Kaushik mes_snp@rediffmail.com 9868152493",
+   "schemes": [
+    "Vikaas",
+    "Gharaunda",
+    "Samarth",
+    "Badhte Kadam",
+    "Disha"
+   ]
+  },
+  {
+   "state": "Haryana",
+   "district": "Hisar",
+   "name": "DOT Army Wives Welfare Association Asha School",
+   "address": "4 MECH INF (1 SIKH), , MILITARY STATION HISAR, Hisar Cantt. - 125006",
+   "contact": "Mrs Sharmil Nagar ashahisar@gmail.com 8059391041",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Haryana",
+   "district": "Karnal",
+   "name": "Tapan Rehabilitation Society",
+   "address": "Tapan Rehabilitation Society,, Pragya Institute for Education Training of Disabled, G T Road, Near Police Post, Nilokheri ,, Karnal - 132117",
+   "contact": "Dr. Sujata sujatavspk@yahoo.com 9416191483",
+   "schemes": [
+    "Disha",
+    "Sahyogi",
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Haryana",
+   "district": "Bhiwani",
+   "name": "Adarsh Para Medical Welfare Association",
+   "address": "na, Uttam Nagar, Loharu Road, Near Chara Mandi,, Bhiwani(Hry.) - 127021",
+   "contact": "Dr.Rajesh Kumar adarshmitc@gmail.com 9729080045",
+   "schemes": [
+    "Vikaas",
+    "Badhte Kadam",
+    "Sahyogi"
+   ]
+  },
+  {
+   "state": "Haryana",
+   "district": "Jind",
+   "name": "AMAR JYOTI FOUNDATION",
+   "address": "WARD -06, PUNJABI COLONY, NEAR LAJWANA CHUNGI, JULANA - 126101",
+   "contact": "ROHTASH DAHIYA ajfjind@gmail.com 9416014025",
+   "schemes": []
+  },
+  {
+   "state": "Haryana",
+   "district": "Jind",
+   "name": "SCOPE Charitable Trust",
+   "address": "84, SECTOR-09, SAFIDON ROAD, JIND - 126102",
+   "contact": "VIPUL KUMAR scopejind@gmail.com 9468006004",
+   "schemes": []
+  },
+  {
+   "state": "Haryana",
+   "district": "Rohtak",
+   "name": "SHIV OM EDUATIONAL SOCIETY",
+   "address": "KALANAUR ROAD, VPO NIGANA, NIGANA, NIGANA, KALANAUR - 124113",
+   "contact": "Dr.RAKESH SRCNIGANA@GMAIL.COM 9255443333",
+   "schemes": []
+  },
+  {
+   "state": "Haryana",
+   "district": "Gurgaon",
+   "name": "Vishwas,Vision For Health Welfare And Special Needs",
+   "address": "Sector-46, Near Bakhtawar Chowk, Netaji Subhash Marg, Gurugram, Haryana 122002, , Sector-46, Near Bakhtawar Chowk, Netaji Subhash Marg, Gurugram, Haryana 122002, Gurgaon - 122002",
+   "contact": "Neelam Jolly admn.vishwas@gmail.com 8178047774",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Haryana",
+   "district": "Ambala",
+   "name": "Novelty Education Society",
+   "address": "Novelty Complex, #5173-74, Noverlty Complex, Bazaza Bazar, Ambala Cantt. - 133001",
+   "contact": "Satya Pal pgambhir2001@gmail.com 9416394173",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Himachal Pradesh",
+   "district": "Chamba",
+   "name": "Paradise children Care Center",
+   "address": "463, Vill. Trimath Ward No. 3, Near 33 KV Sub Station Chowari, Chamba - 176302",
+   "contact": "Balwinder Singh paradise.chowari@gmail.com 9418632735",
+   "schemes": []
+  },
+  {
+   "state": "Himachal Pradesh",
+   "district": "Kangra",
+   "name": "CORD (Chinmaya Organisation for Rural Development)",
+   "address": "9/1, Village and post office Sidhbari, Tehsil Dharmashala, Dharamsala - 176057",
+   "contact": "Dr. Kshama Metre cordsidhbari@gmail.com 9816655592",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Himachal Pradesh",
+   "district": "Una",
+   "name": "Prem Ashram Institute of Sisters of Charity",
+   "address": "000, Takka Road, Near HRTC Workshop, Una - 174303",
+   "contact": "Jibin Mol V.V vincyalex009@gmail.com 7831014330",
+   "schemes": []
+  },
+  {
+   "state": "Himachal Pradesh",
+   "district": "Solan",
+   "name": "Ganpati Educational Society",
+   "address": "...., Near Telephone Exchange, TELEPHONE EXCHANGE, KUNIHAR - 173207",
+   "contact": "Roshan lal sharma sharma.roshan@yahoo.co.in 9418079043",
+   "schemes": [
+    "Vikaas",
+    "Disha",
+    "Sahyogi"
+   ]
+  },
+  {
+   "state": "Himachal Pradesh",
+   "district": "Mandi",
+   "name": "Sakar Society For Differently Abled Persons",
+   "address": "Vil- Dohwan,, Sunder Nagar, Mandi, Himachal Pradesh - 175002",
+   "contact": "Sheetal Sharma sakarsociety@yahoo.in 9816018605",
+   "schemes": [
+    "Disha",
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Himachal Pradesh",
+   "district": "Chamba",
+   "name": "NAGRAJ REHABILITATION CENTRE",
+   "address": "24, MOHALLA P.O SULTANPUR, NEAR D.I.C OFFICE SULTANPUR, CHAMBA - 176314",
+   "contact": "SHEETAL THAKUR nagrajrehabilitationcentre1@gmail.com 7876641489",
+   "schemes": []
+  },
+  {
+   "state": "Himachal Pradesh",
+   "district": "Shimla",
+   "name": "Koshish Ek Asha",
+   "address": "NARSINGH MANDIR MARKET COMPLEX, OPP. SBI BANK RAMPUR BUSHAHR, TEMPLE, RAMPUR BUSHAHR - 172001",
+   "contact": "swati bansal bansal.swati436@gmail.com 9418035174",
+   "schemes": []
+  },
+  {
+   "state": "Jharkhand",
+   "district": "Ranchi",
+   "name": "Deepshikha, Institute for Child Development and Mental Health(A Unit of Purshree)",
+   "address": "Arya Samaj Mandir, Swami Shradhanand Road, Upper Bazar Ranchi, Jharkhand - 834001",
+   "contact": "Sudha Lhila deepshikhainfo@gmail.com 9334423789",
+   "schemes": [
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Jharkhand",
+   "district": "Dhanbad",
+   "name": "Pahela Kadam Special School Run By Narayani Charitable Trust",
+   "address": "8, Saraidhela Road, Near Saraidhela Police Thana, Dhanbad - 826003",
+   "contact": "Smt. Anita Agarwal narayanicharitabletrust@gmail.com 9471162439",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Jharkhand",
+   "district": "Deoghar",
+   "name": "Srijak Samuh",
+   "address": "Srijak Samuh, Williams Town, Rani Kothi, B. Deoghar,, DEOGHAR - 814112",
+   "contact": "UMASHANKAR KUMAR srijaksamuh@gmail.com 9431063699",
+   "schemes": []
+  },
+  {
+   "state": "Jharkhand",
+   "district": "Ranchi",
+   "name": "CHILD CONCERN",
+   "address": "1B, Shubh Gauri Enclave, Budh Vihar Colony,, Argora Bypass, Ashok Nagar, Harmu, Ranchi, Argora Bypass, Ranchi - 834002",
+   "contact": "SUGANDH NARAYAN PRASAD childconcern.jharkhand@gmail.com 9472162409",
+   "schemes": [
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Jharkhand",
+   "district": "East Singhbhum",
+   "name": "Parents Association of Mentally Handicapped of Jamshedpur",
+   "address": "Lions Club of Jamshedpur Artificial Limb Fitting Centre(LALFIC), Sonari, Near Carmel Junior College/Bal Vihar, Jamshedpur - 831011",
+   "contact": "P BABU RAO pamhj361@gmail.com 9431372214",
+   "schemes": [
+    "Prerna"
+   ]
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "GRACE FOUNDATION CHARITABLE TRUST.",
+   "address": "832/27,, 5th cross,Ramaiah layout, Senavihar, Bangalore - 560084",
+   "contact": "LOURDU MARY gracefoundation29@gmail.com 9880703957",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "Kolar",
+   "name": "SARWC-Service Agency For Rural Women And Children",
+   "address": "R G Ramappa Building, Avani Road, Kantharaja cricel ,Kothamangala (P), Mulbagal - 563131",
+   "contact": "SHANKAR M sarwc2017@gmail.com 8722231685",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "Bidar",
+   "name": "Dr B.R.Ambedkar Cultural and Welfare Society",
+   "address": "8-11-229, SBH Colony, GESCOM Road Bidar, Bidar - 585401",
+   "contact": "NAVIN RAJESH drambedkarcws@gmail.com 9448258667",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "Davangere",
+   "name": "SPOORTHY ORGANIZATION FOR EDUCATION AND SOCIAL DEVELOPMENT",
+   "address": "SPOORTHY, URDU SCHOOL, NEAR URDU SCHOOL, NALLUR - 577221",
+   "contact": "K B ROOPA NAIK spoorthy.hnl@gmail.com 9448976910",
+   "schemes": [
+    "Disha"
+   ]
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "The Association Of People With Disability",
+   "address": "#, 6Th Cross, Hutchins Road, St. Thomas Town, Lingarajapuram, Bangalore - 560084",
+   "contact": "Dr. N S Senthil Kumar contact@apd-india.org 9513320562",
+   "schemes": [
+    "Vikaas",
+    "Badhte Kadam",
+    "Disha",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Karnataka",
+   "district": "Udupi",
+   "name": "Narayana Special School - A Unit of Tallur Family Trust(R)",
+   "address": "Door No:353/A, Door No: 353/A, Near Old Post Office, NH 66, Tallur, Kundapur Taluk, Udupi District - 576230",
+   "contact": "Suresh Tallur tallurspecialschool@gmail.com 9480409247",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "Belagavi",
+   "name": "SHRI DOODNANA VIKAS SHIKSHAN SANSTHE",
+   "address": "99, DVS Samste, Pachhapur Road Near IB, Hidkal Dam - 591107",
+   "contact": "Parvati L Mugali shridvss@gmail.com 6362584004",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "TAMAHAR TRUST",
+   "address": "#95,, 6th Main, Between 13th and 15th Cross,, Behind Renaissance Regalia, Bangalore - 560003",
+   "contact": "VAISHALI B PAI tamahar@gmail.com 9845551209",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "Seva In Action Association",
+   "address": "36, 1st Main, S.T.Bed Layout, Koramangala, Koramangala, Bangalore - 560034",
+   "contact": "Manjula N sevainaction@gmail.com 9535012566",
+   "schemes": [
+    "Vikaas",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "KARNATAKA PARENTS ASSOCIATION FOR MENTALLY RETARDED CITIZENS",
+   "address": "12, 3rd cross, 8th Main, Byrasandra Layout, Jayanagar 1st Block East, Bangalore, Byrasandra Main Road, Near NIMHANS, Banglore - 560011",
+   "contact": "K R Venkatesha kpamrc@gmail.com 9845462451",
+   "schemes": [
+    "Badhte Kadam",
+    "Gharaunda",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "Academy For The Severely Handicapped And Autistic Persons Charitable Trust",
+   "address": "L-76/A, HBCS 3rd Stage, Kirloskar Colony, 4th Block, Basaveshwaranagar, Bangalore - 560079",
+   "contact": "Mrs. Jayashree Ramesh info@ashaforautism.com 9343764415",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "Kalaburagi",
+   "name": "Vinayaka Educational Trust",
+   "address": "10-105/4, Sharan Nagar, Brahmpur, OPP N.V.School, Gulbarga - 585103",
+   "contact": "Shrimanth Revoor vinayakaeducationaltrust131@gmail.com 9980817060",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "ALFAA (Assisted Living for Autistic Adults)",
+   "address": "Pocket 3, C-506, Vasant Vihar,, Pocket 3, C-506, Vasant Vihar, AWHO Colony, Vidhyanagar, Billmarnahalli Main Road,, BANGALORE - 562157",
+   "contact": "Ruby Singh alfaa2010@gmail.com 9741418103",
+   "schemes": [
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "SHRISTI SPECIAL ACADEMY",
+   "address": "No.20, Jattipalya, Channenahalli 20th Km, Magadi Road, Janaseva Vidya Kendra, Banglore - 562130",
+   "contact": "Suchita Somashekaraiah shristiblr@gmail.com 9900170959",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Karnataka",
+   "district": "Chikkaballapura",
+   "name": "PRAGNA TRUST",
+   "address": "03, Bye-pass Road, RAMALINGESHWARA EXTENSION, GOWRIBIDANUR - 561208",
+   "contact": "VIJAYALAKSHMI S nagaraj.n.gbd@gmail.com 9972009412",
+   "schemes": [
+    "Disha",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Karnataka",
+   "district": "Bagalkot",
+   "name": "BIJAPUR INTEGRATED RURAL DEVELOPMENT SOCIETY (BIRDS)",
+   "address": "437/21, Mahantha Nagar, Ward no-05, Hungund - 587118",
+   "contact": "Mahantesh Agasimundin birdshungund1990@rediffmail.com 9448117058",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "Dakshina Kannada",
+   "name": "SHREE GANESHA SEVA TRUST FOR EXCEPTIONAL PERSONS",
+   "address": "0000, SHAKTHINAGAR, NEAR WATER TANK, MANGALURU - 575016",
+   "contact": "VASANTH KUMAR SHETTY vasanth@saanidhya.org 9448215397",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "Gadag",
+   "name": "Manju Education Society",
+   "address": "Balaji Road, Rajput Street, Betageri, Gadag - 582102",
+   "contact": "SHANKARSINGH S RAJAPUT mes139@gmail.com 7795574508",
+   "schemes": [
+    "Disha",
+    "Samarth",
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Karnataka",
+   "district": "Dakshina Kannada",
+   "name": "Chetana Child Development Centre Unit of Seva Bharathi",
+   "address": "13-9-1207/4, V.T.Road, Kodailbail, Near Venkataramana Temple, Mangalore - 575001",
+   "contact": "P. Vinod Shenoy chetanabharathi@gmail.com 9036493397",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "Haveri",
+   "name": "Roshni Trust",
+   "address": "#, Kumareshwara Nagara, Hangal, Opp. New Court, Hanagal - 581104",
+   "contact": "Sr.Anitha DSouza roshnisac@yahoo.co.in 9945368152",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "Welfare Association For Rehabilitation Of Disabled And Society (WARDS)",
+   "address": "WARDS, C.A.Site No.1,, 10Th Main Road, Jeevan bhima Nagar, New Thippasandra Post, Next to HOPCOMS, Bangalore - 560075",
+   "contact": "Mrs. Aruna wards.bengaluru@gmail.com 8105676362",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "Mandya",
+   "name": "St. Thomas Mission Society",
+   "address": "KL 232 A, Santhome, P.B.No 42, PES Engineering College Road, Opp. Zilla Panchayat, Mandya - 517401",
+   "contact": "Joseph Cyriac ashasadan@ymail.com 9448158345",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Karnataka",
+   "district": "Kodagu",
+   "name": "Cheshire Homes India Coorg",
+   "address": "Post Box No.93,, Mekur Hosakeri, Pollibetta, Pollibetta, Virajpet - 571215",
+   "contact": "Gita Chengappa cheshirehomesindiacoorg@gmail.com 9880139575",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "GiftAbled Foundation",
+   "address": "#148, 1st A main East of NGEF layout Kasturi Nagar Bangalore -43, New Shanthi Sagar, Bangalore - 560043",
+   "contact": "Prarthana Kaul svastya@giftabled.org 9880494953",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "Spastics Society Of Karnataka",
+   "address": "31, 31, 5th Cross, 5th Main Road,, Karnataka, Indiranagara - 560038",
+   "contact": "Rukmini Krishnaswamy accounts@spasticssocietyofkarnataka.org 9448383309",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Karnataka",
+   "district": "BENGALURU URBAN",
+   "name": "AshaKiran Special Needs School Unit of Asha Kiran Trust",
+   "address": "#10-26, Esther Gardens, Jayanthi Nagar, Horamavu - Ramamuthy Nagar Road, Bangalore - 560016",
+   "contact": "Mrs. Myra Theodore ashakirantrust@gmail.com 7760414707",
+   "schemes": []
+  },
+  {
+   "state": "Karnataka",
+   "district": "BALLARI",
+   "name": "Saadhya Trust For Social Development",
+   "address": "00000, 24th ward, Ballari Road, TMAES ITI College Campus, Near Rosebud School, Hosapete - 583201",
+   "contact": "Arathi K T arathiharish2014@gmail.com 9481160691",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Thrissur",
+   "name": "SWASRAYA-Special Child Development and Vocational Training centre for Differently Abled",
+   "address": "15/207, Swasraya Special Child Development and Vocational Training Centre for Differently - Abled, P.O Kuttur, Near Neithalakavu Temple, Thrissur - 680013",
+   "contact": "Mrs.Shantha Menon swasraya91@gmail.com 9447969795",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Kottayam",
+   "name": "SUKRUTHAM CHARITABLE TRUST",
+   "address": "32/243, MANCHADIKKARA, MAHADEVA TEMPLE, VAZHAPPALLY, CHANGANASSERRY - 686101",
+   "contact": "O R Haridas sukrutham.chry@gmail.com 9497579695",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Kollam",
+   "name": "Manovikas School for Mentally Challenged",
+   "address": "227, Palliserikkal Post, Sasthamcotta, Kollam - 690521",
+   "contact": "Shri. D. Jacob manovikas@gmail.com 9562460802",
+   "schemes": [
+    "Disha"
+   ]
+  },
+  {
+   "state": "Kerala",
+   "district": "Malappuram",
+   "name": "MADIN SCHOOL FOR THE INTELLECTUALLY DEFICIENT RUN BY MADINUSSAQUAFATHIL ISLAMIYYA",
+   "address": "29/56 A, B, C, Swalath Nagar, Melmuri, Malappuram - 676517",
+   "contact": "Muhammed Pary secretary@madin.edu.in 9447348786",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Thrissur",
+   "name": "Social Action Forum Irinjalakuda",
+   "address": "Social Action Forum Irinjalakuda, Cathedral Junction West, Irinjalakuda, Irinjalakuda - 680121",
+   "contact": "Fr. Varghese Paul socialactionijk@gmail.com 8547138986",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Kozhikode",
+   "name": "V.K Mohamed Charitable Trust",
+   "address": "19/2026F, 4th Floor,Indus Avenue, Kallai Road, Kozhikkode - 673002",
+   "contact": "V.K.MOHAMMED ASHRAF mail@vkspecialschool.com 9847214957",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Kerala",
+   "district": "Kottayam",
+   "name": "SNEHARAM SPECIAL SCHOOL FOR MENTALLY RETARDED, PALA",
+   "address": "90, Kochidappady, Pala East P.O., Pala - 686575",
+   "contact": "Sr.Carmel Geo sms sneharamss.pala@gmail.com 9142849161",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Kottayam",
+   "name": "Asha Nilayam",
+   "address": "327B, Vazhoor East P.O, Ponkunnam, Near NAYARA Petrol Pump, Ponkunnam - 686504",
+   "contact": "FR ROY MATHEW VADAKKEL ashanilayamspl@gmail.com 7902969102",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Kerala",
+   "district": "Kozhikode",
+   "name": "Humanity Charitable Trust",
+   "address": "23/137A, Fareed, Kannanchery, P.O Kallai,Calicut - 673003",
+   "contact": "P K M Siraj humanityindz@gmail.com 8137999990",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Kerala",
+   "district": "Ernakulam",
+   "name": "RAKSHA SOCIETY FOR THE CARE OF CHILDREN WITH SPECIAL NEEDS",
+   "address": "VII/370, DARRAGH SALAAM ROAD, EAST GATE CHEMBITTAPALLY, KOCHI - 682002",
+   "contact": "Mrs.Ragini Menon rakshasocietykochi@gmail.com 9446039961",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Kozhikode",
+   "name": "NEST NCCC NIARC Under Koyilandy Palliative Care Society",
+   "address": "169 J,K,L, B/309, NEST Road ,Koyilandy, Behind Govt Hospital,Koyilandy, Koyilandy - 673305",
+   "contact": "Abdulla Karuvancherry koyilandypalliativecare@gmail.com 9745126699",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Wayanad",
+   "name": "Jyothinivas Charitable Society",
+   "address": "605 and 606, Vazhavatta, Jyothis English Academy, Kalpetta - 673122",
+   "contact": "Maichel PA jyothinivaswayanad@gmail.com 9447887575",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Kozhikode",
+   "name": "Amar Jyothi Special School run by Amar Jyothi Charitable Society",
+   "address": "2/264, Korangad, Alphonsa English Medium HigherSecondary School, Thamarassery - 673573",
+   "contact": "Tessy amarjyothisabs@gmail.com 9645381255",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Palakkad",
+   "name": "NISH CHINTHA",
+   "address": "300/E, Ward 3, Choozhikkad, Mulanjur, Ottappalam - 679511",
+   "contact": "Rajeev Sreenivasa secretary@nishchintha.org 9833005674",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "KASARAGOD",
+   "name": "SNEHALAYA PSYCHO SOCIAL REHABILITATION CENTRE SHALOM SANTHWANAM WOMEN SNEHALAYA CHARITABLE TRUST",
+   "address": "319/A, BACHALIKE, PAVOOR, MANJESHWAR - 671323",
+   "contact": "JOSEPH CRASTA snehalayamangalore@gmail.com 9446547033",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Kottayam",
+   "name": "SOCIETY FOR THE EMPOWERMENT OF THE LEARNING DISABLED.ST.JOHN OF GOD SPECIAL SCHOOL",
+   "address": "314B (Old number 11/270), velloor, pampady, kottayam, kottayam - 686501",
+   "contact": "Bro.GEORGE .K .T seldjohnofgodschool@yahoo.com 8129906050",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Thrissur",
+   "name": "Sree Parvathy Janaseva Samithi",
+   "address": "SREE PARVATHY SEVANILAYAM, , NEAR STAR PIPES, THRISSUR - 680541",
+   "contact": "K.P. RAVISANKAR sreeparvathiseva2017@gmail.com 7025948602",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Palakkad",
+   "name": "Devashrayam Rehabilitation Centre for Mentally Challenged - A Unit of Devashrayam Charitable Society",
+   "address": "VIII/275, Thekkethara, Marutharoad Post, Palakkad - 678007",
+   "contact": "M N Govind devashrayam@rediffmail.com 9288110000",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Kerala",
+   "district": "KASARAGOD",
+   "name": "ROTARY SPECIAL SCHOOL FOR DIFFERENTIALLY ABLE CHILDREN. A UNIT OF ROTARY M.B.M CHARITABLE TRUST",
+   "address": "ROTARY VILLAGE,, ANANDASHRAM PO,, KANHANGAD, KASARAGOD, KASARAGOD - 671531",
+   "contact": "BEENA JOSEPH rotaryschool4mr@gmail.com 9895653040",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Kerala",
+   "district": "Kollam",
+   "name": "Gandhibhavan International Trust",
+   "address": "621, C/o Gandhibhavan International Trust, Kundayam.P.O, Pathanapuram, Pathanapuram - 689695",
+   "contact": "Dr.Punalur Somarajan gandhibhavan@gmail.com 9605047000",
+   "schemes": []
+  },
+  {
+   "state": "Kerala",
+   "district": "Idukki",
+   "name": "VOSARD - Voluntary Organisation For Social Action And Rural Development",
+   "address": "VIII/506, Valiyakandam, Kumily, Kerala - 685509",
+   "contact": "Jose Antony vosard@gmail.com 9447387538",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Kerala",
+   "district": "Thiruvananthapuram",
+   "name": "ASSOCIATION OF PARENTS OF THE RETARDED",
+   "address": "AASRAYA, APR NAGAR,ALIYADU, MUNDAYKKALVARAM TEMPLE, VENJARAMOODU - 695607",
+   "contact": "SASIDHARANPILLAI apsecretary@gmail.com 8606642995",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Bhopal",
+   "name": "Jigyasa Samaj Kalyan Sewa Samiti",
+   "address": "1404/6, Navjeevan Colony, Chhola Road, Huzur - 462001",
+   "contact": "Mukesh Thakur jskss.bhopal@rediffmail.com 9303123594",
+   "schemes": [
+    "Vikaas",
+    "Disha"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Bhopal",
+   "name": "MADHURI AAYAAM EDUCATION AND WELFARE SOCIETY",
+   "address": "1414, Berkhedi Bazyaft, Near Goushala Old Crusher Plant, BHOPAL - 462044",
+   "contact": "VIVA JOSHI madhuriaayaam@gmail.com 9424476498",
+   "schemes": [
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Jabalpur",
+   "name": "RAJEEV KUMAR SAMAJ KALYAN GRAM VIKESH SHOD SANTHAN",
+   "address": "2983, New Kanchanpur, Aadhartal, Jabalpur - 482004",
+   "contact": "RAJIV KUMAR RAIKWAR rajurecord@gmail.com 9329325008",
+   "schemes": [
+    "Gharaunda",
+    "Vikaas",
+    "Disha",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Indore",
+   "name": "Shri Shri Utkarsh Samity",
+   "address": "301 SNEHDEEP APARTMENT, 38, Narayan Bagh, Indore(MP), INDORE - 452007",
+   "contact": "Priyanka Phadnaik ssusindore@gmail.com 9303225546",
+   "schemes": [
+    "Samarth",
+    "Vikaas",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Ujjain",
+   "name": "NIRMAL JYOTI EDUCATIONAL AND CHARITABLE SOCIETY",
+   "address": "House No.76, Mendya, Santhome Bhavan, Mendya, Ujjain, M.P. - 456006",
+   "contact": "Rev Fr Vinson Joseph nirmaljyotimds@gmail.com 8989615660",
+   "schemes": [
+    "Vikaas",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Vidisha",
+   "name": "Rajul viklang palak abhibhavak utthan samiti",
+   "address": "House No. 1, Bada Bazaar, Arihant Kirana Store, vidisha - 464001",
+   "contact": "Sanjeev Kumar Jain rajulvds2010@gmail.com 8889829433",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Sagar",
+   "name": "THE SUN FOUNDATION SAMITI",
+   "address": "33, INFRONT OF GRAM PANCHYAT RAJAKHEDI NEAR DD TIWARI, GRAM PANCHYAT, MAKRONIYA SAGAR - 470004",
+   "contact": "DR REKHA RAI thesunsagar@rediffmail.com 7000946553",
+   "schemes": [
+    "Vikaas",
+    "Disha"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Jabalpur",
+   "name": "Navjyotispecialschoolrun by mahakoshal navjyotisociety",
+   "address": "Plot No.40/02, Rimjha, Near st.Aloysious school campus, Jabalpur - 482002",
+   "contact": "Shanti Tirkey navjyotispecialschool@gmail.com 9575367332",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Bhopal",
+   "name": "Shalom Special School for the Mentally Handicapped Unit of Nirmal Mata Society",
+   "address": "139, Lambakheda, J.N.C.T.Road, Bhopal - 462009",
+   "contact": "Seena Francis shalomsplschool@gmail.com 7869732650",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Gwalior",
+   "name": "EHSAAS",
+   "address": "3rd Floor Anhantam G192, Patel Nagar, Front of Green Gardan, GWALIOR - 474009",
+   "contact": "GEETA DHINGRA ananya97in@yahoo.com 9329825578",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Rewa",
+   "name": "Indian Red Cross Society Rewa",
+   "address": "Punarwas Bhawan, Civil Line, Jhiriya, Rewa - 486001",
+   "contact": "Smt. Pratibha Pal IAS redcrossrewa@rediffmail.com 9425010828",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "NARMADAPURAM",
+   "name": "Dr Annie Besant MR Special School run by Dr Annie Besant Memorial Education Institute",
+   "address": "ward no 12, Samarth Parisar Rewa Bhgawati Nagar, Phase I MalaKhedi road, Hoshangabad - 461001",
+   "contact": "smt. Aarti dutta directoranniebesantschool@gmail.com 7415746992",
+   "schemes": [
+    "Sahyogi",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Ujjain",
+   "name": "Nagda Zenith Social welfare Society",
+   "address": "3/10, Adarsh Gandhi Gram Colony, Nagda Jn, Nagda - 456335",
+   "contact": "Er. Pankaj Maru snehnagda@gmail.com 9981582726",
+   "schemes": [
+    "Badhte Kadam",
+    "Disha",
+    "Vikaas",
+    "Sahyogi",
+    "Prerna",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Ratlam",
+   "name": "SARTHI RATLAM Run By LAKHDATAR FOUNDATION",
+   "address": "A-114, Jawahar Nagar, Behind Ram Mandir, RATLAM - 457001",
+   "contact": "Swati Solanki lakhdatarfoundation@gmail.com 9981479661",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Indore",
+   "name": "NISHAKT JAN AADHAR WELFARE SOCIETY",
+   "address": "1-A, SANGAM NAGAR iNDORE, NEAR SCHEME NO 51POLICE CHOWKI, INDORE - 452006",
+   "contact": "DEEPAK PHADNIS njawsociety@gmail.com 9977505183",
+   "schemes": [
+    "Gharaunda",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Indore",
+   "name": "Avijit Welfare Society For Persons With Intellectual Developmental Disability",
+   "address": "641, Panchvati colony, Talawali chanda, indore - 453771",
+   "contact": "AJAY JAIN avijitwelfaresociety@gmail.com 9425066770",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Jabalpur",
+   "name": "Disable Persons (Mr, Cp, Autism, Md) Parents Association",
+   "address": "131, Indrapuri Colony, Gwarighat Road, Jabalpur, Jabalpur - 482008",
+   "contact": "Abhay Kumar Dubey abhaydubeyjbp@gmail.com 9425150672",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Chhindwara",
+   "name": "KARTIKAY EDUCATIONAL AND WELFARE SOCIETY",
+   "address": "AAKAAR, H No.243, PANCHWATI WARD 48,, SARVOTTAM NAGAR, PARASIA ROAD, CHHINDWARA - 480001",
+   "contact": "GAURAV BAJPAI kartikayeducational@gmail.com 9826221686",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Singrauli",
+   "name": "ADARSH VIKLANG SEVA SANGH",
+   "address": "shop 77 chunkumari stadium, Ward 40 adarsh ward, WAIDHAN, SINGRAULI MP - 486886",
+   "contact": "SHAILESH KUMAR MISHRA viklangseva@gmail.com 9424348178",
+   "schemes": [
+    "Vikaas",
+    "Gharaunda",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Katni",
+   "name": "GRAM JAN SHIKSHAN SANSTHAN SAMITI",
+   "address": "WARD NO 45, MAHRARANA PRATAP WARD, JHINJHARI, KATNI - 483442",
+   "contact": "UMESH KUMAR ngorkj@gmail.com 8462041802",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Indore",
+   "name": "indore society for mentally Challenged",
+   "address": "192/193, A.B. Road, Near I.P.S. Academic,, Indore - 452012",
+   "contact": "Dr. Diwakar Bhai Shah ismrindore@gmail.com 9826022667",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "EAST NIMAR",
+   "name": "Smt Savitribai Jhawar Seva Nyas",
+   "address": "Makan Number 1658, ward Number 49, Keshav Seva Dham, Viklang Aashram, Near Government Medical College, Khandwa - 450001",
+   "contact": "BHARAT JHAWAR ca.bharatjhawar@yahoo.in 9926007330",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Bhopal",
+   "name": "Umang GauravDeep Welfare Society",
+   "address": "154, aradhna nagar, Infront of sharda hospital, Bhopal - 462003",
+   "contact": "Deepti Patwa umanggauravdeep06@gmail.com 9826644914",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Guna",
+   "name": "DWARIKA NEW ABHINAV EDUCATION AND RESERCH INSTITUTE SAMITI",
+   "address": "HOUSE NO 05, ANNAPURNA COLONY, BEHIND SHIKSHA VIBHAG, GUNA - 473001",
+   "contact": "VIKRAM SINGH TOMAR tomardarsh@gamil.com 9713242145",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Chhindwara",
+   "name": "AADHAR FOUNDATION",
+   "address": "48 Panchwati Ward, Opp. MP 28 Dhaba, Parasia Road, Panchwati Ward no 48, Poama,, Chhindwara - 480001",
+   "contact": "ER. Mahesh Kinth aadhar.foundation@rediffmail.com 8989173581",
+   "schemes": [
+    "Disha",
+    "Vikaas",
+    "Gharaunda",
+    "Sahyogi",
+    "Badhte Kadam",
+    "Samarth"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Sagar",
+   "name": "ANJANI JAN KALYAN SANSTHAN SAMITI BINA",
+   "address": "325, Aagasod Roud, Augshod roud, Bina - 470113",
+   "contact": "NANDRAM KUSWAHA anjanijankalyan@gmail.com 9981330835",
+   "schemes": [
+    "Samarth"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Sehore",
+   "name": "VASUNDHARA WELFARE FOUNDATION",
+   "address": "vasundhra special school, Brahmpuri Colony, Bilkisganj Road, Ward No. 2, ramesh kirana, SEHORE - 466001",
+   "contact": "Arjun singh info.vasundhara@yahoo.com 9425045303",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Guna",
+   "name": "MAN-Mental Health Awareness Networking",
+   "address": "B1-B2, GREEN PARK COLONY, BHULLANPURA BYPASS, Guna, Guna - 473001",
+   "contact": "sangeeta singh manspecialschool@rediffmail.com 9827389872",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Bhind",
+   "name": "FAMOUS MAHILA KALYAN SAMITI",
+   "address": "48 WARD NO 14, HOUSING COLONY BEHIND KUSUM BAI COLLEGE BHIND, BHIND, BHIND - 477001",
+   "contact": "AKBAR KHAN Fmks.bhind@gmail.com 9575274575",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Rewa",
+   "name": "Sneh Mand Buddhi Avam Mook Badhir School Unit Of Sneh Shikshan Avam Manav Seva Sansthan",
+   "address": "H NO 885, GALI NO 2, BEHIND KIRTI KRANTI PRESS, REWA - 486001",
+   "contact": "RAM SEVAK SAHU snehshikshan@gmail.com 9755412191",
+   "schemes": [
+    "Disha"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Vidisha",
+   "name": "UMMEED SHIKSHAN SAMITI",
+   "address": "44 MIG INDRA COMPLEX, VIDISHA, VIDISHA, VIDISHA - 464001",
+   "contact": "REKHA MOTWANI ummeedshikshansamity@gmail.com 9098719899",
+   "schemes": [
+    "Disha",
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Sagar",
+   "name": "Jan Jagran Educational And Health Wealfare Society Sagar",
+   "address": "110, Jabalpur Road, makroniya, sagar - 470002",
+   "contact": "satyam singh mjkps2@gmail.com 9300071924",
+   "schemes": [
+    "Disha"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Seoni",
+   "name": "stfrancis dilkush special school",
+   "address": "252, jungle ahata, CV RAMAN WARD SEONI, SEONI - 480661",
+   "contact": "LISSIAMMA JOSEPH dilkush2004@gmail.com 7798498834",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "NARMADAPURAM",
+   "name": "MANASIK NISHAKT VIDYALAYA RUN BY BHAVISHYA DANCE PRASHIKSHAN AVAM SOCIAL WELFARE SOCIETY SAMITI",
+   "address": "WARD NO 19, ANAND NAGAR, shreya blad baink ke baajoo mein, NARAMDAPURAM - 461001",
+   "contact": "SMT. AFROZ KHAN Jalaj322@gmail.com 7879468258",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Jabalpur",
+   "name": "MOULANA AZAD EDUCATION FOUNDATION",
+   "address": "12, HOUSING BORD MAHARAJPUR JABALPUR, ADHARTAL, JABALPUR - 482004",
+   "contact": "ARTI RAIKWAR recordrk6@gmail.com 9425471236",
+   "schemes": [
+    "Vikaas",
+    "Gharaunda",
+    "Disha"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Ratlam",
+   "name": "VISHNU VIKLANG SEWA SANSTHAN SAMITI",
+   "address": "102, NEAR BUS STAND, PATAN, PATAN, ALOT, ALOT - 457114",
+   "contact": "VISHNU LAL PATIDAR vishnusansthan@gmail.com 9893961645",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Jabalpur",
+   "name": "Viklang Seva Bharti",
+   "address": "J1, Sneh Nagar Extansion, Kamla Nehru Ward, Sneh Nagar, Jabalpur - 482002",
+   "contact": "MITALI BANERJI vsbmp123@rediffmail.com 9425152222",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Jhabua",
+   "name": "Azad Viklang Kalyan Samiti",
+   "address": "41-C RAILWAY COLONY MEGHNAGAR JHABUA, MEGHNAGAR, In Front of H.P. Gash agency, Maghnagr - 457779",
+   "contact": "kamlesh rathor avks.ngo2012@gmail.com 8085646965",
+   "schemes": []
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Bhopal",
+   "name": "Digdarshika Institute Of Rehabilitation Research",
+   "address": "10, Rohit Nagar Phase-1,, Rohit Grih Nirman Samiti,, Bawadiya Kalan,, Bhopal - 462039",
+   "contact": "Usha Upadhayaya dirr89@rediffmail.com 9425301177",
+   "schemes": [
+    "Vikaas",
+    "Disha",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Madhya Pradesh",
+   "district": "Bhopal",
+   "name": "TARUN JAN KALYAN SAMITI",
+   "address": "17, Paras Nagar, Phase II, Vishwakarma Nagar, Bhopal - 462038",
+   "contact": "Mr Suresh Kumar Patil tarun.bhopal@rediffmail.com 9425027585",
+   "schemes": [
+    "Vikaas",
+    "Disha"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Solapur",
+   "name": "Jivhala Society For The Mentally Handicapped",
+   "address": "9, Jivhala Society for the Mentally Handicapped,, Vasant vihar, Old Pune Naka, Solapur ( Maharastra ) - 413001",
+   "contact": "Mr. Annarao Bhimashankar Rajmane jivhalasociety@gmail.com 9422457324",
+   "schemes": [
+    "Samarth",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Jalgaon",
+   "name": "Utkarsh Matimand Vidyalay Jalgaon Unit Of Institute For Rural Development Social Services Jalgaon",
+   "address": "28/29, Jivram Nagar,, Near Khote Nagar,, Nr. N.H. - 6, Jalgaon - 425001",
+   "contact": "Dr. Suresh Shamrao Patil irdss_jal@rediffmail.com 9421514907",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Ratnagiri",
+   "name": "Aastha Social Foundation Ratnagiri",
+   "address": "Block No.8,Sumant Complex,, Chaitraban, Nachane Road, Ratnagiri - 415612",
+   "contact": "Surekha Deorao Pathre surekhapathre@yahoo.com 9421812766",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Kolhapur",
+   "name": "AASTHA CHARITABLE INSTITUTE",
+   "address": "I-2, KEVIZ PARK, NEAR COLLECTOR OFFICE, KOLHAPUR - 416003",
+   "contact": "SWATI VINAYAK GOKHALE kolhapuraastha@gmail.com 9822679774",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Aurangabad",
+   "name": "Navjeevan Society For Research And Rehabilitation For Mentally Handicapped",
+   "address": "P-65, Chikalthana M.I.D.C. area, Garware Stadium, Aurangabad - 431006",
+   "contact": "Mrs. Sharmila Veerdhawal Gandhi navjeevanspecial@gmail.com 9326222260",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Kolhapur",
+   "name": "Chetana Vikas Mandir - A Unit of Chetana Apangamati Vikas Sanstha",
+   "address": "Kushtadham,, Shenda Park, Near Govt.Medical College, Kolhapur - 416012",
+   "contact": "Pawan D. Khebudkar chetanavikas@gmail.com 9822682028",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Mumbai Suburban",
+   "name": "Punarvas Education Society",
+   "address": "Plot No 312, S.V Road, Goregaon West, Opp Piramal Nagar, Next to Nana Nani Park, Mumbai Suburban - 400104",
+   "contact": "Mrs.Savita Jawale punarvasschool@gmail.com 9833927519",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Thane",
+   "name": "SNEHALAYA CHARITABLE TRUST",
+   "address": "22/5A, PAREIRA NAGAR CHS LTD., KHOPAT, BEHIND LIFELINE HOSPITAL, THANE - 400601",
+   "contact": "MRS. OLIVIA W. DSOUZA snehalaya2007@rediffmail.com 9869547241",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Jalgaon",
+   "name": "Rushil Multipurpose Foundation",
+   "address": "PLOT NO 2, ARADHANA COLONY, NEAR GIRNA WATER TANK, jalgaon - 425002",
+   "contact": "Harshali Pravin Chaudhari udaandivyangngo@gmail.com 9881121803",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Nagpur",
+   "name": "Mission Institute For Training Research And Action",
+   "address": "Wing C No. C-6, Liberty Inclusive, Malaviya Nagar, Khamala, NAGPUR - 440025",
+   "contact": "Abhijit Raut mitrangp306@gmail.com 9823934070",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Latur",
+   "name": "UMANG INSTITUTE OF AUTISM AND MULTIDISABILITY RESEARCH CENTRE LATUR RUN BY SIDDHIVINAYAK PRATISTHAN",
+   "address": "Umang Institute of Autism and Multidisability Reserach Centre, Barshi Road,, Back Side of New Collector Office, Latur, LATUR - 413512",
+   "contact": "KIRAN RAMESH UTAGE siddhi22305@gmail.com 9371731999",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Parbhani",
+   "name": "Mahatma Gandhi Seva Sangh",
+   "address": "9, Rakhan, Jintur Road, Viswa Corner, Parbhani - 431401",
+   "contact": "Vijay Kanhekar mahatmagandhisevasangh@gmail.com 9158715200",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Washim",
+   "name": "ADHAR NIWASI MATIMAND VIDYALAYA RUN BY JAGRUTI SHETKARI BAHUDDESHIYA MITRAMAND KAWATHA",
+   "address": "AT. POST. KAWATHA, , TQ. RISOD, RISOD - 444506",
+   "contact": "GEETA KISHOR PAYGHAN JAGRUTIKWATHA@GMAIL.COM 9028735560",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Nagpur",
+   "name": "Home For Aged And Handicapped",
+   "address": "363/A, Medical College Road, Untkhana, Untkhana, Ashok Chowk, Nagpur - 440024",
+   "contact": "Sr. Benedicta Irene DMello homeforageduntkhana@gmail.com 9420646606",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Dhule",
+   "name": "Kai. Bapuso N Z Marathe Vidhayak Sanstha Thalner Sanchalit Matimand Mula Mulinche Balgruh Shirpur",
+   "address": "Sarve No. 21/1,22/1,, Shirpur Chopda Road,, Near Water Park,, shirpur - 425405",
+   "contact": "Mr. Ramesh Nimba Marathe nzmarathevidhayaksanstha@gmail.com 9921590146",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Satara",
+   "name": "Smt.P.C. Alwani School for M.R. Children A Unit Of Rivka Sahil Akshar Institute",
+   "address": "401, Ganpati Ali, Near Telephone Office, Wai - 412803",
+   "contact": "Dr. Avinash Tapare rsakshar09@gmail.com 9763878738",
+   "schemes": [
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Satara",
+   "name": "Param Prasad Charitable Society",
+   "address": "217//2B, Asha Bhavan, Kodoli, Rahimatpur Road, Satara - 415004",
+   "contact": "Fr.T.C.Thomas ashagram@hotmail.com 7972490052",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Thane",
+   "name": "MBA FOUNDATION",
+   "address": "Gods Abode, Plot No-23 A, Sector -17, Airoli, Near Abhudaya Bank, Navi Mumbai - 400708",
+   "contact": "Meenakshi B lifecare.disabled@gmail.com 9594100387",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Mumbai City",
+   "name": "JAI VAKEEL FOUNDATION RESEARCH CENTRE.",
+   "address": "Sewri Hill, Abhyudaya Nagar CHS, Kalachaowki, Sewri Road, Near Milan Industrial Estate, Sewri - 400033",
+   "contact": "Ms. Archana Chandra snacmaharashtra@gmail.com 9321330311",
+   "schemes": [
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Nagpur",
+   "name": "Samdrusti Kshamata Vikaas Evam Anusandhan Mandal",
+   "address": "16 Devdatta Bhavan, Rana Pratap Nagar Chouk, Rana Pratap Nagar Chouk Nagpur, Nagpur - 440022",
+   "contact": "Umesh Andhare esaksham@yahoo.co.in 9922009351",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Thane",
+   "name": "SANGOPITA A SHELTER FOR CARE",
+   "address": "316 SHARMILI CHS, KARJAT ROAD, OPP HOTEL CHINAR, BADLAPUR EAST - 421503",
+   "contact": "RAVINDRA K SUGWEKAR info@sangopita.org 8999208804",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Ahmednagar",
+   "name": "Dr. Vithalaro Vikhe Patil Foundation District Disability Rehabilitation Center Ahmednagar",
+   "address": "Dr Vithalrao Vikhe Patil Foundation, Near Govt Milk Dairy, PO MIDC, Ahmednagar - 414111",
+   "contact": "Dr. Abhijit Diliprao Diwate ddrcnagar@gmail.com 9022147060",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Kolhapur",
+   "name": "Lt. GANPATRAO GATADE SPECIAL SCHOOL RUN BY KAGAL TALUKA KALA KRIDA SHAIKSHANIK SANSKRUTIK MANDAL",
+   "address": "153, KOSHTI GALLI, SHRADDHA NIVAS, A WARD, KAGAL - 416216",
+   "contact": "ATUL RAMCHANDRA JOSH atulramchandrajoshi@gmail.com 9822009596",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Mumbai Suburban",
+   "name": "Organization For Autistic Individuals",
+   "address": "FLAT NO A 805 BY 806 MEGHDOOT BLDG, Lokhandwala Back Road, Opposite Jogging Track, Andheri West Mumbai - 400053",
+   "contact": "Devopam Narendra Bajpai itsoai2012@gmail.com 9820180198",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Osmanabad",
+   "name": "TULJAI PRATISHTHAN BAHUUDDESHIYA SANSTA PANGAON, SANCHALIT SWAADHAR MATIMAND MULINCHE BALGRUH ,OSMAN",
+   "address": "GAT NO.168, AIRPORT ROAD ,NEAR GAPAT FARM ALNI, SWAADHAR MATIMAND MULINCHE BALGRUH,ALNI.TQ OSMANABAD, OSMANABAD - 413501",
+   "contact": "SHAHAJI NARAYAN CHAVAN chavansn5@gmail.com 9503930448",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Nagpur",
+   "name": "Jeevoday Special School For Mentally Retarded A Unit Of Jeevoday Education Society",
+   "address": "25/B, Residancy road, SFS school, Nagpur - 440001",
+   "contact": "Thresiamma Joseph jeevoeducation@gmail.com 9579845898",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Pune",
+   "name": "NAVKSHITIJ",
+   "address": "Gat no 65, Kasarsai Road, Next to Zilla Parishad School,, Marunji Village, Taluka Mulshi,, Pune District, Maharashtra - 411057",
+   "contact": "Dr. Chandrashekhar Desai info@navkshitij.org 9881791915",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Satara",
+   "name": "Ehsaas Matimand Mulanche Balgruh run by Chandrakant Bhanji Chande Memorial Trust",
+   "address": "At/P Valse Tal/dist Satara, NH4 Mega Highway, Near Ajinkyatara Sugar Factory, Shendre, Satara - 415519",
+   "contact": "Siddharth Arvind Thakkar ehsaasbalgruh2010@gmail.com 8369330780",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Pune",
+   "name": "UMED PARIWAR",
+   "address": "GAT NO. 949, HADAPSAR SASWAD ROAD, KANIFNATH PAYTHA, WADKI, WADKI VILLAGE - 412308",
+   "contact": "RAMESH SHANKAR WANDRE info@umedpariwar.org 9881499720",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Mumbai Suburban",
+   "name": "Parivaar Sahyadri the Apex Council of Parents of Persons with Intellectual and developmental Disabilities",
+   "address": "A 301 SHIVASHISH, S V ROAD ANDHERI WEST, OPP SHOPPERS STOP, MUMBAI - 400058",
+   "contact": "Prakash Bhalgat parivaarsahyadri@gmail.com 9920447481",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Nashik",
+   "name": "National Association for the Blind, Unit Maharashtra",
+   "address": "National Association for the Blind, Unit Maharashtra, NAB Sankul, Plot No. P-66,, Lane No.3, Street A, MIDC, Satpur, Nashik - 422007",
+   "contact": "MR. Rameshwar Kalantri nabdeafblind.86@rediffmail.com 8975725562",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Ratnagiri",
+   "name": "Aavishkar Society For Dev Of Mentally Handicaped Children",
+   "address": "E-95, M.I.D.C., Mirjole, Ratnagiri - 415639",
+   "contact": "Shri. Bipin Rasikalal Shaha aavishkar.ratnagiri@gmail.com 9422430893",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Latur",
+   "name": "Sanvedana Cerebral Palsy Vikasan Kendra Run by RSS Janakalyan Samiti",
+   "address": "Sanvedana Cerebral Palsy Vikasan Kendra, Lakshmi Nagar, Barad Vasti, Harangul BK TQ.DIST Latur, Latur - 413531",
+   "contact": "Mr Suresh Manoharrao Patil sanvedana.cpvkl@gmail.com 9422072517",
+   "schemes": [
+    "Gharaunda",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Aurangabad",
+   "name": "Aarambh Society For Autism And Slow Learner Children Aurangabad",
+   "address": "Plot no 2, Medical Housing Society, Behind Dmart, Darga chowk, Aurangabad - 431001",
+   "contact": "Mrs. Ambika Balasheb Takalkar aarambhautismcenter@gmail.com 8275284178",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Thane",
+   "name": "ASTITVA MATIMAND MULANCHI SHALA RUN BY ASTITVA PRAHLADRAI KAGAZI INSTITUTE FOR HANIDCAPPED",
+   "address": "PLOT NO8 PHASE 1, MIDC, NEAR LIC OFFICE, DOMBIVLI - 421203",
+   "contact": "RADHIKA MILIND GUPTE astitvatrust81@gmail.com 9820043631",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Latur",
+   "name": "SHRI GAJANAN BAHUDDESHIY SANSTHA BORI SANCHALIT . SANT GADGEBABA ANATH MATIMAND MULANCHE BALGRUHA",
+   "address": "SANT GADGEBABA ANATH MATIMAND MULANCHE BALGRUHA, LATUR, VASANT VIHAR IN FRONT OF NRUSINH MANDIR, NEW KATPUR ROAD,LATUR., LATUR - 413512",
+   "contact": "ANNASAHEB NILKANTHRAO KADAM sgbammblatur@gmail.com 9422342731",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Ahmednagar",
+   "name": "Matimand Mulanche Balgruha Run By Navoday Gramin Nagari Vikas Prati. And Sancrutik Mandal Pathardi",
+   "address": "Survey No. 104/3 and 104/4, Mohari Road, Near Stone Crusher, Pathardi - 414102",
+   "contact": "Smt. Anita Ashok Nirhali navodaypathardi@gmail.com 9850652929",
+   "schemes": []
+  },
+  {
+   "state": "Maharashtra",
+   "district": "Solapur",
+   "name": "SWA. MUKTAI KRIDA SHIKSHAN VA BAHUUDDESHIT SANTHA LAVANGI",
+   "address": "AT/ POST LAVANGI,, TAL MANGALWEDHA,, DIST SOLAPUR, SOLAPUR - 413319",
+   "contact": "MR. JADHAV SHIVAJI DNYANOBA swa.muktaiksbsanstha@gmail.com 9823119909",
+   "schemes": []
+  },
+  {
+   "state": "Manipur",
+   "district": "Imphal West",
+   "name": "HANDICAPPED DEVELOPMENT FOUNDATION",
+   "address": "57, Sagolband Tera Pukhri Mapal, Imphal West, Imphal - 795001",
+   "contact": "Dr. Sapam Jasowanta Singh hdfoundationmanipur@gmail.com 9612157246",
+   "schemes": [
+    "Disha",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Manipur",
+   "district": "Imphal West",
+   "name": "RELIEF CENTRE FOR THE WELFARE OF DIFFERENTLY ABLED PERSONS MANIPUR",
+   "address": "32, Singjamei Chingamathak Pishum, Near Hao Ground, IMPHAL - 795008",
+   "contact": "CH LOKESHORI DEVI reliefcentremanipur@gmail.com 9862275037",
+   "schemes": [
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Manipur",
+   "district": "Churachandpur",
+   "name": "The Malsawm Initiative Run By Centre For Community Initiative",
+   "address": "Pearsonmun, , Malsawm Ability Resource Centre, Churachandpur - 795006",
+   "contact": "Mr Pauzagin Tonsing pauzagin@communityinitiative.in 9612153082",
+   "schemes": [
+    "Disha"
+   ]
+  },
+  {
+   "state": "Manipur",
+   "district": "Imphal West",
+   "name": "Independent Living Trust",
+   "address": "72, Uripok Yambem Leikai, opp. Ramkrishna Mission School, Imphal - 795004",
+   "contact": "K. Manileima Devi saratkumarth@gmail.com 9612157718",
+   "schemes": []
+  },
+  {
+   "state": "Meghalaya",
+   "district": "East Khasi Hills",
+   "name": "Bethany Society",
+   "address": "BETHANY SOCIETY, LADY VERONICA LANE LAITUMKHRAH, OPPOSITE BANSARA EYE CARE, SHILLONG - 793003",
+   "contact": "Carmo Noronha bethanyngo1981@gmail.com 9436119808",
+   "schemes": [
+    "Disha",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Odisha",
+   "district": "Khordha",
+   "name": "DR. BRAJA VIHARI MOHANTY MEMORIAL MENTALLY RETARDED BENEFIT TRUST",
+   "address": "Plot No 430 part, , Santinagar, Jharapara,, Near Ganesh Mandir, Orissa - 751006",
+   "contact": "Baikuntha Bihari Mohanty jagrutibbsr@gmail.com 9437075921",
+   "schemes": [
+    "Gharaunda"
+   ]
+  },
+  {
+   "state": "Odisha",
+   "district": "Puri",
+   "name": "PINGALAKHI PUBLIC WELFARE ORGANISATION",
+   "address": "AT-LAXMIVIHAR (DAHIJANGA MOUZA), NEAR TALA ANDHIA BEHERA SAHI, PO-RATILO, PS-NIMAPARA, NEAR TALA ANDHIA BEHERA SAHI PIPILI NIMAPARA ROAD, NIMAPARA - 752114",
+   "contact": "GAGAN BIHARI DAS pingalakhi@gmail.com 8249103043",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Odisha",
+   "district": "Puri",
+   "name": "ASSOCIATION FOR VOLUNTARY ACTION",
+   "address": "AT-DAMPUR, , PO-BERBOI, DELANG - 752016",
+   "contact": "DURYODHAN PARIDA diptiranjanparida14@gmail.com 8763330633",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Khordha",
+   "name": "TAARE ZAMEEN PAR",
+   "address": "Plot 1910, road no 3, Aurobindo Nagar, chandrashekarpur, Aditya Ashwini hospital, Bhubaneswar - 751016",
+   "contact": "Janet s mukhiya mukhiyajanet@gmail.com 9090605656",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Kendrapara",
+   "name": "Gandhian Institute Of Technical Advancement",
+   "address": "At- Jagannathpur(Madana), Po-Naindipur, Via-Garadpur, , Near Maa Bhabani Temple, Kendrapara - 754153",
+   "contact": "Prasanta Kumar Mishra gitapmishra@rediffmail.com 9439539915",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Boudh",
+   "name": "ASSOCIATION FOR SOCIAL WORK AND SOCIAL RESEARCH IN ORISSA",
+   "address": "AT-SEVAVIHAR, PO-BUTUPALI DIST-BOUDH,ODISHA, PIN-762014, BUTUPALI, NEAR NARAYANPUR ROAD, BOUDH - 762014",
+   "contact": "PRABAS KUMAR SAMANTARAY aswasro@rediffmail.com 9438479368",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Khordha",
+   "name": "National Rural Development Cooperation",
+   "address": "Plot No: A-3/5, Indira Housing Colony, Lingipur, Po-Sisupalagarh, Bhubaneswar, Road No-A-3, Indira Park (Small), Bhubaneswar - 751002",
+   "contact": "Hemanta Kumar Mohanty Kumar Mohanty nrdcodisha@rediffmail.com 9437195974",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Dhenkanal",
+   "name": "NEW INDIA",
+   "address": "SANTHAPUR, DHENKANAL, NEAR , SANTHAPUR, HIGH SCHOOL, DHENKANAL - 759016",
+   "contact": "Sheshadeb rout newindia_org@yahoo.com 9439384477",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "JAGATSINGHAPUR",
+   "name": "Association For Social Reconstructive Activities",
+   "address": "AT- SINGHARPUR PO-NABAPATANA, CUTTACK TO MACHHAGAON ROAD, NEAR UCO BANK, JAGATSINGHPUR - 754114",
+   "contact": "Ajaya Kumar Khuntia asrahosp@gmail.com 9437062688",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Khordha",
+   "name": "Vishwa Jeevan Seva Sangha",
+   "address": "00, Saradhapur, Near Bramanidevi Temple, Khordha - 752060",
+   "contact": "Baidyanath Baral vjss_khurda@yahoo.co.in 7978514480",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Dhenkanal",
+   "name": "PARTICIPATORY AND RECONSTRUCTION INSTITUTE ACTION",
+   "address": "AT/PO-LAULAI,VIA-GONDIA, Laulai GONDIA, NEAR TANK, Dhenkanal - 759016",
+   "contact": "TANKADHAR BARIK priajaj@gmail.com 9937300982",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Odisha",
+   "district": "BALESHWAR",
+   "name": "Disable Rehabilitation and Charitable Trust",
+   "address": "32/1115, Bhaskarganj-B, Sahadevkhunta, Bhaskarganj Chhaka, Near Graveyerd, Balasore - 756001",
+   "contact": "Ramani Ranjan Pati drct.odisha@gmail.com 9437989132",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Mayurbhanj",
+   "name": "MANOVIKAS SOCIETY FOR DIFFERENTLY ABLED CHILDREN",
+   "address": "03, BETNA, RAJABADI, RAIKADJHARAN,TAKATPUR, BARIPADA - 757003",
+   "contact": "SR TESINA manovikas_baripada@yahoo.com 8917535964",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Anugul",
+   "name": "SHIVANGINEE INSTITUTE OF CHILD DEVELOPMENT",
+   "address": "11, LUCKY TYPE CHHAKA, HAKIMPADA, NEAR GOVT. COLLEGE, ANGUL - 759143",
+   "contact": "SUJATA CHAULIA sicdodisha@gmail.com 8249506323",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Cuttack",
+   "name": "THE HOPE",
+   "address": "1802/3027, MANGALABAG, MEDICAL ROAD, Cuttack - 753001",
+   "contact": "DR. SANJAY KUMAR SAZZAN sanjaysazzan@gmail.com 9437196408",
+   "schemes": [
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Odisha",
+   "district": "Jharsuguda",
+   "name": "ASHAKIRAN CHARITABLE SOCIETY",
+   "address": "019/999, JHARSUGUDA, DIPU PADA, JHARSUGUDA - 768201",
+   "contact": "SR. KRIPA POUL kiranasha830@gmail.com 9438157469",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Ganjam",
+   "name": "Ganjam District Orthopaedically Handicapped Welfare Association",
+   "address": "110/15, Netaji Subash Marg (Near SP Residence), Infront of Bharat Petrol Pump, Chatrapur - 761020",
+   "contact": "K Ananda samarth_gdohwa@yahoo.co.in 9437049457",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Sundargarh",
+   "name": "Hope",
+   "address": "Subash Bose Hospital, Rajgangpur, Subash Chowk, Rajgangpur - 770017",
+   "contact": "Laxmidhar Panigrahi hope.rajgangpur@gmail.com 8763720734",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Jharsuguda",
+   "name": "DISTRICT DISABLED SCHOOL",
+   "address": "21/133, BUDAPDA (BUROMAL), JHADESWARI TEMPLE, JHARSUGUDA - 768201",
+   "contact": "BIBEKANANDA MISHRA dds.jsg@gmail.com 9937319633",
+   "schemes": [
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Odisha",
+   "district": "Mayurbhanj",
+   "name": "PARIBARTAN",
+   "address": "AT-BENAGADIA,PO-BETNOTI,DIST-MAYURBHANJ, , NEAR ADASHA SCHOOL, BETNOTI - 757025",
+   "contact": "DILLIP KUMAR PARIDA paribartan2015.odisha@gmail.com 9861783504",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Khordha",
+   "name": "Open Learning Systems",
+   "address": "Plot No.G-3-A/1, Gadakana Mouza, P.O. Mancheswar Railway Colony, Near Press Chhak, Bhubaneswar - 751017",
+   "contact": "PRAKASH KUMAR RATH ceo@olsbbsr.org 9437071716",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Odisha",
+   "district": "Kendrapara",
+   "name": "PUNARBASA",
+   "address": "At - Madhapur, Po - Kendrapara, Madhapur Road, Near Old Bus Stand, Kendrapara - 754211",
+   "contact": "Banasmita Nayak punarbasa1@gmail.com 8917366470",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Odisha",
+   "district": "Nayagarh",
+   "name": "Society For Environmental Development And Voluntary Action",
+   "address": "147, Old Town, Near New Bus Stannd, Nayagarh - 752070",
+   "contact": "Amarendra Kumar Das Parija sevaorga@gmail.com 9437827981",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Dhenkanal",
+   "name": "ARUN INSTITUTE OF RURAL AFFAIRS AIRA",
+   "address": "101, Aswakhola, BASUDHA WATER TANK, Dhenkanal - 759014",
+   "contact": "DR. S.K.PANDA airamnpdkl@gmail.com 9040161141",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Puri",
+   "name": "MAA BHAGABATI SEBA SANGHA",
+   "address": "Ogalpur, Ogalpur, Near Hanuman Temple, Gop - 752110",
+   "contact": "RENUBALA BEURA maabhagabatisebasangha@gmail.com 9938708454",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Koraput",
+   "name": "Ekta",
+   "address": "28/143, Duruguda, Padmapur, Dumuriput, Koraput - 764021",
+   "contact": "Jagannath Mishra ekta.koraput@gmail.com 9437233542",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Cuttack",
+   "name": "Bharat Jyoti",
+   "address": "No house no., Jhanjirimangala, Telengabazar, Jhanjirimangala (S.B.I Building 2nd floor), Cuttack - 753009",
+   "contact": "Narayan Mohanty bj_orissa@yahoo.com 9937191097",
+   "schemes": [
+    "Sahyogi"
+   ]
+  },
+  {
+   "state": "Odisha",
+   "district": "Cuttack",
+   "name": "BASUDHA TRUST OF INDIA",
+   "address": "1182, Mahanadi Vihar, Pratik Gas Dipot, Cuttack - 753004",
+   "contact": "DHARITRI MAHAPATRA basudhatrustindia@gmail.com 8144482019",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Sambalpur",
+   "name": "Veer surendra Sai Institute for Mentally Handicapped",
+   "address": "Social Welfare Centre, Dhankauda, Dhankauda, Sambalpur - 768006",
+   "contact": "Brajabandhu Sahoo vssimh@yahoo.co.in 9437457503",
+   "schemes": [
+    "Disha",
+    "Gharaunda",
+    "Vikaas",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Odisha",
+   "district": "BALESHWAR",
+   "name": "MOTHERTERESA SEVA SANGHA",
+   "address": "DAGARA, VIA-PRATAPPUR, PO-DAGARA, BALIAPAL - 756083",
+   "contact": "ANIRUDHA PATRA mtssodisha@gmail.com 9437674909",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "BALESHWAR",
+   "name": "ASHA Association For Social Health Advancement",
+   "address": "SANAKHUDI, MATHANI, BASTA, BALASORE - 756029",
+   "contact": "AMAR KUMAR PAL asha.socialorg@gmail.com 8249957628",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Cuttack",
+   "name": "INDIAN RED CROSS SOCIETY ODISHA STATE BRANCH SAHAYA",
+   "address": "Blood Bank Campus, Mangalabag, SCB Medical College Hospital, Cuttack - 753007",
+   "contact": "MRINALINI PADHI ircs.sahaya@gmail.com 9338111242",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "BALESHWAR",
+   "name": "The Welfare Society For The Disable Of Odisha",
+   "address": "491/662, Jaleswar Nuabazar to Nampo, Near Tareni Temple , By pass NH 60, Jaleswar - 756032",
+   "contact": "Kapileswar Mohanty wsdojaleswar@gmail.com 7008991937",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Ganjam",
+   "name": "KABI NARASINGHA MATHA BLIND AND DEAF SCHOOL",
+   "address": "92, BAKILIKANA, NEAR SARASWATI SHISU MANDIRA, SHERAGADA - 761146",
+   "contact": "KALU CHARAN NAYAK knmbdschool@rediffmail.com 9438250511",
+   "schemes": []
+  },
+  {
+   "state": "Odisha",
+   "district": "Ganjam",
+   "name": "Manovikas GEMM Managed By All India Womens Conference",
+   "address": "17739, NEELAKANTHA NAGAR 1ST LANE, BIJIPUR, NEAR SANTOSIMA TEMPLE, BERHAMPUR - 760003",
+   "contact": "SARBANI PARHI manovikaskendra@gmail.com 9437388399",
+   "schemes": []
+  },
+  {
+   "state": "Puducherry",
+   "district": "Pondicherry",
+   "name": "Satya Special School",
+   "address": "6 7 8, ECR Road (near shivaji statue), Karuvadikuppam, Puducherry - 605008",
+   "contact": "Chitra Shah admin@satyaspecialschool.org 9345454449",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Puducherry",
+   "district": "Pondicherry",
+   "name": "IMMACULATE HEART OF MARY SOCIAL SERVICE SOCIETY",
+   "address": "No.1, 6th Cross Street, Rajaganapathy Nagar, Kakayanthoppu,, Arikanmedu Historical place, Ariyankuppam - 605007",
+   "contact": "SR CECILY MARY ih4mentallychallenged@gmail.com 9789543594",
+   "schemes": []
+  },
+  {
+   "state": "Puducherry",
+   "district": "Pondicherry",
+   "name": "SHARON SOCIETY OF PONDICHERRY",
+   "address": "390, Bharathiyar Street Ashok Nagar Lawspet, Near PondyOrthoClinic, Lawspet - 605008",
+   "contact": "Mr G Mohan sharonmohan.org@gmail.com 9843483718",
+   "schemes": [
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Puducherry",
+   "district": "Pondicherry",
+   "name": "Integrated Rehabilitation and Development Centre",
+   "address": "7, Rajaganapathy Nagar, Kakayanthope, Veeranpatinam via, Ariyankuppam, Arikanmedu Historical Place, Ariyankuppam - 605007",
+   "contact": "Mr. J. Stephen Raj irdcsnacpdy@gmail.com 9994507100",
+   "schemes": [
+    "Badhte Kadam",
+    "Gharaunda"
+   ]
+  },
+  {
+   "state": "Punjab",
+   "district": "Hoshiarpur",
+   "name": "Tek Chand Sud Charitable Trust",
+   "address": "00, Old Kank Mandi, Old Kanak Mandi Chowk Above SBI, Hoshiarpur - 146001",
+   "contact": "Navdeep Sud aatmsukh@yahoo.com 7009983727",
+   "schemes": []
+  },
+  {
+   "state": "Punjab",
+   "district": "Ludhiana",
+   "name": "KAUSHALAYA KUNDAN PROGRESSIVE MEDICAL HOSPITAL RESEARCH CENTRE REGISTERED CHARITABLE SOCIETY",
+   "address": "BABA KUNDAN HOSPITAL, RISHI NAGAR, OPP BSNL TELEPHONE EXCHANGE, LUDHIANA - 141001",
+   "contact": "DR SWARN LATA sahilhora@yahoo.com 9417348549",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Punjab",
+   "district": "Sangrur",
+   "name": "AUTISM EDUCATIONAL WELFARE SOCIETY SANGRUR",
+   "address": "RED CROSS BUILDING, , CIVIL HOSPITAL SANGRUR, SANGRUR - 148001",
+   "contact": "ARMANINDERJIT SINGH autismsangrur@gmail.com 9915556580",
+   "schemes": []
+  },
+  {
+   "state": "Punjab",
+   "district": "Hoshiarpur",
+   "name": "Asha Deep Welfare Society",
+   "address": "VPO Jahan Khelan, V, UNA Road, Hoshiarpur - 146110",
+   "contact": "Taranjit Singh jssashakiran@gmail.com 9876725384",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Punjab",
+   "district": "Fatehgarh Sahib",
+   "name": "Confederation For Challenged",
+   "address": "**, Sraffan Bazar,, Ward No. 3, (New ward no 13), Bassi Pathana - 140412",
+   "contact": "Manmohan Jargar cfcin@ymail.com 9876120864",
+   "schemes": [
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Punjab",
+   "district": "Jalandhar",
+   "name": "APAAR Altering Perceptions Of Autism And Assisting In Rehabilitation",
+   "address": "719-C, Urban Estate, Phase-1 jalandhar, punjab institute of medical sciences, Jalandhar - 144022",
+   "contact": "Navneet Bhullar apaaremail@gmail.com 9056392291",
+   "schemes": []
+  },
+  {
+   "state": "Punjab",
+   "district": "Pathankot",
+   "name": "Saint Francis Home (Regd.)",
+   "address": "61/3, P.O.Jandwal, Dalhousie Road Railway Station, Pathankot - 145001",
+   "contact": "Fr. Joseph Puthenpura st.francishomepkt@gmail.com 9417220235",
+   "schemes": []
+  },
+  {
+   "state": "Punjab",
+   "district": "Patiala",
+   "name": "Autism India Today",
+   "address": "5, Hargobind Nagar, Sarhind Road, Patiala - 147004",
+   "contact": "Harpreet Kaur Bedi presidentautismindiatoday@gmail.com 9356767367",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Punjab",
+   "district": "S.A.S Nagar",
+   "name": "Universal Disabled Care Taker Social Welfare Society Regd.",
+   "address": "Prabh Aasra, Village Padiala, Kurali, Kurali - 140103",
+   "contact": "S. Shamsher Singh Dhindsa caredisabled@gmail.com 9915083793",
+   "schemes": []
+  },
+  {
+   "state": "Punjab",
+   "district": "Hoshiarpur",
+   "name": "Navchetna Society",
+   "address": "B-136/11, Tulsi Nagar, Government College, Hoshiarpur - 146001",
+   "contact": "Chandresh Kumar navchetnasociety9@gmail.com 9814747308",
+   "schemes": [
+    "Vikaas",
+    "Disha",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Punjab",
+   "district": "Jalandhar",
+   "name": "CHAANAN ASSOCIATION FOR MR CHILDREN",
+   "address": "432-L, , MODEL TOWN, JALANDHAR - 144003",
+   "contact": "AMARJIT SINGH ANAND AMARJITSINGHANAND@GMAIL.COM 9417006059",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Balotra",
+   "name": "PRAGTI SEVA SANSTHA BALOTRA",
+   "address": "Behind upper primry school Indira nagar, Patodi, balotra - 304432",
+   "contact": "Satyanarayan gpmss1997@gmail.com 7014539098",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Jodhpur",
+   "name": "MARUDHARA BAL SHIKSHAN SANSTHAN",
+   "address": "10/20, NEAR RATHOLAI NADI, PIPARCITY, PIPARCITY - 342601",
+   "contact": "SHYAMLAL mbsspiparcity@gmail.com 9460956847",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Kota",
+   "name": "Shikhar Society For The Welfare Of Mentallty Handicapped",
+   "address": "2-N-3, Dadabari, Near Police Station, Kota - 324009",
+   "contact": "Meenakshi Saxena shikharschool@hotmail.com 9460980778",
+   "schemes": [
+    "Disha",
+    "Badhte Kadam",
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Baran",
+   "name": "SARTHAK CHARITABLE TRUST",
+   "address": "SHRIMSHEEL AASHRAM, DHOLAM ROAD, AMBEDKAR CIRCLE, CHHIPABAROD - 325221",
+   "contact": "MOHAN BACHOLIYA sarthak.cpb@gmail.com 9799925275",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Alwar",
+   "name": "Pt.Chhitarmal lata welfare society",
+   "address": "0000, Behroj, C/o Shiv jyoti K.D. Manovikas School, ward no 16, Dantla road, Near new anaj mandi boundary, Khairthal - 301404",
+   "contact": "Krishna sharma shivjyotikhairthal@yahoo.in 9252093961",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Pali",
+   "name": "SWAVLAMBAN FOUDATION",
+   "address": "67, ADARSH NAGAR, NEAR GOVT. SCHOOL, PALI - 306401",
+   "contact": "VAIBHAV BHANDARI vaibhav.behappy@gmail.com 9929853153",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Bharatpur",
+   "name": "MAHILA BAL VIKAS GRAMOUDHYOG SHIKSHA SAMITI BHARATPUR",
+   "address": "330, New Pushp Vatika Colony, Fathehpur Sikari Road, Bharatpur - 321001",
+   "contact": "VINOD KUMAR luckyspecialschoolbharatpur@gmail.com 9783604189",
+   "schemes": [
+    "Gharaunda"
+   ]
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Jodhpur",
+   "name": "DRONA EDUCATIONAL AND WELFARE SOCIETY",
+   "address": "PLOT NO 56, KHASRA 168 RAWAT NAGAR, DIGADI KALLAN, JODHPUR - 342001",
+   "contact": "UMED SINGH INDA dronarajasthan@gmail.com 7597222224",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Jalore",
+   "name": "Jagriti Jan Sewa Sansthan",
+   "address": "101, , Rajpurohit Hostel, Jodhpur Road, Jalore - 307029",
+   "contact": "Garima Gupta jjssnagour@gmail.com 9950855080",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Hanumangarh",
+   "name": "NAVJYOTI VIKLANG KALYAN EVAM PUNARWAS SANSTHAN",
+   "address": "WARD NO 1, BEHIND SHIV MANDIR CINEMA, NEAR DHAN MANDI, HANUMANGARH JUNCTION - 335512",
+   "contact": "BABU LAL JUNEJA bhishmkoushik@gmail.com 8118874078",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Karauli",
+   "name": "Kavya Siksha Evam Vikas Seva Sansthan",
+   "address": "132 KV, GSS Colony, , GSS Colony, Karauli - 322241",
+   "contact": "Ramji lal Sharma ksvssraj@gmail.com 9413431691",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Sri Ganganagar",
+   "name": "Jubin Spastic Home Charitable Trust",
+   "address": "195-196 SUKHARIA SHOPPING CENTRE, MAIN ROAD, NEAR SUKHARIA CIRCLE, Sri Ganganagar - 335001",
+   "contact": "VINITA AHUJA jubintrust_seva@yahoo.com 9414089070",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Jaipur",
+   "name": "Gurukul Spastic Society",
+   "address": "13-A, Chanchal Vatika, Anand Vihar-A, Binjari Marg, Dadi Ka Phatak, Jhotwara, Jaipur - 302012",
+   "contact": "Dr.Hari Ram Meena gurukulspasticsociety@gmail.com 7073677767",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Jaipur",
+   "name": "Umang Centre for Special Education",
+   "address": "00, Shipra Path, Mansarovar, Near Technology Park, Jaipur - 302020",
+   "contact": "Mrs. Deepak Kalra umangjaipur@gmail.com 9314878251",
+   "schemes": [
+    "Badhte Kadam",
+    "Prerna",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Jhunjhunu",
+   "name": "Dhattarwal Education Society",
+   "address": "VPO-Lamba Mandrella, , Bagar Mandrella Road, Bagar - 333023",
+   "contact": "Sandeep Kumar sandeep.dhattarwal1983@gmail.com 9829899978",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Jaipur",
+   "name": "Society for Welfare of Mentally Handicapped",
+   "address": "4A, Jawahar Lal Nehru marg, Behind Dainik Bhaskar Office, Jaipur - 302015",
+   "contact": "Sh.I.C.Srivastava shreenirmalvivek@gmail.com 9649014230",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Jaisalmer",
+   "name": "Society for Single Women Empowerment and Relief",
+   "address": "S17, HOUSHING BOARD, SAI DHAAM MANDIR, JAISALMER - 345001",
+   "contact": "MEERA PALIWAL swerajsmr12@gmail.com 9680560551",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Dausa",
+   "name": "Deep Vidhya Mandir Samiti",
+   "address": "Gayatri Nagar, Dausa, Dausa - 303303",
+   "contact": "Mr. Nawal Kishor Bhankari dvmsngo@yahoo.co.in 9414035821",
+   "schemes": [
+    "Disha",
+    "Samarth",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Jhunjhunu",
+   "name": "Asha Ka Jharna",
+   "address": "Ward No 5, Harlal Ka Kothi, Nawalgarh, NAWALGARH - 333042",
+   "contact": "SUDEEP GOYAL sudeepgo@rediffmail.com 9414036896",
+   "schemes": []
+  },
+  {
+   "state": "Rajasthan",
+   "district": "Jhunjhunu",
+   "name": "Maa Sewa Sansthan",
+   "address": "121, Maa Mungi By pass road Gothra, Gothra, khetri nagar - 333504",
+   "contact": "Dr. Indu Saini saralasaini68@gmail.com 9636749124",
+   "schemes": []
+  },
+  {
+   "state": "Sikkim",
+   "district": "East Sikkim",
+   "name": "KALPATARU PRATISTHAN",
+   "address": "125, Raley samdong link road, Near kamaleshwar shivalaya mandir, kambal, Gangtok - 737107",
+   "contact": "GANGA PRASAD BHATTARAI kalpatarupratisthan@rediffmail.com 7602862291",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Sivgangai",
+   "name": "NAMBIKKAI SPECIAL SCHOOL FOR MENTALLY RETARDED Run By VASANTHAM MAHALIR MUNNETRA SANGAM",
+   "address": "25, Sowgathali Street, Nehru Bazzar, Sivaganga - 630561",
+   "contact": "MR.M.GANESAN svgavmms@gmail.com 9865348316",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Chennai",
+   "name": "SAI SAMARPAN Vocational Training Centre For Intellectual Disability RUN BY SAI GANESH FOUNDATION",
+   "address": "REGISTERED OFFICE 1B, HERAMBA APT 7/1 JAWAHARLAL NEHRU ROAD, ADJACENT TO SRI SARASWATHI MUSICALS, CHENNAI - 600026",
+   "contact": "S. SIVARAMAN sivasalamelu@gmail.com 9003012210",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Dindigul",
+   "name": "ARVI SPECIAL SCHOOL A UNIT OF ASSOCIATION FOR REHABILITATION OF VILLAGE IMPAIRMENT",
+   "address": "2/917, , OPP TO OM SHAKTHI TEMPLE, SEELAPADI POST,DINDIGUL, DINDIGUL - 624005",
+   "contact": "A RAMACHANDRAN arvitrust@gmail.com 9843160475",
+   "schemes": [
+    "Badhte Kadam",
+    "Disha",
+    "Sahyogi"
+   ]
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Nagapattinam",
+   "name": "MAHAISHWAR PARENT TRAINING CENTRE FOR PERSONS WITH DISABILITIES",
+   "address": "3E, N0.1, PUTHU STREET,, MAILADUTHURAI, MAILADUTHURAI - 609001",
+   "contact": "T.KUNGUMA ESWARI mahaishwarcentre@gmail.com 9842491956",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Kanyakumari",
+   "name": "Rural Community Development of India RUCODE India",
+   "address": "479, Municipal Colony, Housing Board, Nagercoil, Nagercoil - 629004",
+   "contact": "M. Noveen Madhu Raj rucode@rediffmail.com 9840360005",
+   "schemes": [
+    "Sahyogi",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Ranipet",
+   "name": "NESAM THE SCHOOL FOR SPECIAL EDUCATION",
+   "address": "66/61, Vellore Main Road, Near Anna Statue, ARCOT - 632503",
+   "contact": "K.V. SRINIVASAN veeraraghavan_srinivasan@yahoo.com 9789827865",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Coimbatore",
+   "name": "Vidya Vikasini Opportunity School a unit of Vidya Vikasini Society",
+   "address": "66 D, C/O - Vidya Vikasini Opportunity School, 66-D, Mettupalayam Road, Thudiyalur Post, Coimbatore - 641034",
+   "contact": "Mr.T.V.Suresh vvadmn@yahoo.co.in 9865996585",
+   "schemes": [
+    "Badhte Kadam",
+    "Samarth"
+   ]
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Cuddalore",
+   "name": "Oasis Blue School for the Mentally Retarded A UNIT OF OASIS TRUST FOR THE HANDICAPPED",
+   "address": "61, Yadhava Street extn, Vanniyarpalayam, near river bund, cuddalore - 607001",
+   "contact": "Hephzibah T oasisasn@gmail.com 9789969541",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Salem",
+   "name": "KAARUNYA ILLAM TRUST",
+   "address": "16-Jan, PERIYAKOLLAPATTY ROAD ,, GORIMEDU, SALEM - 636008",
+   "contact": "THOMAS PONNAIYAN J thomasponnaiyan@gmail.com 9952649224",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Krishnagiri",
+   "name": "Parents Association of Persons with Disabilities of Autism, MR, CP and MD",
+   "address": "72/5A, OLD TELEPHONE EXCHANGE ROAD, ANNA NAGAR, HOSUR, OPPOSITE TO PARIMALAM SCHOOL AND JANANI GARDEN, HOSUR KRISHNAGIRI DT - TN - 635109",
+   "contact": "Rtn. S. Betrayasamy paamrchosurkrishnagiridt@gmail.com 9442624458",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Tiruppur",
+   "name": "Sabarmathi Social Seva Sangam",
+   "address": "B.29 - Kumaran Colony, Ammapalayam, Anuparpalayam Post, Tirupur - 641652",
+   "contact": "Kumaraguru N admin@sabarmathisss.in 9842690623",
+   "schemes": [
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Madurai",
+   "name": "ROYALVISION SPECIAL SCHOOL FOR THE CHILDREN WITH MENTAL RETARDATION Run By ROYALVISION",
+   "address": "2/845, Parambupatti Road, S N College post, Perungudi, Madurai - 625022",
+   "contact": "M ULAGASANDRON royalvision.mdu@gmail.com 9942979649",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "The Nilgiris",
+   "name": "SHANTHI NEETHI KENDRA KOTAGIRI",
+   "address": "12/222,, LUKES CHURCH ROAD, KAMARAJ SQUARE, KOTAGIRI - 643217",
+   "contact": "DEVARANI MOSES snkkotagiri1943@gmail.com 9843737698",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Kanyakumari",
+   "name": "Santhi Nilayam School for the Mentally challenged",
+   "address": "12/91/B2, Paruthivilai, Erumbukadu Post, Nagercoil - 629004",
+   "contact": "Sr. Anis Theresa M.Jacob santhi_nilayam@yahoo.com 9487955883",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Chennai",
+   "name": "Vidya Sagar",
+   "address": "No.1, No.1,Ranjit Road, Kotturpuram, Kotturpuram, Chennai - 600085",
+   "contact": "RADHA RAMESH niramaya@vidyasagar.co.in 9380474832",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Dindigul",
+   "name": "Gurukul Special School for Intellectually Disabled Children run by Lantern Charitable Trust",
+   "address": "H-1-5, R.M.Colony, Dindigul, Dindigul - 624001",
+   "contact": "Kaleeswaran Gurukulspecialschool@gmail.com 8807636524",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Madurai",
+   "name": "Bodhi Residential Psychiatric Rehab Centre run by M.S.Chellamuthu Trust and Research Foundation",
+   "address": "643, K.K.Nagar, Near Anna Nagar Police Station, Madurai - 625020",
+   "contact": "Mr.R.Rajkumari info@msctrust.org 9629911341",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Karur",
+   "name": "MAANAVOO SPECIAL SCHOOL AND REHABILITATION CENTRE A UNIT OF POPULAR MEDICAL ... FOUNDATION",
+   "address": "No 1, VADAMALAI GOUNDANUR, SOLIAMMAN KOVIL NEAR, KARUR - 639008",
+   "contact": "G.KALAVATHI maanavoosplschool@gmail.com 9894044478",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Kanchipuram",
+   "name": "Aathichudy Special school run by swastik trust",
+   "address": "208, Navalar street, Annai indira nagar, Konnerikuppam Village, Kanchipuram - 631502",
+   "contact": "V.R. Sathiavannan aathichudy@yahoo.com 9444366435",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Thiruvarur",
+   "name": "Bharathamatha special sch. for intellectual dis. children runby BharathamathaFamilyWelfareFoundation",
+   "address": "3/2B 3/2C, MAIN ROAD, MANALI POST, THIRUTHURAIPOONDI - TALUK, THIRUVARUR - DISTRICT, OPP. SATHANGUDI BRIDGE, THIRUTHURAIPOONDI - 610203",
+   "contact": "EDAIYOOR R.V. MANIMARAN bharathamatha.vo@gmail.com 9942227001",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Chennai",
+   "name": "Madhuram Narayanan Centre For Exceptional Children A Unit Of Bala Mandir Kamaraj Trust",
+   "address": "18, Prakasam Road, T Nagar, Chennai 600017, Next to SKCL Harmony Building, Chennai - 600017",
+   "contact": "Mr. Bharath Natarajan mnc.chennai@gmail.com 9566099673",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Ramanathapuram",
+   "name": "Chest Aangelin School for DifferentlyAbled run by CHILDREN ANDHANDICAPPEDEMPOWERMENT SERVICE TRUST",
+   "address": "25/38, North Car Street, Backside of the Lord shivji Temple, Ramanathapuram - 623501",
+   "contact": "DHASARATHA BOOPATHY V chestaangelin9@gmail.com 9677212572",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Theni",
+   "name": "THENI SOCIAL REHABILITATION AND DEVELOPMENT TRUST",
+   "address": "8 3 8, MIDDLE STREET VAYALPATTI, VAYALPATTI, THENI - 625534",
+   "contact": "MURUGESAN K tesordt1@gmail.com 9486735605",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Thanjavur",
+   "name": "SEED TRUST",
+   "address": "168/2A, SRINIVASA NAGAR, AYYAMPETTAI, AYYAMPETTAI - 614201",
+   "contact": "G. RAJENDRAN seedtcrescent@gmail.com 9442134286",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Tirunelveli",
+   "name": "ANNAI JOTHI SPECIAL FOR INTELLECTUALLY DISABLED A UNIT OF ANNAI JOTHI SEVA TRUST",
+   "address": "2/454, Main Road, Adayakarumkulam, Ambasamudram - 627425",
+   "contact": "P.SELVAKUMAR ajstrust2000@gmail.com 9786489621",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Tirunelveli",
+   "name": "PADMASRI DR SIVANTHI ATHITHANAR SPECIAL SCHOOL FOR M R UNIT OF MAHATMA GANDHIJI SEVA SANGAM",
+   "address": "58/1, East Bazzar, Vasudevanallur, Sivagiri TK - 627758",
+   "contact": "G.THAVAMANI bharathicom@rediffmail.com 9442066071",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Erode",
+   "name": "Kongu Arivalaya Trust Kongu Arivalayam School For Mentally Retarded",
+   "address": "235, Diamond Nagar, Opposite to Parimalam mahal Thirumana Mandapam, Erode - 638012",
+   "contact": "K S Jothi karivalayam@gmail.com 9659598548",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Kanyakumari",
+   "name": "ANUGRAHA SPECIAL SCHOOL FOR THE MENTALLY RETARDED .UNIT OF ANUGRAHA TRUST FOR THE HANDICAPPED.",
+   "address": "Mela Kattuvilai, Near Esakkaiamman Koil, Manikattipottal Post, Nagercoil - 629501",
+   "contact": "C Balasubramaniam anugraha8@rediffmail.com 9443120368",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Tiruchirappalli",
+   "name": "THE SPASTICS SOCIETY OF TIRUCHIRAPALLI",
+   "address": "5, REVIVAL NAGAR RAMALINGA NAGAR SOUTH EXTENSION, VAYALUR ROAD, TIRUCHIRAPALLI - 620017",
+   "contact": "SHANTHAKUMAR C spasticsocietyoftiruchirapalli@gmail.com 9345230582",
+   "schemes": []
+  },
+  {
+   "state": "Tamil Nadu",
+   "district": "Madurai",
+   "name": "SHINE SPECIAL SCHOOL FOR INTELLECTUALLY DISABLED RUN BY SHINE EDUCATIONAL TRUST",
+   "address": "00, Kannikulam Village, Y. Pudupatti Arumbanoor, MADURAI - 625104",
+   "contact": "K.NEPOLEAN shineeducationaltrust@gmail.com 9842167336",
+   "schemes": []
+  },
+  {
+   "state": "Tripura",
+   "district": "West Tripura",
+   "name": "Voluntary Health Association Of Tripura",
+   "address": "Opposite to Bangladesh Assistant High Commissioner Office, Circuit House Area, P.O. Kunjaban, Agartala, Tripura West - 799006",
+   "contact": "Dr.Sreelekha Ray vha_tripura@rediffmail.com 9436129317",
+   "schemes": [
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Uttarakhand",
+   "district": "Dehradun",
+   "name": "Latika Roy Memorial Foundation Society",
+   "address": "113, Vasant Vihar, Phase 1, Dehradun - 248006",
+   "contact": "Rizwan Ali rizwan@latikaroy.org 9412962832",
+   "schemes": []
+  },
+  {
+   "state": "Uttarakhand",
+   "district": "Almora",
+   "name": "Mangal Deep Vidya Mandir",
+   "address": "405, Krishna Mohini Dham, Khatiyari, Almora - 263601",
+   "contact": "Miss. Manorama Joshi mangaldeep29@rediffmail.com 9719078741",
+   "schemes": []
+  },
+  {
+   "state": "Uttarakhand",
+   "district": "Udam Singh Nagar",
+   "name": "ANMOL FOUNDATION",
+   "address": "D 11 BLOCK - E, RAMPURAM COLONY BAZPUR ROAD KASHIPUR, CHAITI CHORAHA KASHIPUR, KASHIPUR - 244713",
+   "contact": "MEENAKSHI DEVI CHAUHAN anmolfoundationksp@gmail.com 9027108984",
+   "schemes": []
+  },
+  {
+   "state": "Uttarakhand",
+   "district": "Dehradun",
+   "name": "Raphael Ryder Cheshire International Centre",
+   "address": "Raphael, PO Box-157, Mohini Road End,, Trans Rispana Nadi, Dehradun, Uttarakhand - 248001",
+   "contact": "Mrs Priyo Lall raphaelcentre@gmail.com 9897297027",
+   "schemes": [
+    "Vikaas",
+    "Gharaunda"
+   ]
+  },
+  {
+   "state": "Uttarakhand",
+   "district": "Nainital",
+   "name": "Srajan Spastic Society",
+   "address": "opp kapilashrami dharmsala, pilikothi, behind ENT hospital, Haldwani - 263139",
+   "contact": "N K KANDPAL srajanspasticsociety@gmail.com 9411163157",
+   "schemes": []
+  },
+  {
+   "state": "Uttarakhand",
+   "district": "Nainital",
+   "name": "ROSNI SOCIETY",
+   "address": "F-15, Judge Farm, mukhani, Haldwani - 263139",
+   "contact": "GOVIND SINGH MEHRA rosni263139@gmail.com 9412039676",
+   "schemes": []
+  },
+  {
+   "state": "Uttarakhand",
+   "district": "Haridwar",
+   "name": "ABHIPRERNA FOUNDATION",
+   "address": "C-62, Shivalik Nagar, B.H.E.L., Haridwar, ABHIPRERNA FOUNDATION, C-62, Shivalik nagar, BHEL, HARIDWAR - 249403",
+   "contact": "Dr. Deepesh Chandra Prasad abhiprernafoundation@gmail.com 9319041049",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Ghazipur",
+   "name": "YADUVANSHI JANTA SHIKSHAN SANSTHAN",
+   "address": "135, JAHURABAD, HAZIPUR BARESAR, GHAZIPUR - 233222",
+   "contact": "PARAS NATH YADAV yaduvanshijss09@rediffmail.com 9918454611",
+   "schemes": [
+    "Vikaas",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Farrukhabad",
+   "name": "DEVI AHILYABAI EDUCATION FOUNDATION",
+   "address": "GARHIYA DHILAWAL POST BHOPAT PATTI, , NEAR MEDICAL COLLEGE, FARRUKHABAD - 209625",
+   "contact": "VIJAY BAHADUR SINGH Founddevi@gmail.com 9450226600",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Amethi(Chatrapati Sahuji Maharaj)",
+   "name": "Gramin Pragati Sansthan",
+   "address": "Village Paliaya Pashchim Post Rajkheta (Jagdishpur), , Ameethi, Amethi - 227809",
+   "contact": "Ram Prakash Gupta pragatigps@gmail.com 9473555982",
+   "schemes": [
+    "Gharaunda",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Amethi(Chatrapati Sahuji Maharaj)",
+   "name": "OMKAR SEWA SANSTHAN",
+   "address": "117, VILLAGE AND POST KATARI, JAMON, AMETHI - 227801",
+   "contact": "SURYA KUMAR TRIPATHI ossindia2012@gmail.com 8887923365",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Etawah",
+   "name": "UJALA FOUNDATION",
+   "address": "Village and Post- Basrehar District- Etawah U.P., Village and Post- Basrehar District- Etawah U.P., Etawah to Farrukhabad Road, Etawah - 206253",
+   "contact": "VARUN ujalaetw@gmail.com 7037750303",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Gonda",
+   "name": "GRAMANCHAL VIKAS SANSTHAN",
+   "address": "Kranpur Post Babhanan, , Mankapur Road, Gonda - 271313",
+   "contact": "Kismati Devi gvs.gonda@gmail.com 7905165724",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Gonda",
+   "name": "BABA BADRIDAS JAN KALYAN SEVA SANSTHAN",
+   "address": "04, parsa tiwari, parsa tiwari, gonda - 271313",
+   "contact": "SURYAMANI TRIPATHI bbdjkss@rediffmail.com 9451027441",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Shahjahanpur",
+   "name": "Saraswati Gyan Mandir Shiksha Samiti",
+   "address": "Hathaura Bujurg, P.O.Roza RS, Shahjahanpur, Shahjahanpur - 242306",
+   "contact": "Ashok Kumar yadav sgmashok@gmail.com 9415528984",
+   "schemes": [
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Bahraich",
+   "name": "Baba Sunder Singh Shiksha Samiti",
+   "address": "175, BRAHMANIPURA, Near Police Chauki, BAHRAICH - 271801",
+   "contact": "Dr Balmeet Kaur brhbalmeet@gmail.com 9450427218",
+   "schemes": [
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Mathura",
+   "name": "Krishna Jan Kalyan Shikshan Sansthan",
+   "address": "Gopal Nagar, (Ajay Nagar), GOPAL NAGAR MATHURA, Maal Godam Road,(GOVARDHAN ROAD), MATHURA - 281001",
+   "contact": "Krishna Bihari Yadav krishnayaduwanshimtr@gmail.com 9258802464",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Lucknow",
+   "name": "I Support Foundation",
+   "address": "546, Akansha,, Eldeco Udyan 2,, Near Delhi Public School,, Lucknow - 226025",
+   "contact": "Ms Bobby Moti Ramani bobby.m.ramani@gmail.com 9889121939",
+   "schemes": [
+    "Sahyogi",
+    "Vikaas",
+    "Disha",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Prayagraj",
+   "name": "Trishla Foundation",
+   "address": "182c/350a, tagore town, in front of colonelganj inter college, Prayagraj - 211002",
+   "contact": "Dr Jitendra Kumar Jain jjain999@gmail.com 9415235159",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Sultanpur",
+   "name": "Rural Informative Social Harmony Academy",
+   "address": "Village Post - Bhain, Bhain (Padokiya), Primary School (Padokiya), Sultanpur - 228159",
+   "contact": "Risha Kumari Verma 1998risha@gmail.com 9936361463",
+   "schemes": [
+    "Badhte Kadam",
+    "Disha",
+    "Gharaunda"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Basti",
+   "name": "Sanchit Vikas Sansthan",
+   "address": "Hasanapur, P.O.Bargadwa, Basti - 272190",
+   "contact": "Pramod Kumar npsvsbasti@gmail.com 9415930242",
+   "schemes": [
+    "Badhte Kadam",
+    "Disha",
+    "Samarth",
+    "Gharaunda",
+    "Sahyogi",
+    "Vikaas",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Rae Bareli",
+   "name": "SHUBHASHEESH SHIKSHA EVAM VIKAS SEWA SANSTHAN",
+   "address": "E-27, INDUSTRIAL AREA, SITE NO-2,, AMAWAN ROAD, RaeBareli - 229001",
+   "contact": "Sri Dinesh Kumar Srivastava shubhasheeshsansthan@yahoo.com 9415190420",
+   "schemes": [
+    "Vikaas",
+    "Samarth",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Mathura",
+   "name": "KALYANAM KAROTI",
+   "address": "Kalyan Dhama, Saraswati Kund, Masani Delhi Link Road, Mathura - 281003",
+   "contact": "Sunil Kumar Sharma kalyanamkarotimathura@gmail.com 9412280508",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Varanasi",
+   "name": "Viklang Samakalan Sansthan",
+   "address": "N4/18A, Karaundi,, B.H.U. (Susuwahi), Varanasi - 221005",
+   "contact": "S. K. Rao iidvaranasi@gmail.com 9415274547",
+   "schemes": [
+    "Samarth",
+    "Sahyogi",
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Lakhimpur Kheri",
+   "name": "SHIVANGI GRAMYA VIKAS SANSTHAN",
+   "address": "253, SOHAK, mohmadpur (TAJPUR ), MOHAMMADI - 262804",
+   "contact": "GAYTRI DEVI shivangiy263@gmail.com 9454653455",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Amethi(Chatrapati Sahuji Maharaj)",
+   "name": "Adarsh Sewa Samiti",
+   "address": "VILLAGE PALIYA PASHCHIM POST RAJKHETA, JAGDISHPUR, AMETHI - 227809",
+   "contact": "Karuna Shankar Tripathi adarshsewasamiti1989@gmail.com 9415964400",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Ballia",
+   "name": "RAJ KISHORI DEVI SHIKSHAN PRASHIKSHAN SEWA SANSTHAN",
+   "address": "01, BABHNAULI, NAWADA GET, BALLIA - 277121",
+   "contact": "ANJANI KUMAR UPADHYAY rajk.up101@gmail.com 9415659882",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Basti",
+   "name": "YUVA VIKAS SAMITI",
+   "address": "52, Tharauli, Gaura Upadhyaya, Basti - 272124",
+   "contact": "BRIHASPATI KUMAR PANDEY yvsngo@gmail.com 9454309514",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Hardoi",
+   "name": "NATIONAL DEVELOPMENT FOUNDATION TRUST",
+   "address": "VILL-TILOIYAN KHURD, POST-SAANK TEHSIL-SANDILA, NEAR CO-OPERATIVE AND KHAD STORE, HARDOI - 241204",
+   "contact": "RASHID ALI WARSI ndfthardoi1882@gmail.com 9695273222",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Varanasi",
+   "name": "Sevika Divyangjan Sashaktikaran Trust Varanasi",
+   "address": "N 8/236-K-58, Flat No 101 First Floor, PRS Dham Apartment, Ganesh Dham Colony, Newada, Sundarpur, Near Santusti Hospital, Newada, Varanasi - 221005",
+   "contact": "Namita Singh sevikadivyangjan@gmail.com 8874676194",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Jaunpur",
+   "name": "Harshita International Divyang School And P. Kendra Run By Sarashwati Samaveshit Shikshan Trust",
+   "address": "151, Khaparaha, Khaparaha, Jaunpur - 222131",
+   "contact": "Vinod Kumar Mali ssst.jnp2019@gmail.com 8840618919",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Ghazipur",
+   "name": "manav seva samiti",
+   "address": "353, Audhari, Sikhari Market, Ghazipur - 275202",
+   "contact": "Ramesh Yadav manavsevasamiti2013@gmail.com 9651506080",
+   "schemes": [
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Ghazipur",
+   "name": "MSP FOUNDATION TRUST",
+   "address": "VILL BELAHARI , POST BELAHARI, THANA - KHANPUR, SAIDPUR - 233221",
+   "contact": "Kalpa Devi MSPFOUNDATIONTRUST@GMAIL.COM 9473559993",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Azamgarh",
+   "name": "KAILASHI MAHILA VIKAS SAMITI",
+   "address": "85, VILL- DHYANIPUR, POST- LOHARA, DIST- AZAMGARH, NEAR INDIA MARKA HAND PUMP, ATRULIYA - 223223",
+   "contact": "SUNITA DEVI kailashi2013@gmail.com 9452418699",
+   "schemes": [
+    "Badhte Kadam",
+    "Disha",
+    "Vikaas",
+    "Sahyogi",
+    "Gharaunda",
+    "Samarth"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Jaunpur",
+   "name": "Srijan Sanstha",
+   "address": "2, KAILASH CHOWK, VILL- SUNGULPUR, POST- HARBASPUR, JAUNPUR - 222001",
+   "contact": "Dr. Sanjay Kumar Mishra srijansanstha@yahoo.com 9140072486",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Varanasi",
+   "name": "JAN VIKAS SAMITI",
+   "address": "Jan Vikas Samiti, At+PO-Murdaha, Dist-Varanasi, VARANASI, UTTAR PRADESH, INDIA - 221202",
+   "contact": "Chandran Riymonds mail@janvikassamiti.org 9534040402",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Bahraich",
+   "name": "SHRIMATI SAVITRI SEWA SAMITI",
+   "address": "21K/5, JOKAHA , POST TAKIYA, , BAHRAICH, BAHRAICH - 271801",
+   "contact": "SAVITRI DEVI manojkumar962871@gmail.com 9628716011",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Varanasi",
+   "name": "Deva International Society for Child Care",
+   "address": "B 21/ 100 Bind Bhavan, Kamachha Chungi, Near Sheesh Mahal Colony, Kamachha, Varanasi - 221010",
+   "contact": "Dr. C. Tulsi Das tulsi_discc_cv@hotmail.com 9415303557",
+   "schemes": [
+    "Badhte Kadam",
+    "Vikaas",
+    "Disha"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Agra",
+   "name": "Handicapped Development Council",
+   "address": "phase1, Shastripuram, Sikandra, Agra - 282007",
+   "contact": "rita agarwal tears_agra@yahoo.co.uk 9412330530",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Kanpur Nagar",
+   "name": "Subhash Children Society",
+   "address": "19, Rajeev Vihar Naubasta Kanpur Nagar, Laxmi Vidya Mandir, Kanpur Nagar - 208023",
+   "contact": "Kamal Kant Tiwari kamalkantscs@gmail.com 9935309431",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Ballia",
+   "name": "SARVA SEVA SANSTHAN",
+   "address": "VILLAGE-NAVRATANPUR, NAWANAGAR, NAWANAGR, SIKANDARPUR - 221717",
+   "contact": "RAM PRAKASH PRAJAPATI sarvasevasansthan2@gmail.com 8273110645",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Meerut",
+   "name": "RAJBALA DIVYANG SEWA SAMITI",
+   "address": "VILLAGE -MUBARIKPUR, POST-MANPUR, MAWANA MEERUT, NEAR SHIVMANDIR, MEERUT - 250406",
+   "contact": "SHIVKESH TIWARI ssshivkesh3@gmail.com 8532914147",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Basti",
+   "name": "Vivekanand Lok Vikas Sansthan....",
+   "address": "509, Amrauli Shumali, Chiraiyadarn, Basti - 272190",
+   "contact": "Radhey Shyam Chaudhary vnlssb@gmail.com 9451037995",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Meerut",
+   "name": "Meerut Children Welfare Trust",
+   "address": "PS-2, H POCKET, GANGA NAGAR, NEAR GANGA TOWER, Meerut - 250001",
+   "contact": "Col R.C. Sharma disha.mcwt@gmail.com 9412662907",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Gautam Buddha Nagar",
+   "name": "Ponty Chadha Foundation",
+   "address": "A-12,Sec 132, EXPRESSWAY NOIDA, NEXT TO GENESIS GLOBAL SCHOOL, NOIDA - 201301",
+   "contact": "DR.VANDANA SHARMA mbcn_vandana@yahoo.co.in 9999279460",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Deoria",
+   "name": "SRI SANTOSH VIKLANG VIKAS SANSTHAN",
+   "address": "VILLAGE PARSA JANGLE, POST TIWAI, NEAR FCI GODAM, RUDRAPUR ROAD, DEORIA - 274204",
+   "contact": "SANTOSH KUMAR SHUKL ssvvsdeoria@gmail.com 7800075805",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Kanpur Nagar",
+   "name": "The Spastics Centre",
+   "address": "16/99-A, Bal Bhawan, Phool Bagh, Kanpur - 208001",
+   "contact": "Meera Noronha sckanpur@gmail.com 7497900996",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Varanasi",
+   "name": "KIRAN SOCIETY",
+   "address": "KIRAN SOCIETY, MADHOPUR,KURUHUAN(PO), NEAR SULTANKESWAR MANDIR, Varanasi - 221011",
+   "contact": "KELLER JUDITH MARIA MONIKA administration@kiranvillage.org 8763402110",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Mau",
+   "name": "MANAV UTTHAN SAMITI",
+   "address": "04, BASTI, KHIRIYA, MAU NATH BHANJAN - 275103",
+   "contact": "NANHOO CHAUHAN manavutthan_samiti@yahoo.co.in 9452134628",
+   "schemes": [
+    "Disha",
+    "Samarth",
+    "Vikaas",
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Hathras",
+   "name": "RAWAT SHIKSHA SAMITI",
+   "address": "CHAWAR GATE, JALESAR ADDA, HATHRAS - 204101",
+   "contact": "DR M L RAWAT rawatshiksha11@gmail.com 9837181987",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Lucknow",
+   "name": "Jayatibharatam",
+   "address": "D-68, Sri Balaji Lawns, Jankipuram, Near Sahara Estate,, Lucknow - 206021",
+   "contact": "Dr Renu Agnihotri jayatibharatam.up@gmail.com 8765514350",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Basti",
+   "name": "Achhaibar Gram Vikas Sewa Sansthan",
+   "address": "Muradpur, Gaura Upadhyay, Mahso Road, Basti - 272124",
+   "contact": "Ayodhya Prasad agvssb@gmail.com 8858518151",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Hathras",
+   "name": "MANSHIK MAND BUDHI DIVYANG SHAKTIKARAN SEVA SANSTHA",
+   "address": "new basti, rampur, hathras juction, hathras - 204102",
+   "contact": "YOGESH KUMAR mmbdssss@yahoo.com 9759123193",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Aligarh",
+   "name": "Gramin Vikas Evam Samajik Seva Sansthan",
+   "address": "Water Tank Road, Ravantila Chauraha, Naurangabad, Aligarh - 202001",
+   "contact": "Dr. N P Singh gravess2001@gmail.com 9258012356",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Amroha",
+   "name": "Navada Gramudhyog Vikas Samiti",
+   "address": "57, Mohalla Bagla, Navada Gramudhyog Vikas Samiti, Amroha - 244221",
+   "contact": "Mr. Viqar Mehdi Naqvi ngvs2008@gmail.com 9412144548",
+   "schemes": [
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Jhansi",
+   "name": "ASHA SCHOOL SAMITI",
+   "address": "14-Feb, LP Colony, Jhansi Cantt, Near Hathi Ground, JHANSI - 284001",
+   "contact": "Shashank Lavania mallappaterdal1517@gmail.com 9149794685",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Budaun",
+   "name": "PRABHAT GRAMODYOG SEWA SANSTHAN",
+   "address": "BAHORA KEHERA TESIL AONLA DISTRICT BAREILLY PIN CODE-243301, POST REVTI PIN CODE-243301 AONLA BAREILLY, BAREILLY - 243301",
+   "contact": "DHARAMVEER SINGH prabhat.gramodhyog@gmail.com 9411087087",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Mirzapur",
+   "name": "Maa Baliraji Sewa Sanstha",
+   "address": "Naraina, Hargarh Bazar Jigna, Mirzapur, Mirzapur - 231313",
+   "contact": "Pawan kumar singh maabaliraji@gmail.com 9918388887",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Mathura",
+   "name": "DR SMT MAHADEVI EDUCATIONAL WELFARE AND SHODH SANSTHAN",
+   "address": "2880 / 20 A, NH-19, 101 KM Stone, Kosi Kalan - 281403",
+   "contact": "Dr. Suresh Chand Arya dr.mahadevirehabilitation@gmail.com 7906279040",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Gonda",
+   "name": "Gautam Buddh Shikshan Sansthan",
+   "address": "205, Mudhadeeha (Lorik Nagar), Post Parsa Tiwari, District Gonda - 271313",
+   "contact": "SHUBHAWATI DEVI gbss_bbn@rediffmail.com 9792121484",
+   "schemes": [
+    "Vikaas",
+    "Sahyogi",
+    "Disha",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Kanpur Nagar",
+   "name": "PUSHPA KHANNA MEMORIAL CENTRE A UNIT OF KANPUR EDUCATION SOCIETY",
+   "address": "3A/161 AZAD NAGAR, , NEAR DR TILAK CHAURAHA, KANPUR - 208002",
+   "contact": "VINA SABHARWAL pkmcdisha@gmail.com 7311133337",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Varanasi",
+   "name": "UTKARSH SEWA SANSTHA",
+   "address": "VILLAGE DAUTPUR, POST DANGANJ, DISTT VARANASI, VARANASI - 221101",
+   "contact": "RAJU YADAV rajuy0820@gmail.com 9838838855",
+   "schemes": []
+  },
+  {
+   "state": "Uttar Pradesh",
+   "district": "Kanpur Nagar",
+   "name": "Bhawna Society For Disabled",
+   "address": "117/K/72,, Sarvodhya Nagar, Janpad , KANPUR NAGAR, BAGGA TENT HOUSE, KANPUR NAGAR - 208012",
+   "contact": "Narendra Kumar Pandey bcpiknp@gmail.com 9839212389",
+   "schemes": [
+    "Disha",
+    "Vikaas",
+    "Sahyogi",
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Jhargram",
+   "name": "Krishnapur Unprivileged Service Society",
+   "address": "KURMIPATHRA, KHARIKAMATHANI, Near KURMIPATHRA PRIMARY SCHOOL, KHARIKAMATHANI - 721125",
+   "contact": "Chandan Barik kuss2411@gmail.com 9474748870",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "DINAJPUR UTTAR",
+   "name": "ST. JOHN AMBULANCE ASSOCIATION RAIGANJ CENTRE",
+   "address": "325/11, University Road, Near Goyalal Girls High school, Raiganj - 733134",
+   "contact": "Shankar Mitra stjohnambulance.asha@gmail.com 8250570850",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Howrah",
+   "name": "Chiranabin",
+   "address": "Vill.- Parbakshi, P.O.- Bakshi, P.S.- Joypur,, Dist.-Howrah, State- West Bengal - 711303",
+   "contact": "Tanmoy Sau chiranabin@gmail.com 9735687228",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Nadia",
+   "name": "KARIMPUR SOCIAL WELFARE SOCIETY",
+   "address": "1, No TARAK DAS ROAD PO KARIMPUR NADIA WEST BENGAL, BSNL TOWER Karimpur, KARIMPUR - 741152",
+   "contact": "ASHOK KUMAR SARKAR kswsnadia@yahoo.com 9474482433",
+   "schemes": [
+    "Vikaas",
+    "Disha",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "24 Paraganas North",
+   "name": "NIR IDEAL HOME FOR MENTALLY RETARDED AND ASSOCIATED DISABILITY",
+   "address": "GP/HAROA324, HAROA ROAD, PILKHANA, BASIRHAT - 743425",
+   "contact": "MD ABUL KALAM AZAD nirhandicappedorg@gmail.com 9830881966",
+   "schemes": [
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Kolkata",
+   "name": "SOUTH KOLKATA PARASMONI",
+   "address": "74/2, UDAY SANKAR SARANI, 1ST FLOOR, GLOF CLUB ROAD, KOLKATA - 700033",
+   "contact": "CHAITALI GAMI skparasmoni@rediffmail.com 9830411480",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Kolkata",
+   "name": "INSTITUTE FOR THE HANDICAPPED AND BACKWARD PEOPLE",
+   "address": "44, CHANDITALA BRANCH ROAD, CHARAKTALA AUTO STAND, KOLKATA - 700053",
+   "contact": "MRS LAILY KHATUN ihbpkol@gmail.com 7003698107",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Hooghly",
+   "name": "Uttarapara Ashraya - Parents Organization",
+   "address": "56, DPJM Sarani., P.O. Bhadrakali, Dist - Hooghly., Hindmotor - 712232",
+   "contact": "Tarun Dasgupta tarund61@gmail.com 9831182790",
+   "schemes": [
+    "Vikaas",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Kolkata",
+   "name": "REACH .SOCIETY FOR REMEDIAL EDUCATION ASSESSMENT COUNSELLING HANDICAPPED",
+   "address": "18/2/A/3, UDAY SANKAR SARANI, GOLF GREEN, BESIDE LIONS NETRA NIKETAN, KOLKATA - 700095",
+   "contact": "NANDINI MUKHOPADHYAY reachkolkata83@gmail.com 9903039536",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Alipurduar",
+   "name": "SWAPNA SOCIETY FOR DREAM OF SUCCESS",
+   "address": "204, SHIL BARI HAT, 31D national highway, ALIPURDUAR - 736204",
+   "contact": "RAKHI ADHIKARY tapasbarmanpkb1985@gmail.com 9641557756",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Bankura",
+   "name": "Kenduadihi Bikash Society",
+   "address": "803, P.O. Kenduadini, Behind Govinda nagar Bus stand, Bankura - 722102",
+   "contact": "Uttam Mukherjee bikash12@rediffmail.com 9434004052",
+   "schemes": [
+    "Disha",
+    "Sahyogi",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Medinipur East",
+   "name": "NIMTOURI TAMLUK UNNAYAN SAMITY",
+   "address": "690, NH-41, Nimtouri, TAMLUK - 721649",
+   "contact": "Jogesh Samanta ntus.nimtouri@gmail.com 9434104199",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Darjeeling",
+   "name": "North Bengal Handicapped Rehabilitation Society",
+   "address": "Block C / 27, Nivedita Market, Hospital Road, Opposite Siliguri District Hospital, Siliguri - 734001",
+   "contact": "Chandan Kumar Ghosh nbhrsslg@gmail.com 9434057471",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Kolkata",
+   "name": "Pradip Centre for Autism Management",
+   "address": "33 A/1, Canal South Road, Siddha Sky, Kolkata - 700015",
+   "contact": "Dr. Mallika Banerjee pradip_autism@yahoo.com 9831063939",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Medinipur East",
+   "name": "Vivekananda Loksiksha Niketan",
+   "address": "VILL. - Faridpur,, P.O. - Dakshin Dauki,, P.S. Contai,, Contai - 721450",
+   "contact": "Goutam Kumar Sasmal vlncontai@yahoo.in 9434943246",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "24 Paraganas South",
+   "name": "PIRKHALI PATHIKRIT",
+   "address": "007, Village-Chandipur, Post-Kundarali, PS-Baruipur - 743610",
+   "contact": "MADHUSUDAN MANDAL pirkhalipathikrit@gmail.com 8777752221",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Murshidabad",
+   "name": "JHANJHA UNNAYAN SAMITY",
+   "address": "n 0174, BERHAMPORE AMTALA ROAD, CHOA RAGHUNATH CLUB, HARIHARPARA - 742166",
+   "contact": "MADAN SARKAR jhanjhaunnyansamity@gmail.com 9002796228",
+   "schemes": [
+    "Sahyogi",
+    "Vikaas",
+    "Badhte Kadam",
+    "Disha"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Darjeeling",
+   "name": "North Bengal Council For The Disabled",
+   "address": "833/A/40/107, Ramkrishna Road By-lane, NBCD Building, Ashrampara, Siliguri - 734001",
+   "contact": "Dr. Gangotri Chakraborty nbcd1990@gmail.com 9002770072",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Medinipur East",
+   "name": "Pratibandhi Sahayak Samity",
+   "address": "H69, At P.O Panskura, Near Pwd Ground, Purba Medinipur - 721139",
+   "contact": "Mahendra Maiti psspanskura@gmail.com 9933961252",
+   "schemes": [
+    "Vikaas",
+    "Disha",
+    "Samarth"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Purba Bardhaman",
+   "name": "Society For Mental Health Care",
+   "address": "713, Village P.O. Khajurdihi Via Katwa, District-Bardhaman, KATWA - 713150",
+   "contact": "SUBRATA SINHA smhcin@yahoo.co.in 9333610550",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Hooghly",
+   "name": "PARTNER HOOGHLY",
+   "address": "541/189, KEOTA GHOSH PARA (SOUTH), SAHAGANJ, NEAR SHYAMSUNDARPUR PRIMARY SCHOOL, CHINSURAH - 712104",
+   "contact": "MR. SUBHRANSU GHOSH partnerhooghly93@gmail.com 8910359426",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Kolkata",
+   "name": "Manovikas Kendra Rehabilitation & Research Institute For The Handicapped",
+   "address": "482, Madudah, Plot 1-24, Sector - J, Eastern Metropolitan Bypass, Kolkata - 700107",
+   "contact": "DR SHARADA FATEHPURIA mvkendra1974@gmail.com 9830721428",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "MALDAH",
+   "name": "HAIDERPUR SHELTER OF MALDA",
+   "address": "273/A, MAHESHMATI WEST, BEHIND BIKRAM CLUB, MALDA - 732101",
+   "contact": "Manmay Mukherjee haiderpurshelterofmalda@rediffmail.com 9434154314",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Kolkata",
+   "name": "Indian Institute Of Cerebral Palsy",
+   "address": "P-35/1, Taratolla Road, Kolkata, Kolkata - 700088",
+   "contact": "Ms. Sonali Nandi mail@iicpindia.org 9831057152",
+   "schemes": [
+    "Disha"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "COOCHBEHAR",
+   "name": "SATHMILE REHABILITETION CENTRE FOR DISABLED",
+   "address": "MATHABHANGA ROAD, VILL-BHOGDABRI KESHRIBARI P.O.ELAJANERKUTHI I, BHOG DABRIKESHRIBARI, INDIA - 736157",
+   "contact": "SUNIL CH.ESHORE,BISWANATH BARMAN, satmilercfordisabled@gmail.com 9002800603",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Kolkata",
+   "name": "BODHAYAN",
+   "address": "1/1W, JODHPUR PARK, KOLKATA, KOLKATA - 700068",
+   "contact": "ANURADHA PAL CHOUDHURY bodhayan.parents.association@gmail.com 9874583920",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "Jalpaiguri",
+   "name": "Jalpaiguri Welfare Organization",
+   "address": "345/202, Club Road, Po Distt. Jalpaiguri, West Bengal - 735101",
+   "contact": "Sanjoy Chakraborty sanjoyjwo@gmail.com 9434138069",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Medinipur West",
+   "name": "Motherchak Naboday Kishalay Sangha",
+   "address": "409/967, Bargokulpur, Gokulpur Primary Health Center, Kharagpur - 721301",
+   "contact": "Atanu Sankar Raj mnks.india@gmail.com 8001026252",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "24 Paraganas North",
+   "name": "JOYGRAM SOCIAL WELFARE SOCIETY",
+   "address": "Nil, Joygram, Chakpatli, Hasnabad, Hasnabad - 743426",
+   "contact": "Ariful Islam Mandal joygramsocialwelfaresociety@gmail.com 9635606677",
+   "schemes": []
+  },
+  {
+   "state": "West Bengal",
+   "district": "24 Paraganas North",
+   "name": "Saltlake Drishti Centre For Learning Disability",
+   "address": "SALTLAKE CITY,SECTOR-I, CE-182, , Arunachal Bhawan, KOLKATA - 700064",
+   "contact": "Susmita Nag susmitadrishti9836232858@gmail.com 9836232858",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "West Bengal",
+   "district": "Howrah",
+   "name": "Asha Bhavan Centre",
+   "address": "Asha Bhavan Centre, Vill. - Kathila, Post. - Banitabla,P.S. Uluberia, Uluberia - 711316",
+   "contact": "Sukeshi Barui abcindia.sukeshi@gmail.com 9830047831",
+   "schemes": [
+    "Disha",
+    "Sahyogi",
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Delhi",
+   "district": "North West Delhi",
+   "name": "Viklang Sahara Samiti Delhi",
+   "address": "G-Block, Basti Vikash Kendra, Mangol Puri, New Delhi - 110083",
+   "contact": "BUNTY SOLANKI vssd1998@gmail.com 9717237993",
+   "schemes": [
+    "Badhte Kadam",
+    "Disha",
+    "Vikaas",
+    "Prerna"
+   ]
+  },
+  {
+   "state": "Delhi",
+   "district": "West Delhi",
+   "name": "UDAI Working Together Works",
+   "address": "C 3/93, Janakpuri, Next to Orchid Hospital, Delhi - 110058",
+   "contact": "Tanu Rajput udai.march@gmail.com 9899681972",
+   "schemes": []
+  },
+  {
+   "state": "Delhi",
+   "district": "North West Delhi",
+   "name": "NEW GLOBAL VISION SOCIETY",
+   "address": "PLOT NO.4, POCKET A-1,, SECTOR-8, ROHINI NEW DELHI, NEAR DEEPALI CHOWK, NEW DELHI - 110085",
+   "contact": "MUKESH GUPTA visionrohini@gmail.com 9811605286",
+   "schemes": []
+  },
+  {
+   "state": "Delhi",
+   "district": "South Delhi",
+   "name": "Action for Ability Development and Inclusion (AADI)",
+   "address": "Plot no 2, Balbir Saxena Marg, Hauz Khas, New Delhi - 110016",
+   "contact": "Ms. G. Syamala aadi_jagruti@yahoo.com 9810200968",
+   "schemes": [
+    "Sambhav",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Delhi",
+   "district": "North East Delhi",
+   "name": "Dr. R. Chandra Kalyankari Sanstha",
+   "address": "C 2, Street No 11, Bhagirathi Vihar, Near Pakki Puliya, Delhi - 110094",
+   "contact": "Ramesh Chandra dr.rchandra7573@gmail.com 9582331297",
+   "schemes": []
+  },
+  {
+   "state": "Delhi",
+   "district": "North West Delhi",
+   "name": "MOTHERS CARE SPECIAL SCHOOL ...KARTIKEYAN EDUCATIONAL SOCIETY",
+   "address": "MOTHERS CARE SPECIAL SCHOOL- PLOT NO 66, POCKET-1, SEC. A-9, NARELA, OPPOSITE CENTRAL SCHOOL, Narela, North West Delhi - 110040",
+   "contact": "SANJEEP KUMAR motherscareschool2014@gmail.com 9212539212",
+   "schemes": []
+  },
+  {
+   "state": "Delhi",
+   "district": "South West Delhi",
+   "name": "Association for Advancement and Rehabilitation of Handicapped",
+   "address": "B-11, Vasant Kunj, Opp. B-X Main Gate, New Delhi - 110070",
+   "contact": "Asha Gupta aarohdelhi@gmail.com 9871564271",
+   "schemes": [
+    "Vikaas",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "Delhi",
+   "district": "East Delhi",
+   "name": "JINGLE BELLS EDUCATION SOCIETY",
+   "address": "S - 438, SCHOOL BLOCK, PART-2, SHAKAR PUR, DELHI - 110092",
+   "contact": "ANJU GUPTA anju_70gupta@yahoo.co.in 9811819951",
+   "schemes": []
+  },
+  {
+   "state": "Delhi",
+   "district": "North West Delhi",
+   "name": "Family Of Shiridi Sai Baba..",
+   "address": "E-6, Basti Vikas Kendra, Shani bazar road, Sultan Puri, Doctor Vijays Clinic(MBBS), New Delhi - 110086",
+   "contact": "Chanchal Aggarwal fssbngo@gmail.com 8585924140",
+   "schemes": [
+    "Badhte Kadam",
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "Delhi",
+   "district": "West Delhi",
+   "name": "Ekta Shakti Foundation",
+   "address": "A-20, Basement Upper Ground Floor, New Krishna Park, Vikaspuri, A Block, NEW DELHI - 110018",
+   "contact": "Anil Kumar Aggarwal info@ektashakti.org 9135636363",
+   "schemes": []
+  },
+  {
+   "state": "Delhi",
+   "district": "South West Delhi",
+   "name": "Vishesh Jan Vikas Sansthan",
+   "address": "B5/119, Safdarjung Enclave, Near RK khanna tennis stadium, New Delhi - 110029",
+   "contact": "Vikas Ray info@learningladder.org.in 9811962970",
+   "schemes": []
+  },
+  {
+   "state": "Delhi",
+   "district": "South West Delhi",
+   "name": "HANDICAPPED CHILDRENS PARENTS ASSOCIATION",
+   "address": "PLOT NO.K, (BEHIND PLOT NO.13), INSTITUTIONAL, SECTOR-5, DWARKA, NEW DELHI - 110075",
+   "contact": "K.N SINGH hcpaindia@yahoo.com 9971006165",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Delhi",
+   "district": "South East Delhi",
+   "name": "Action For Autism",
+   "address": "Pocket - 7 and 8, Jasola Vihar, Behind DAV School, New Delhi - 110025",
+   "contact": "Mrs Merry Barua actionforautism@gmail.com 9810225923",
+   "schemes": [
+    "Badhte Kadam",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Delhi",
+   "district": "East Delhi",
+   "name": "AMAR JYOTI CHARITABLE TRUST",
+   "address": "Karkardooma, Vikas Marg, Delhi, Delhi - 110092",
+   "contact": "Dr. Uma Tuli amarjyotinirmaya@gmail.com 9811058000",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Delhi",
+   "district": "South Delhi",
+   "name": "Society for the Aid of Mentally and Developmentally Handicapped SAMADHAN",
+   "address": "Sector V, F Block, Dakshinpuri, Durbalnath Mandir, New Delhi - 110062",
+   "contact": "SUMATHI MORGAN samadhan.dwarka@gmail.com 7042664506",
+   "schemes": [
+    "Disha",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Mizoram",
+   "district": "Aizawl",
+   "name": "Spastics Society Of Mizoram",
+   "address": "H/No. N10-29, Brigade Area, Bawngkawn, Near Greenwood Hospital, Aizawl - 796014",
+   "contact": "Mrs Chhingpuii skimi786@gmail.com 9436159952",
+   "schemes": [
+    "Samarth",
+    "Vikaas",
+    "Gharaunda"
+   ]
+  },
+  {
+   "state": "Nagaland",
+   "district": "Kohima",
+   "name": "JO FOUNDATION",
+   "address": "354, Agri Colony, Jo Foundation Inclusive School, Kohima - 797001",
+   "contact": "Daniel Thong Seb danieljofn@gmail.com 9436000597",
+   "schemes": []
+  },
+  {
+   "state": "Nagaland",
+   "district": "Kohima",
+   "name": "CHERRY BLOSSOMS SOCIETY",
+   "address": "533 SEC B, LERIE COLONY, LERIE, NEAR CRPF CAMP, KOHIMA - 797001",
+   "contact": "D ADANI cherryblossomssociety@gmail.com 8787553884",
+   "schemes": []
+  },
+  {
+   "state": "Telangana",
+   "district": "Hyderabad",
+   "name": "Prerana Special School - a Unit of Prerana Welfare Society",
+   "address": "M C Qurters 389 - 392, Andhra Colony, Malakpet,, (Nearer to) Malakpet Traffic Police Station, HYDERABAD- Telangana - 500036",
+   "contact": "T.Vijaya Lakshmi prerana.foundation@gmail.com 9849629707",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Telangana",
+   "district": "Rangareddy",
+   "name": "MANASA SPECIAL SCHOOL FOR THE MENTALLY HANDICAPPED run by MANASA",
+   "address": "SURVEY NO.135, MOHAN NAGAR, KOTHAPET ROAD,HYDERABAD, BESIDES TSSPDCL OFFICE, HYDERABAD - 500035",
+   "contact": "P. VANAJA manasa912014@gmail.com 9963811996",
+   "schemes": []
+  },
+  {
+   "state": "Telangana",
+   "district": "Rangareddy",
+   "name": "SADHANA SOCIETY FOR THE MENTALLY HANDICAPPED",
+   "address": "Plot No A-7/5,Road No-6,IDA,Nacharam, Plot No A-7/5, Road No-6, IDA, Nacharam, Opp: H.P.Petrol Pump, HYDERABAD - 500076",
+   "contact": "P.MADHUSUDAN REDDY sadhanawelfare@gmail.com 9849098749",
+   "schemes": []
+  },
+  {
+   "state": "Telangana",
+   "district": "Rangareddy",
+   "name": "KIRANAM ORGANISATION FOR THE WELFARAE OF DISABLED",
+   "address": "PLOT NO-100,LAXMINAGAR,SHANKER NAGAR, SY-212/5,KHAMMAGUDA,TURKYAMJAL, SAI BABA TEMPLE, RANGAREDDY - 501510",
+   "contact": "P RAMESH kiranamngo@gmail.com 9959172223",
+   "schemes": [
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Telangana",
+   "district": "Hanumakonda",
+   "name": "BANNU AROGYADA SEVA SOCIETY BANNU NEURO HEALTH AND REHABILITATION INSTITUTE",
+   "address": "2-7-187, Excise Colony, Subedari Hanamkonda, Warangal - 506001",
+   "contact": "DR.VEERAMALLA CHARANJIT REDDY CHARAN@BANNU.ORG 8330938112",
+   "schemes": []
+  },
+  {
+   "state": "Telangana",
+   "district": "Siddipet",
+   "name": "MANOCHETNA",
+   "address": "Manochetana, Chukka Ramaiah Marg, Near Agricultural Market Yard,, Vavillavampu, Cherial - 506223",
+   "contact": "Venkateshwarlu Chukka mcrcwarangal@gmail.com 9392488514",
+   "schemes": [
+    "Badhte Kadam",
+    "Vikaas",
+    "Niramaya"
+   ]
+  },
+  {
+   "state": "Telangana",
+   "district": "Rangareddy",
+   "name": "SHANTHI NIKETAN RESIDENTIAL INSTITUTION FOR MENTALLY HANDICAPPED",
+   "address": "PLOT NO 22, BHAVANI ENCLAVE, SAHEB NAGAR KALAN, VANASTHALIPURAM - 500070",
+   "contact": "CH RAMESH shanthiniketan.mr@gmail.com 9246913303",
+   "schemes": [
+    "Vikaas",
+    "Badhte Kadam",
+    "Gharaunda"
+   ]
+  },
+  {
+   "state": "Telangana",
+   "district": "Hyderabad",
+   "name": "Subhiksha Voluntary Organization",
+   "address": "H.No : 17-153/2/WP, Annapurna Housing Society, Mahendra Hills, East Marredpally, Near Mahabodhi Buddha Vihara, Secunderabad - 500026",
+   "contact": "Pondi Kishore Kumar director@subhiksha.org 9908076899",
+   "schemes": []
+  },
+  {
+   "state": "Telangana",
+   "district": "Karimnagar",
+   "name": "PARENTS ASSOCIATION FOR MENTALLY HANDICAPPED PERSONS",
+   "address": "2-8-166, OPPO UJJVALA PARK ,MANOVIKAS NAGAR, KARIMANAGAR, karimnagar - 505001",
+   "contact": "B.PARAMESWAR pamencap_knr@yahoo.co.in 9440086200",
+   "schemes": []
+  },
+  {
+   "state": "JAMMU AND KASHMIR",
+   "district": "Jammu",
+   "name": "Disabled Care Foundation",
+   "address": "5-A Small Plots,, Gandhi nagar,Jammu, Opp. Bata Showroom, Jammu - 180004",
+   "contact": "Umesh Sharma disabledcarefoundation@yahoo.co.in 9419122810",
+   "schemes": []
+  },
+  {
+   "state": "JAMMU AND KASHMIR",
+   "district": "Samba",
+   "name": "MUSKAN FOUNDATION",
+   "address": "VIJAYPUR, Canal Road 9, VIJAYPUR, CANAL ROAD VIJAYPUR - 184120",
+   "contact": "PARVEEN KUMARI GO4MUSKANFOUNDATION09419@GMAIL.COM 9419150607",
+   "schemes": [
+    "Vikaas",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "JAMMU AND KASHMIR",
+   "district": "Srinagar",
+   "name": "Voluntary Medicare Society",
+   "address": "BEMINA BYE-PASS, BEMINA BYE-PASS SRINAGAR, SKIMS MEDICAL COLLEGE, Srinagar - 190018",
+   "contact": "Dr. Mir Mohammad Maqbool vmsjk1@gmail.com 9419467621",
+   "schemes": [
+    "Vikaas",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "JAMMU AND KASHMIR",
+   "district": "Jammu",
+   "name": "SWAMI VIVEKA NAND EDUCATIONAL TRUST",
+   "address": "NEAR SHIV MANDIR, , KATAL BATAL NAGROTA, JAMMU - 181221",
+   "contact": "CHAMAIL KUMAR EDUCATIONALTRUST2007@GMAIL.COM 9419165110",
+   "schemes": [
+    "Gharaunda",
+    "Badhte Kadam"
+   ]
+  },
+  {
+   "state": "JAMMU AND KASHMIR",
+   "district": "Srinagar",
+   "name": "Chotay Taray Foundation",
+   "address": "2, Alfalah Lane, Sector 3 Near Alfalah School, Bemina - 190018",
+   "contact": "Arjumand Makhdoomi ctf.pres@gmail.com 9942009750",
+   "schemes": [
+    "Vikaas"
+   ]
+  },
+  {
+   "state": "JAMMU AND KASHMIR",
+   "district": "Ganderbal",
+   "name": "Hope Disability Centre An Undertaking Of She Hope Society For Women Entrepreneurs",
+   "address": "001, Wayil Ganderbal, Near Jamie Masjid, Ganderbal - 191201",
+   "contact": "Nadeem Hussain Bhat nbhat@hopecentrekashmir.org 9419901605",
+   "schemes": [
+    "Vikaas"
+   ]
+  }
+ ],
+ "national_institutes": [
+  {
+   "name": "National Institute for the Empowerment of Persons with Visual Disabilities (NIEPVD), Dehradun",
+   "address": "116,Rajpur Road, Dehradun-285001. Tel. No. 0135-2744491",
+   "website": "https://niepvd.nic.in"
+  },
+  {
+   "name": "Ali Yavar Jung National Institute of Speech and Hearing Disabilities (AYJNISHD)",
+   "address": "KC Marg, Bandra Reclamation, Bandra West, Mumbai, Maharashtra-400050 Tel. No.022-26422638",
+   "website": "https://ayjnishd.nic.in"
+  },
+  {
+   "name": "National Institute for the Empowerment of Persons with Intellectual Disabilities (NIEPID)",
+   "address": "Manovikas Nagar, Bowenpally, Secunderabad, Telangana 500009 Tel. No. 040-27759267",
+   "website": "https://niepid.nic.in"
+  },
+  {
+   "name": "National Institute for Empowerment of Persons with Multiple Disabilities (NIEPMD)",
+   "address": "East Coast Road, Muttukadu, Kovalam Post, Chennai. Tel. No. 044 274721040",
+   "website": "https://niepmd.nic.in"
+  },
+  {
+   "name": "Pt. Deendayal Upadhyaya National Institute for Persons with Physical Disabilities (PDUNIPPD)",
+   "address": "4 Vishnu Digamber Marg, New Delhi-110002. Tel. No. 011-23232403",
+   "website": "https://pdunippd.nic.in/"
+  },
+  {
+   "name": "Swami Vivekanand National Institute of the Rehabilitation Training and Research (SVNIRTAR)",
+   "address": "Olatpur, P.O : Bairoi, Cuttack, Odisha 754010 Tele No.0671-2805552",
+   "website": "https://www.svnirtar.nic.in"
+  },
+  {
+   "name": "National Institute for Locomotor Disabilities (NILD)",
+   "address": "B.T. Road, Bon Hooghly, Kolkata-700090. Tel. No. 033-25311248,033-2531078",
+   "website": "https://nild.nic.in"
+  },
+  {
+   "name": "Indian Sign Language Research & Training Centre (ISLRTC)",
+   "address": "A-91, First Floor, Nagpal Business Tower, Okhla Phase-II, New Delhi-110020 Tel. No.2638 7558 / 7559 www.islrtc.nic.in",
+   "website": ""
+  },
+  {
+   "name": "National Institute of Mental Health and Rehabilitation (NIMHR)",
+   "address": "Purana Zila Panchayat Bhawan, Luniya Chauraha , Mandi Road, Sehore – 466001 Tele No. 0756 2223960",
+   "website": "https://nimhr.nic.in/"
+  },
+  {
+   "name": "Atal Bihari Vajpayee Training Centre For Disability Sports – Gwalior",
+   "address": "ABV-TCDS Gwalior, Morena Link road, Gwalior – 474015 Tel. No. 0751-2991397",
+   "website": "https://cdsgwalior.nic.in/"
+  }
+ ],
+ "composite_regional_centres": [
+  {
+   "name": "CRC, Guwahati (Assam)",
+   "city": "Guwahati",
+   "state": "Assam",
+   "website": "https://crcguwahati.nic.in/"
+  },
+  {
+   "name": "CRC, Ranchi (Jharkhand)",
+   "city": "Ranchi",
+   "state": "Jharkhand",
+   "website": "https://crcranchi.nic.in/"
+  },
+  {
+   "name": "CRC, Balangir (Odisha)",
+   "city": "Balangir",
+   "state": "Odisha",
+   "website": "https://crcbalangir.nic.in/"
+  },
+  {
+   "name": "CRC, Manipur",
+   "city": "Manipur",
+   "state": "Manipur",
+   "website": "https://crcimphal.nic.in/"
+  },
+  {
+   "name": "CRC, Shillong",
+   "city": "Shillong",
+   "state": "Meghalaya",
+   "website": "https://crcshillong.nic.in/"
+  },
+  {
+   "name": "CRC, Nellore, (A.P.)",
+   "city": "Nellore",
+   "state": "Andhra Pradesh",
+   "website": "https://crcnlr.nic.in/"
+  },
+  {
+   "name": "CRC,Rajnandgaon (Chattisgarh)",
+   "city": "Rajnandgaon",
+   "state": "Chhattisgarh",
+   "website": "https://crcrajnandgaon.nic.in/"
+  },
+  {
+   "name": "CRC,Devengere (Karnataka)",
+   "city": "Devengere",
+   "state": "Karnataka",
+   "website": "https://crcdavanagere.nic.in"
+  },
+  {
+   "name": "CRC, Sundernagar (H.P.)",
+   "city": "Sundernagar",
+   "state": "Himachal Pradesh",
+   "website": "http://crcsnr.org"
+  },
+  {
+   "name": "CRC, Jaipur",
+   "city": "Jaipur",
+   "state": "Rajasthan",
+   "website": "https://crcjaipur.nic.in/"
+  },
+  {
+   "name": "CRC, Gorakhpur (U.P.)",
+   "city": "Gorakhpur",
+   "state": "Uttar Pradesh",
+   "website": "https://crcghorakpur.nic.in"
+  },
+  {
+   "name": "CRC, Bhopal",
+   "city": "Bhopal",
+   "state": "Madhya Pradesh",
+   "website": "https://crcbhopal.nic.in"
+  },
+  {
+   "name": "CRC, Ahmedabad (Gujarat)",
+   "city": "Ahmedabad",
+   "state": "Gujarat",
+   "website": "https://crcahmedabad.nic.in"
+  },
+  {
+   "name": "CRC, Nagpur (Maharashtra)",
+   "city": "Nagpur",
+   "state": "Maharashtra",
+   "website": "https://crcnagpur.nic.in"
+  },
+  {
+   "name": "CRC, Chhatarpur",
+   "city": "Chhatarpur",
+   "state": "Madhya Pradesh",
+   "website": "https://crcchhatarpur.nic.in/"
+  },
+  {
+   "name": "CRC, Srinagar (J&K)",
+   "city": "Srinagar",
+   "state": "Jammu and Kashmir",
+   "website": "https://crcsrinagar.nic.in"
+  },
+  {
+   "name": "CRC, Lucknow, (U.P.)",
+   "city": "Lucknow",
+   "state": "Uttar Pradesh",
+   "website": "https://crclucknow.nic.in"
+  },
+  {
+   "name": "CRC, Jammu",
+   "city": "Jammu",
+   "state": "Jammu and Kashmir",
+   "website": "https://crcjammu.nic.in/"
+  },
+  {
+   "name": "CRC, Patna, (Bihar)",
+   "city": "Patna",
+   "state": "Bihar",
+   "website": "https://crcpatna.nic.in"
+  },
+  {
+   "name": "CRC, Agartala (Tripura)",
+   "city": "Agartala",
+   "state": "Tripura",
+   "website": ""
+  },
+  {
+   "name": "CRC, Naharlughan (Arunachal Pradesh)",
+   "city": "Naharlughan",
+   "state": "Arunachal Pradesh",
+   "website": ""
+  },
+  {
+   "name": "CRC, Sikkim",
+   "city": "Sikkim",
+   "state": "Sikkim",
+   "website": "https://crcgangtok.nic.in/"
+  },
+  {
+   "name": "CRC, Kozhikode (Kerala)",
+   "city": "Kozhikode",
+   "state": "Kerala",
+   "website": "https://crckozhikode.nic.in"
+  },
+  {
+   "name": "CRC, Andaman & Nicobar Islands",
+   "city": "Andaman & Nicobar Islands",
+   "state": "Andaman and Nicobar Islands",
+   "website": ""
+  },
+  {
+   "name": "CRC, Madurai",
+   "city": "Madurai",
+   "state": "Tamil Nadu",
+   "website": "https://crcmadurai.nic.in/"
+  }
+ ]
+}

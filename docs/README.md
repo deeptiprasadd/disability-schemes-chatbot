@@ -18,7 +18,7 @@ graph TD
     subgraph Data Agents & Ingestion
         A[run_updates.bat / update_all.py] --> B[scrape_schemes.py]
         B -->|Reads targets| C[knowledge-base/sources.json]
-        B -->|Structures via LLM| D[llama-3.3-70b-versatile]
+        B -->|Structures via LLM| D[gpt-oss-120b]
         D -->|Saves Markdown| E[knowledge-base/*/*.md]
         E --> F[embed_docs.py]
         F -->|all-MiniLM-L6-v2| G[(FAISS vector store)]

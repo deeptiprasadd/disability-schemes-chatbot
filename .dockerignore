@@ -1,0 +1,11 @@
+.git
+.github
+.claude
+venv
+.venv
+__pycache__
+*.pyc
+.env
+test_output.txt
+research
+scripts/finetune_dataset.jsonl

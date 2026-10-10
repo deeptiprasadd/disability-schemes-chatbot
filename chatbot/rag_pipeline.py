@@ -1,6 +1,5 @@
 import os
-import torch
-from langchain_huggingface import HuggingFaceEmbeddings
+from flashrank import Ranker
 from langchain_community.vectorstores import FAISS
 from langchain_community.retrievers import BM25Retriever
 from langchain_classic.retrievers import EnsembleRetriever, ContextualCompressionRetriever
@@ -17,7 +16,8 @@ def make_llm(temperature: float = 0.1):
     Groq is unreachable — e.g. a VPN IP, a region block, or a Groq outage).
 
     Controlled by LLM_PROVIDER (default "groq"):
-      * groq   -> Groq cloud (GROQ_MODEL, default llama-3.1-8b-instant)
+      * groq   -> Groq cloud (GROQ_MODEL, default openai/gpt-oss-20b;
+                  Groq retired llama-3.1-8b-instant)
       * ollama -> a LOCAL model, no external network at all
                   (OLLAMA_MODEL default llama3.1, OLLAMA_BASE_URL default
                    http://localhost:11434). Works even behind a VPN.
@@ -44,10 +44,19 @@ def make_llm(temperature: float = 0.1):
         )
 
     from langchain_groq import ChatGroq
-    return ChatGroq(
-        model=os.getenv("GROQ_MODEL", "llama-3.1-8b-instant"),
-        temperature=temperature,
-    )
+    model = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
+    extra = {}
+    if "gpt-oss" in model:
+        # Reasoning model: it "thinks" before answering, and that thinking counts
+        # against the reply's token budget. At the default effort it could spend
+        # the whole budget thinking and return an EMPTY answer
+        # (finish_reason="length"). Low effort plus headroom avoids that, and
+        # keeps us inside Groq's tokens-per-minute limit.
+        extra = {
+            "reasoning_effort": os.getenv("GROQ_REASONING_EFFORT", "low"),
+            "max_tokens": 4096,
+        }
+    return ChatGroq(model=model, temperature=temperature, **extra)
 
 from langchain_core.prompts import PromptTemplate, ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser
@@ -56,11 +65,13 @@ from langchain_core.messages import HumanMessage, AIMessage
 
 from chatbot.router import classify, is_link_retry, format_hint_instruction, Intent, Route  # noqa: F401  (Intent/Route re-exported)
 from chatbot.link_utils import find_verified_links, format_verified_block, extract_urls, sanitize_answer_links
+from chatbot.language_utils import NATIVE_NAMES, language_name, translate_to_english
+from chatbot.kb_utils import scheme_rules_block, drop_empty_sections
+from chatbot.directory import directory_block
+
+from chatbot.embeddings import get_embeddings
 
 VS_DIR = "scripts/vector_store"
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-
-print(f"Using device: {DEVICE}")
 
 CONDENSE_QUESTION_PROMPT = """Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
 
@@ -78,9 +89,27 @@ CRITICAL RULES:
    - If information is missing, use general terms like "Applicable beneficiaries" or "Depending on age/disability" and ask the user for these details at the end of your response.
    - NEVER assume a large number (like a Pincode or Phone number) is a financial benefit. ONLY use amounts explicitly stated as "Grant", "Pension", "Allowance", or "Scholarship amount".
 
-2. **ELIGIBILITY & NEGATIVE CONSTRAINTS**:
-   - If the user explicitly states the person **cannot study**, is **not in school**, or has a **severe intellectual disability** that prevents education, you MUST NOT suggest scholarships or educational schemes.
-   - For a "kid who cannot study", focus exclusively on: **Niramaya (Health Insurance)**, **Subsistence Allowance (Pension)**, and **National Trust residential care (Samarth/Gharaunda)**.
+2. **ELIGIBILITY COMES ONLY FROM THE SOURCES** (whenever reference material is given below):
+   - Describe ONLY schemes that appear in the Retrieved reference material. Never add a scheme from memory.
+   - Each piece of reference material starts with a `[Scheme: ...]` label. A rule (age, income, state,
+     disability type, amount) belongs ONLY to the scheme it is labelled with — never apply one scheme's
+     age limit or amount to another scheme.
+   - If a scheme's label names one state or city (e.g. "... in Chandigarh"), its offices, hospitals and
+     procedures apply ONLY there. Say so, and do not present them as the user's local offices.
+   - Every eligibility rule you state (disability type, percentage, age, income, residence, student status)
+     MUST appear in that material. Copy it as written and NEVER broaden it.
+     Example: a scheme for "autism, cerebral palsy, intellectual disability, multiple disabilities" is NOT
+     for "any child with 90% disability". Name exactly the conditions it covers.
+   - Users describe disabilities in everyday words; match them to the official categories before checking:
+     "mentally disabled" / "mentally challenged" / "mentally retarded" = intellectual disability,
+     "spastic" = cerebral palsy, "can't walk" / "polio" / "lost a leg" = locomotor disability,
+     "deaf" = hearing impairment, "blind" / "low vision" = visual impairment.
+   - If the user's disability type is not in a scheme's list, leave that scheme out. If they have not said
+     their disability type, mention such a scheme only conditionally: "If your child has autism, cerebral palsy, ...".
+   - If the material does not give a scheme's eligibility or amount, say it is not in your sources and point
+     to the official portal. Do not guess.
+   - If the user says the person **cannot study** or is **not in school**, do NOT suggest scholarships or
+     education schemes; focus on allowances/pensions, health cover and care support found in the material.
    - If a scheme requires being a "student" or having "passed Class 10", and the user information doesn't match, EXCLUDE it.
 
 3. **ANSWER THE QUESTION THAT WAS ASKED — NEVER REPEAT YOURSELF**:
@@ -121,6 +150,8 @@ Conversation so far (background only — ALREADY DELIVERED, do NOT repeat it):
 
 User's message: {question}
 
+LANGUAGE OF YOUR ANSWER (follow this exactly): {language_instruction}
+
 Answer:"""
 
 _chain              = None
@@ -128,6 +159,74 @@ _base_retriever     = None
 _ensemble_retriever = None
 
 import re
+
+# Everyday words -> the official terms the scheme documents use. Appended to the
+# retrieval query so search can match them: "my kid is mentally disabled" never
+# found NIRAMAYA, whose documents only say "intellectual disability".
+_DISABILITY_TERMS = [
+    (re.compile(r"\bmental(ly)?[\s-]*(disabled|challenged|retard\w*|handicap\w*)", re.I), "intellectual disability"),
+    (re.compile(r"\bspastic\b", re.I), "cerebral palsy"),
+    (re.compile(r"\b(can'?t|cannot|unable to) walk|\bpolio\b|\blost (a|his|her|my) (leg|arm)", re.I), "locomotor disability"),
+    (re.compile(r"\bdeaf\b", re.I), "hearing impairment"),
+    (re.compile(r"\bblind\b|\blow vision\b", re.I), "visual impairment"),
+]
+
+
+def _expand_query(query: str) -> str:
+    """Add the official disability term(s) for any everyday wording in the query."""
+    extra = [term for rx, term in _DISABILITY_TERMS if rx.search(query) and term not in query.lower()]
+    return f"{query} ({', '.join(extra)})" if extra else query
+
+
+def _language_instruction(lang: str, romanized: str | None = None) -> str:
+    """
+    Tell the model which language to WRITE in. Answering directly in the user's
+    language replaced "answer in English, then machine-translate": that second
+    step silently fell back to English whenever the free translation service
+    rate-limited or the answer was long.
+    """
+    if romanized:
+        # The question above is an English translation; the model needs the
+        # user's own words to mirror their language and style.
+        return (f'The user actually wrote, in an Indian language typed in English letters: "{romanized}". '
+                "Reply in that SAME language, also in English letters (for Hindi this is Hinglish, "
+                "e.g. 'Aapko har mahine Rs 2500 milenge'). Keep scheme names, amounts and URLs as written.")
+    if not lang or lang == "en":
+        return "Write your answer in English."
+    name, native = language_name(lang), NATIVE_NAMES.get(lang, "")
+    return (f"Write your ENTIRE answer in {name} ({native}), including headings, even though the "
+            f"reference material is in English. The first time you name a scheme, add its official "
+            f"English name in brackets. Keep amounts (Rs/₹), percentages, dates, URLs and form numbers "
+            f"exactly as written. Do NOT answer in English.")
+
+
+def is_romanized(original: str, english: str) -> bool:
+    """
+    True when text that detects as English still needed real translation, i.e.
+    an Indian language typed in English letters ("mujhe pension chahiye").
+    Genuine English comes back from translation almost word for word.
+    """
+    words = lambda t: set(re.findall(r"[a-z]+", t.lower()))
+    orig = words(original)
+    return len(orig) >= 3 and len(orig & words(english)) / len(orig) < 0.5
+
+
+def to_english(text: str) -> str:
+    """
+    The user's message in English, for routing and retrieval (the embeddings are
+    English-only). Google Translate first; if it fails, the LLM translates.
+    """
+    translated, ok = translate_to_english(text)
+    if ok:
+        return translated
+    try:
+        return make_llm(temperature=0).invoke(
+            "Translate this message into English. Output ONLY the translation.\n\n" + text
+        ).content.strip() or text
+    except Exception as e:
+        print(f"[to_english] LLM fallback failed: {e}")
+        return text
+
 
 def format_docs(docs):
     context = ""
@@ -147,10 +246,10 @@ def load_pipeline():
         return _chain
 
     print("Loading vector store and reranker...")
-    embeddings = HuggingFaceEmbeddings(
-        model_name="all-MiniLM-L6-v2",
-        model_kwargs={"device": DEVICE}
-    )
+    embeddings = get_embeddings()
+    # One reranker model shared by all three depths (each FlashrankRerank()
+    # used to load its own copy).
+    ranker = Ranker()
 
     # 1. Load FAISS (Semantic)
     vectorstore = FAISS.load_local(
@@ -181,10 +280,18 @@ def load_pipeline():
     # from the SAME scheme) no matter what is asked. A second, wider pipeline
     # below fixes that for the intents that genuinely need to see many schemes
     # at once (see Route.retrieval_depth in router.py).
-    compressor = FlashrankRerank()
+    compressor = FlashrankRerank(client=ranker)  # top_n=3
     compression_retriever = ContextualCompressionRetriever(
         base_compressor=compressor,
         base_retriever=_ensemble_retriever
+    )
+    # "medium" (scheme lookup / eligibility): the same candidates, reranked to 6.
+    # With only 3, a question like "my child cannot study" got three scholarship
+    # chunks (the word "study" pulls them to the top) and never saw the health,
+    # pension or care schemes it actually needed.
+    compression_retriever_medium = ContextualCompressionRetriever(
+        base_compressor=FlashrankRerank(client=ranker, top_n=6),
+        base_retriever=_ensemble_retriever,
     )
 
     print("Building broad retriever (list-all / compare)...")
@@ -196,7 +303,7 @@ def load_pipeline():
         weights=[0.7, 0.3]
     )
     compression_retriever_broad = ContextualCompressionRetriever(
-        base_compressor=FlashrankRerank(top_n=15),
+        base_compressor=FlashrankRerank(client=ranker, top_n=15),
         base_retriever=ensemble_retriever_broad,
     )
 
@@ -205,6 +312,7 @@ def load_pipeline():
     _chain = {
         "llm": llm,
         "retriever": compression_retriever,
+        "retriever_medium": compression_retriever_medium,
         "retriever_broad": compression_retriever_broad,
         "answer_chain": PromptTemplate.from_template(SYSTEM_PROMPT) | llm | StrOutputParser(),
         "condense_chain": PromptTemplate.from_template(CONDENSE_QUESTION_PROMPT) | llm | StrOutputParser(),
@@ -249,7 +357,8 @@ def _prior_answer_urls(history_msgs: list) -> set[str]:
 
 
 def _build_prompt_inputs(question: str, chat_history: list, extra_context: str,
-                         route) -> tuple[dict, set]:
+                         route, reply_lang: str = "en",
+                         romanized: str | None = None) -> tuple[dict, set]:
     """
     Assemble exactly the inputs this route needs, plus the set of verified URLs
     (for the caller to strip anything else the model outputs anyway).
@@ -269,10 +378,17 @@ def _build_prompt_inputs(question: str, chat_history: list, extra_context: str,
     # actually see many distinct schemes instead of FlashrankRerank's top_n=3.
     docs = []
     if route.needs_retrieval:
-        query = _condense(question, history_msgs, comps)
-        retriever_key = "retriever_broad" if route.retrieval_depth == "broad" else "retriever"
+        query = _expand_query(_condense(question, history_msgs, comps))
+        retriever_key = {"broad": "retriever_broad", "medium": "retriever_medium"}.get(
+            route.retrieval_depth, "retriever")
         docs = comps[retriever_key].invoke(query)
-    context_block = format_docs(docs) if docs else ""
+    context_block = (format_docs(docs) + scheme_rules_block(docs)) if docs else ""
+
+    # Real organisations near the user, for "which school / centre?" questions.
+    user_turns = [m["content"] for m in (chat_history or []) if m.get("role") == "user"]
+    dir_block, dir_urls, dir_task = directory_block(
+        question, " ".join(user_turns[-4:]), user_turns[-1] if user_turns else "")
+    context_block += dir_block
     if extra_context:
         context_block += (
             f"\n---\nDocument uploaded by the user:\n{extra_context[:6000]}\n"
@@ -296,6 +412,7 @@ def _build_prompt_inputs(question: str, chat_history: list, extra_context: str,
         )
         verified_block = format_verified_block(result)
         verified_urls = {r["url"] for r in result["verified"]}
+    verified_urls |= dir_urls  # official regional-centre sites from the directory
 
     # 2. History — scoped to what this route can actually use.
     if route.history_mode == "none":
@@ -307,7 +424,7 @@ def _build_prompt_inputs(question: str, chat_history: list, extra_context: str,
 
     # 3. Format hint — "put this in a table" etc. can modify ANY intent above,
     # so it's layered onto the instruction per-turn rather than being its own Route.
-    task_instruction = route.instruction + format_hint_instruction(question)
+    task_instruction = dir_task + route.instruction + format_hint_instruction(question)
 
     inputs = {
         "question": question,
@@ -315,6 +432,7 @@ def _build_prompt_inputs(question: str, chat_history: list, extra_context: str,
         "context_block": context_block,
         "verified_links_block": verified_block,
         "task_instruction": task_instruction,
+        "language_instruction": _language_instruction(reply_lang, romanized),
     }
     return inputs, verified_urls
 
@@ -354,18 +472,21 @@ def _history_to_str(messages, clip: bool = True) -> str:
     return "\n".join(lines)
 
 
-def get_sources(question: str) -> list:
-    """Top source filenames for a question, via the hybrid retriever."""
+def get_source_paths(question: str) -> list:
+    """Knowledge-base file paths for a question's top hits, best match first."""
     if _ensemble_retriever is None:
         load_pipeline()
     docs = _ensemble_retriever.invoke(question)
-    return list({
-        os.path.basename(doc.metadata.get("source", ""))
-        for doc in docs
-    })
+    return list(dict.fromkeys(doc.metadata.get("source", "") for doc in docs if doc.metadata.get("source")))
 
 
-def ask(question: str, chat_history: list = None, extra_context: str = None) -> dict:
+def get_sources(question: str) -> list:
+    """Top source filenames for a question, via the hybrid retriever."""
+    return [os.path.basename(p) for p in get_source_paths(question)]
+
+
+def ask(question: str, chat_history: list = None, extra_context: str = None,
+        reply_lang: str = "en", romanized: str | None = None) -> dict:
     """
     Answer a question, routing it to the appropriate strategy first.
 
@@ -376,10 +497,12 @@ def ask(question: str, chat_history: list = None, extra_context: str = None) -> 
     """
     comps = load_pipeline()
     route = classify(question, _history_to_str(_to_lc_messages(chat_history)))
-    inputs, verified_urls = _build_prompt_inputs(question, chat_history, extra_context, route)
+    inputs, verified_urls = _build_prompt_inputs(question, chat_history, extra_context, route,
+                                                 reply_lang, romanized)
     answer = comps["answer_chain"].invoke(inputs)
     if route.needs_retrieval:
         answer = sanitize_answer_links(answer, verified_urls)
+    answer = drop_empty_sections(answer)
     return {
         "answer":  answer,
         "sources": get_sources(question) if route.needs_retrieval else [],
@@ -393,7 +516,8 @@ def route_for(question: str, chat_history: list = None):
 
 
 def ask_stream(question: str, chat_history: list = None, extra_context: str = None,
-               route=None, result: dict = None):
+               route=None, result: dict = None, reply_lang: str = "en",
+               romanized: str | None = None):
     """
     Yield answer tokens as they are generated.
 
@@ -410,7 +534,8 @@ def ask_stream(question: str, chat_history: list = None, extra_context: str = No
     """
     comps = load_pipeline()
     route = route or route_for(question, chat_history)
-    inputs, verified_urls = _build_prompt_inputs(question, chat_history, extra_context, route)
+    inputs, verified_urls = _build_prompt_inputs(question, chat_history, extra_context, route,
+                                                 reply_lang, romanized)
     if result is not None:
         result["verified_urls"] = verified_urls
     yield from comps["answer_chain"].stream(inputs)
@@ -433,6 +558,7 @@ Rules:
 - Specific to the topic above - e.g. required documents, where to apply,
   eligibility limits, timelines, fees, or closely related benefits.
 - Maximum 10 words each. Each must end with a question mark.
+- Write them in {language}.
 - Output ONE question per line. No numbering, no bullets, no preamble.
 """
 
@@ -445,7 +571,8 @@ def _parse_followups(raw: str, max_items: int) -> list:
     for line in (raw or "").splitlines():
         s = re.sub(r"^\s*(?:[-*•]|\d+[.)])\s*", "", line).strip().strip('"\'')
         # Keep only things that actually look like a short user question.
-        if len(s) < 8 or len(s) > 90 or "?" not in s:
+        # Indian scripts take more characters per word; Urdu uses the Arabic "؟".
+        if len(s) < 8 or len(s) > 140 or not ("?" in s or "؟" in s):
             continue
         if s not in out:
             out.append(s)
@@ -455,7 +582,7 @@ def _parse_followups(raw: str, max_items: int) -> list:
 
 
 def generate_followups(question: str, answer: str, chat_history: list = None,
-                       max_items: int = 5) -> list:
+                       max_items: int = 5, lang: str = "en") -> list:
     """
     Ask the LLM for contextual follow-up questions based on the latest turn.
     Returns [] on any failure so the UI simply shows no chips.
@@ -472,6 +599,7 @@ def generate_followups(question: str, answer: str, chat_history: list = None,
             "chat_history": _history_to_str(_to_lc_messages(chat_history)),
             "question": question[:600],
             "answer": answer[:1800],
+            "language": f"{language_name(lang)} ({NATIVE_NAMES.get(lang, 'English')})",
         })
         return _parse_followups(raw, max_items)
     except Exception as e:

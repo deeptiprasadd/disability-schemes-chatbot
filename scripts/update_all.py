@@ -22,6 +22,11 @@ def main():
         print("Embedding failed. Stopping.")
         return
 
+    # 3. Refresh the directory of schools and centres. Not fatal: the previous
+    #    directory file stays in use if the source site is down.
+    if not run_script("scripts/fetch_directory.py"):
+        print("Directory refresh failed; keeping the existing directory.")
+
     print("\n✅ Knowledge base successfully updated and re-indexed!")
 
 if __name__ == "__main__":

@@ -5,8 +5,6 @@ langchain==1.2.15
 langchain-core==1.2.28
 langchain-community==0.4.1
 langchain-text-splitters==1.1.1
-langchain-huggingface==1.2.1
-sentence-transformers>=2.0.0
 faiss-cpu>=1.8.0
-# CPU-only torch keeps the CI download small (sentence-transformers needs torch).
-torch>=2.0.0
+# ONNX embeddings (same vectors as sentence-transformers, no PyTorch download).
+fastembed>=0.4

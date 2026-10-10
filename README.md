@@ -35,11 +35,11 @@ Built on a Hybrid Search RAG pipeline (FAISS + BM25 + FlashRank reranking) with 
 |---|---|
 | Backend API | FastAPI + Uvicorn (SSE streaming) |
 | Frontend | Vanilla HTML/CSS/JS (no build step) |
-| LLM | Llama 3.1 8B via Groq *(swappable — see below)* |
+| LLM | GPT-OSS 20B via Groq *(swappable — see below)* |
 | Speech-to-text | Groq Whisper `large-v3` |
 | Text-to-speech | gTTS |
-| Embeddings | HuggingFace `all-MiniLM-L6-v2` |
-| Vector store | FAISS (CUDA if available, else CPU) |
+| Embeddings | `all-MiniLM-L6-v2` as ONNX via fastembed (no PyTorch) |
+| Vector store | FAISS (CPU) |
 | Retrieval | LangChain `EnsembleRetriever` + `FlashrankRerank` |
 | Translation | `deep-translator`, `langdetect` |
 | Ingestion | `requests`, `beautifulsoup4`, `pypdf` |
@@ -75,6 +75,12 @@ Then open **http://localhost:8000**. Run from the project root — the pipeline 
 
 ---
 
+## 🌍 Putting it online
+
+The app is containerised (`Dockerfile`) and installable on phones as a web app. To publish it, with automatic redeploys from GitHub, follow **[docs/DEPLOY.md](docs/DEPLOY.md)** (free on Render, about 400 MB of RAM).
+
+---
+
 ## 🔧 Choosing an LLM provider
 
 The assistant is **not hard-locked to Groq**. Set `LLM_PROVIDER` in `.env`:
@@ -102,7 +108,7 @@ LLM_PROVIDER=ollama
 2. **Input** — you type or speak; Whisper transcribes and detects the language automatically.
 3. **Translation** — the question is translated to English for best retrieval quality.
 4. **Hybrid retrieval** — FAISS (70%) + BM25 (30%), reranked by FlashRank; contact details are stripped so PIN/phone numbers are never mistaken for grant amounts.
-5. **Generation** — Llama 3.1 answers under strict formatting and anti-hallucination rules, streamed token-by-token.
+5. **Generation** — the LLM answers under strict formatting and anti-hallucination rules, streamed token-by-token.
 6. **Output** — the answer is translated back to your language, displayed as formatted Markdown with source citations, spoken aloud, and followed by contextual follow-up chips.
 
 ---
@@ -127,10 +133,10 @@ right *kind* of work instead of treating everything as a document lookup:
 
 | Intent | Retrieves? | History | Behaviour |
 |---|---|---|---|
-| `SCHEME_LOOKUP` | ✅ narrow | facts | Full sectioned layout for the best-fit few schemes |
+| `SCHEME_LOOKUP` | ✅ medium | facts | Full sectioned layout for the best-fit few schemes |
 | `LIST_ALL` | ✅ **broad** | facts | Enumerates **every** relevant scheme, not just the top few |
 | `COMPARE` | ✅ **broad** | facts | Comparison table + a reasoned recommendation |
-| `ELIGIBILITY` | ✅ narrow | facts | Verdict first, then deciding criteria |
+| `ELIGIBILITY` | ✅ medium | facts | Verdict first, then deciding criteria |
 | `RESOURCE_LINK` | ✅ narrow | none | Link first, no headings, never invents a URL |
 | `WRITE_DOCUMENT` | ✅ narrow | facts | **Writes the actual letter/application**, with placeholders |
 | `STEPS` | ✅ narrow | none | Only the numbered application procedure |

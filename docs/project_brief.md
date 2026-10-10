@@ -18,7 +18,7 @@ Here is how the project works, in the simplest terms.
 **Its job**: read the search results and explain them to you.
 * **Where it lives**: configured in `chatbot/rag_pipeline.py`
 * **What it does**: takes the raw paragraphs, simplifies the legal language, and writes a clean answer with headings, bullet points, numbered steps, and **bold amounts** so it is easy to skim. Strict rules stop it from guessing your age or income, or mistaking a phone number for a grant amount.
-* **Swappable**: normally the Llama 3.1 model on Groq, but it can run a **fully local** model instead (see below).
+* **Swappable**: normally the GPT-OSS 20B model on Groq, but it can run a **fully local** model instead (see below).
 
 ### 3. 🗣️ The Voice (Speech in and out)
 **Its job**: let you talk to the assistant instead of typing.

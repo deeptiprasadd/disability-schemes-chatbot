@@ -103,5 +103,55 @@
         "url": "https://www.swavlambancard.gov.in",
         "category": "eligibility",
         "active": true
+    },
+    {
+        "url": "https://ssachd.nic.in/page/viewpage/155",
+        "category": "child-disability",
+        "active": true
+    },
+    {
+        "url": "https://depwd.gov.in/en/cross-disability-early-intervention-centres/",
+        "category": "child-disability",
+        "active": true
+    },
+    {
+        "url": "https://niepid.nic.in/en/cross-disability-early-intervention-centres/",
+        "category": "child-disability",
+        "active": true
+    },
+    {
+        "url": "https://upnrhm.gov.in/Home/Rbsk",
+        "category": "child-disability",
+        "active": true
+    },
+    {
+        "url": "https://thenationaltrust.gov.in/content/innerpage/our-schemes-at-a-glance.php",
+        "category": "child-disability",
+        "active": true
+    },
+    {
+        "url": "https://thenationaltrust.gov.in/content/innerpage/faq.php",
+        "category": "child-disability",
+        "active": true
+    },
+    {
+        "url": "https://thenationaltrust.gov.in/content/innerpage/legal-guardianship.php",
+        "category": "legal-aid",
+        "active": true
+    },
+    {
+        "url": "https://depwd.gov.in/en/adip/",
+        "category": "central-schemes",
+        "active": true
+    },
+    {
+        "url": "https://adip.depwd.gov.in/files/ADIP_English.pdf",
+        "category": "central-schemes",
+        "active": true
+    },
+    {
+        "url": "https://scholarships.gov.in//public/schemeGuidelines/DEPDGuidelines.pdf",
+        "category": "scholarships",
+        "active": true
     }
-] 
+]

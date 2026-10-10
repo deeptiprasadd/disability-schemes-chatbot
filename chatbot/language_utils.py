@@ -1,3 +1,4 @@
+import time
 
 from deep_translator import GoogleTranslator
 from langdetect import detect, DetectorFactory
@@ -21,61 +22,96 @@ SUPPORTED_LANGUAGES = {
     "Urdu":      "ur"
 }
 
+# Each language's own name, so prompts can say "write in हिन्दी (Hindi)".
+NATIVE_NAMES = {
+    "en": "English", "hi": "हिन्दी", "ta": "தமிழ்", "te": "తెలుగు", "mr": "मराठी",
+    "bn": "বাংলা", "gu": "ગુજરાતી", "kn": "ಕನ್ನಡ", "ml": "മലയാളം", "pa": "ਪੰਜਾਬੀ",
+    "or": "ଓଡ଼ିଆ", "as": "অসমীয়া", "ur": "اردو",
+}
+_CODE_TO_NAME = {code: name for name, code in SUPPORTED_LANGUAGES.items()}
+
+# The free Google endpoint rejects requests over ~5000 characters and rate-limits
+# bursts. Either failure used to fall back SILENTLY to English, which is why a
+# long Hindi answer could arrive in English while the short follow-up chips were
+# translated fine.
+_MAX_CHARS = 4500
+
+
+def language_name(lang_code: str) -> str:
+    """'hi' -> 'Hindi'. Unknown codes -> 'English'."""
+    return _CODE_TO_NAME.get(lang_code or "en", "English")
+
+
+def _translate(text: str, source: str, target: str) -> str:
+    """Translate in paragraph-aligned chunks, retrying once on a transient failure."""
+    chunks, current = [], ""
+    for para in text.split("\n"):
+        if current and len(current) + len(para) + 1 > _MAX_CHARS:
+            chunks.append(current)
+            current = ""
+        current = f"{current}\n{para}" if current else para
+    chunks.append(current)
+
+    out = []
+    for chunk in chunks:
+        if not chunk.strip():
+            out.append(chunk)
+            continue
+        for attempt in range(2):
+            try:
+                out.append(GoogleTranslator(source=source, target=target).translate(chunk) or chunk)
+                break
+            except Exception:
+                if attempt:
+                    raise
+                time.sleep(1.5)  # "too many requests" clears after a moment
+    return "\n".join(out)
+
+
 def translate_to_english(text: str) -> tuple:
     """
     Translates any language text to English.
-    Returns (translated_text, detected_lang_code)
+    Returns (translated_text, True), or (text, False) when the service failed —
+    callers can then fall back to another translator instead of guessing.
     """
     try:
-        translator   = GoogleTranslator(source="auto", target="en")
-        translated   = translator.translate(text)
-        detected     = translator.source if hasattr(translator, "source") else "en"
-        return translated, detected or "en"
+        return _translate(text, "auto", "en"), True
     except Exception as e:
         print(f"Translation to English failed: {e}")
-        return text, "en"
+        return text, False
+
 
 def translate_to_language(text: str, lang_code: str) -> str:
     """
-    Translates English text back to user's language.
-    Returns original text if lang_code is 'en' or translation fails.
+    Translates English text to the user's language.
+    Returns the original text if lang_code is 'en' or translation fails.
     """
     if not lang_code or lang_code == "en":
         return text
     try:
-        return GoogleTranslator(source="en", target=lang_code).translate(text)
+        return _translate(text, "en", lang_code)
     except Exception as e:
         print(f"Translation to {lang_code} failed: {e}")
         return text
+
 
 def get_language_code(language_name: str) -> str:
     """Returns language code from display name. Defaults to 'en'."""
     return SUPPORTED_LANGUAGES.get(language_name, "en")
 
-def detect_language(text: str) -> str:
-    """
-    Detect the language of `text`, returning an ISO-639-1 code.
-    Only returns codes we support; anything else (or failure) falls back to 'en'.
-    """
-    try:
-        code = detect(text)
-        return code if code in SUPPORTED_LANGUAGES.values() else "en"
-    except Exception:
-        return "en"
-
 
 def detect_language(text: str) -> str:
     """
-    Best-effort ISO-639-1 language detection for typed text.
-
-    Used when the user leaves the language on "Auto-detect" and types (rather
-    than speaks). For voice, the language comes from Whisper instead, which is
-    more reliable. Falls back to 'en' on empty input or detection failure.
+    Best-effort ISO-639-1 detection for typed text, limited to the languages we
+    support; anything else (Hinglish often detects as e.g. 'id'), empty input,
+    or a detection failure returns 'en'. For voice the language comes from
+    Whisper instead, which is more reliable.
     """
     if not text or not text.strip():
         return "en"
     try:
         # langdetect can return region-tagged codes like 'zh-cn'; keep the base.
-        return detect(text).split("-")[0]
+        code = detect(text).split("-")[0]
     except Exception:
         return "en"
+    return code if code in _CODE_TO_NAME else "en"

@@ -22,11 +22,19 @@ if not _GROQ_KEY:
     # which made CI runs pass green while producing zero files.
     print("ERROR: GROQ_API_KEY is not set. Set it as an env var / GitHub secret.")
     sys.exit(1)
-client = Groq(api_key=_GROQ_KEY)
+# Generous retries: the free tier rate-limits (429) when several long pages are
+# formatted back to back, and the SDK backs off between attempts.
+client = Groq(api_key=_GROQ_KEY, max_retries=6)
 
 SOURCES_FILE = "knowledge-base/sources.json"
 HASHES_FILE  = "scripts/seen_hashes.json"
 HEADERS      = {"User-Agent": "Mozilla/5.0 (compatible; SchemeBot/1.0)"}
+
+# Long pages (scheme guideline PDFs run to 30-70k characters) are formatted in
+# parts. The old single 4,000-character cut saw under 10% of such documents, so
+# amounts and eligibility rules deeper in them never reached the knowledge base.
+WINDOW_CHARS = 10000   # text per LLM call
+MAX_WINDOWS  = 8       # per source, to bound token use (~80k characters)
 
 def load_json(path, default):
     if not os.path.exists(path):
@@ -63,10 +71,29 @@ def scrape(url):
         tag.decompose()
     return soup.get_text(separator="\n", strip=True)
 
-def convert_to_markdown(raw_text, url, category):
+def windows(text):
+    """Split text into WINDOW_CHARS-sized parts at line breaks, capped at MAX_WINDOWS."""
+    parts, current = [], ""
+    for line in text.splitlines():
+        if current and len(current) + len(line) + 1 > WINDOW_CHARS:
+            parts.append(current)
+            current = ""
+        current = f"{current}\n{line}" if current else line
+    if current.strip():
+        parts.append(current)
+    return parts[:MAX_WINDOWS]
+
+def convert_to_markdown(raw_text, url, category, part=(1, 1)):
     prompt = f"""
 You are a government welfare document formatter for India.
 Convert the scraped text below into structured Markdown.
+
+ACCURACY RULES (this text becomes the chatbot's only source of truth):
+- Use ONLY facts stated in the text. Never add anything from memory.
+- Copy amounts, percentages, age limits, income limits and eligibility rules EXACTLY as written.
+- If the text gives no information for a section, write "Not stated in the source."
+- scheme_name must ALWAYS be a real name from the text. For general rules that belong to no single
+  scheme, name the document instead, e.g. "Scholarship guidelines - general rules".
 
 For EACH disability scheme found, use this exact format:
 
@@ -105,15 +132,22 @@ Phone / email / portal link if available
 Repeat the above block for every scheme found on the page.
 If the text is a legal aid document, general rule, or court order, STILL FORMAT it as a single scheme summarizing the rights and instructions. Only reply NO_SCHEME_FOUND if the document is completely empty or an error page.
 
-Raw text (first 4000 characters):
-{raw_text[:4000]}
+Raw text (part {part[0]} of {part[1]} of this page):
+{raw_text}
 """
+    model = os.getenv("GROQ_SCRAPE_MODEL", "openai/gpt-oss-120b")
+    extra = {}
+    if "gpt-oss" in model:
+        # Reasoning model: keep its thinking short so it cannot use up the whole
+        # reply budget and return empty content.
+        extra = {"reasoning_effort": "low", "max_completion_tokens": 8192}
     resp = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model=model,
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.1
+        temperature=0.1,
+        **extra,
     )
-    return resp.choices[0].message.content.strip()
+    return (resp.choices[0].message.content or "").strip()
 
 import re
 
@@ -125,12 +159,15 @@ def slugify(text):
     slug = re.sub(r"-+", "-", slug)
     return slug[:50].strip("-")
 
-def run():
+def run(new_only=False):
     sources   = load_json(SOURCES_FILE, [])
     seen      = load_json(HASHES_FILE, {})
     new_files = []
 
     active    = [s for s in sources if s.get("active", True)]
+    if new_only:
+        # Only sources never scraped before, e.g. right after adding some to sources.json.
+        active = [s for s in active if s["url"] not in seen]
     fetched   = 0   # sources we successfully downloaded
     fetch_err = 0   # sources that failed to download (e.g. IP block / timeout)
 
@@ -157,26 +194,32 @@ def run():
             print("  No changes detected, skipping.")
             continue
 
-        seen[url] = content_hash
-
-        print("  Converting to markdown via LLM...")
+        parts = windows(raw)
+        print(f"  Converting to markdown via LLM ({len(parts)} part(s))...")
         try:
-            md = convert_to_markdown(raw, url, category)
+            mds = [convert_to_markdown(w, url, category, part=(k, len(parts)))
+                   for k, w in enumerate(parts, 1)]
         except Exception as e:
+            # Hash NOT recorded, so the page is retried on the next run instead
+            # of being skipped forever as "No changes detected".
             print(f"  ERROR in LLM call: {e}")
             continue
+        seen[url] = content_hash
 
-        if "NO_SCHEME_FOUND" in md:
+        mds = [m for m in mds if m and "NO_SCHEME_FOUND" not in m]
+        if not mds:
             print("  No disability schemes found on this page.")
             continue
 
-        blocks = [b.strip() for b in md.split("---NEXT SCHEME---") if b.strip()]
+        blocks = [b.strip() for m in mds for b in m.split("---NEXT SCHEME---") if b.strip()]
         print(f"  Found {len(blocks)} scheme(s).")
 
         for i, block in enumerate(blocks):
             name_lines = [l for l in block.splitlines() if "scheme_name:" in l]
             if name_lines:
                 raw_name  = name_lines[0].split(":", 1)[-1].strip().strip('"')
+                if raw_name.lower().startswith("not stated"):
+                    raw_name = f"{category} general rules"  # never name a file "not-stated-..." 
                 slug_name = slugify(raw_name) or f"scheme-{i+1}"
             else:
                 slug_name = f"scheme-{i+1}"
@@ -215,4 +258,4 @@ def run():
         sys.exit(1)
 
 if __name__ == "__main__":
-    run()
+    run(new_only="--new-only" in sys.argv)

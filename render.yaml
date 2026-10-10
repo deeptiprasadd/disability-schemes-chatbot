@@ -1,0 +1,17 @@
+# Render Blueprint: one click deploys the app on Render's free tier.
+# Render dashboard -> New -> Blueprint -> pick this GitHub repo.
+# Every push to main (including the monthly scraper's commits) redeploys it.
+services:
+  - type: web
+    name: disability-schemes-assistant
+    runtime: docker
+    plan: free
+    region: singapore          # closest Render region to India
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false            # you paste it in the dashboard; never stored in git
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-20b

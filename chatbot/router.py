@@ -25,9 +25,10 @@ unambiguous cases and as a fallback if the model call fails.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from enum import Enum
 
+from chatbot.directory import find_place
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
 
@@ -51,11 +52,12 @@ class Intent(str, Enum):
 HistoryMode = str  # "none" | "facts" | "full"
 
 # "narrow" = the default retriever (fewer, tightly-reranked chunks) — right for a
-# single scheme in depth. "broad" = a much wider retriever for requests that must
+# single scheme in depth. "medium" = top 6 instead of 3, for lookups/eligibility
+# that must weigh a few schemes against the user's situation. "broad" = a much wider retriever for requests that must
 # see MANY distinct schemes at once (list-all, compare) — see rag_pipeline.py,
 # where FlashrankRerank's default top_n=3 was silently capping every answer,
 # including "list all schemes", to three chunks regardless of what was asked.
-RetrievalDepth = str  # "narrow" | "broad"
+RetrievalDepth = str  # "narrow" | "medium" | "broad"
 
 
 @dataclass(frozen=True)
@@ -144,6 +146,10 @@ _EXPLAIN_INSTRUCTION = (
 _LOOKUP_INSTRUCTION = (
     "The user is asking which schemes or benefits are available.\n"
     "- Lead with a 1-2 sentence bottom line reflecting their stated situation.\n"
+    "- Name each SPECIFIC scheme from the reference material that fits them (e.g. "
+    "**NIRAMAYA Health Insurance Scheme**), each with its own benefit. A general "
+    "portal such as myScheme is a place to apply, not a scheme: mention it only "
+    "under where to go.\n"
     "- Then use the sectioned layout, including only the sections that apply:\n"
     "  `## 💰 Financial benefits`, `## ✅ Who can apply`, `## 📝 How to apply`,\n"
     "  `## 📄 Documents needed`, `## 📞 Where to go`.\n"
@@ -153,7 +159,12 @@ _LOOKUP_INSTRUCTION = (
 
 _ELIGIBILITY_INSTRUCTION = (
     "The user is asking whether someone QUALIFIES.\n"
-    "- Give the verdict first: likely eligible, not eligible, or depends on X.\n"
+    "- Give the verdict first, ONE LINE PER SCHEME: likely eligible, not eligible, or "
+    "depends on X, judged by THAT scheme's own rules (see FULL RULES). Never give one "
+    "overall verdict for schemes whose rules differ: if one pension needs age 18+ and "
+    "another allows ages 0-60, a child can still qualify for the second.\n"
+    "- If the answer depends on the user's state, say which scheme applies in which state "
+    "and ask which state they live in.\n"
     "- Then list only the criteria that decide it, marking which are met/unmet "
     "based on what the user has told you.\n"
     "- Ask for a missing detail only if it actually changes the answer, and only "
@@ -180,12 +191,12 @@ _GENERAL_INSTRUCTION = (
 
 ROUTES: dict[Intent, Route] = {
     #                            retrieval  history   instruction               retrieval_depth
-    Intent.SCHEME_LOOKUP:  Route(Intent.SCHEME_LOOKUP,  True,  "facts", _LOOKUP_INSTRUCTION),
+    Intent.SCHEME_LOOKUP:  Route(Intent.SCHEME_LOOKUP,  True,  "facts", _LOOKUP_INSTRUCTION,      "medium"),
     # These two must see MANY schemes at once, not the narrow top-3 default —
     # see RetrievalDepth above for why that default silently broke both.
     Intent.LIST_ALL:       Route(Intent.LIST_ALL,       True,  "facts", _LIST_ALL_INSTRUCTION, "broad"),
     Intent.COMPARE:        Route(Intent.COMPARE,        True,  "facts", _COMPARE_INSTRUCTION,  "broad"),
-    Intent.ELIGIBILITY:    Route(Intent.ELIGIBILITY,    True,  "facts", _ELIGIBILITY_INSTRUCTION),
+    Intent.ELIGIBILITY:    Route(Intent.ELIGIBILITY,    True,  "facts", _ELIGIBILITY_INSTRUCTION, "medium"),
     Intent.RESOURCE_LINK:  Route(Intent.RESOURCE_LINK,  True,  "none",  _LINK_INSTRUCTION),
     # Retrieval stays ON so names/portals are accurate, but the instruction makes
     # the document the output — this is the composite "link + write it" case.
@@ -283,7 +294,8 @@ STEPS - wants ONLY the step-by-step application procedure ("how to apply", "appl
 EXPLAIN - asking how something works, or what a term means (not the application process)
 SUMMARIZE - asking you to recap or summarise the conversation so far
 SMALL_TALK - greeting, thanks, or chit-chat
-GENERAL - anything else, including questions your scheme documents would not cover
+GENERAL - anything else that is NOT about disability support (schemes, schooling, health,
+          therapy, aids, money, certificates, care or rights for a person with a disability)
 
 If the message asks for BOTH a link and for you to write something, choose WRITE_DOCUMENT.
 
@@ -291,6 +303,8 @@ Examples:
 "Scholarships for a visually impaired college student?" -> SCHEME_LOOKUP
 "What help can I get for my autistic child?" -> SCHEME_LOOKUP
 "Health insurance schemes for a child with autism?" -> SCHEME_LOOKUP
+"Which school is best for my 13 year old disabled daughter?" -> SCHEME_LOOKUP
+"Where can my son with cerebral palsy get therapy?" -> SCHEME_LOOKUP
 "List down all the schemes" -> LIST_ALL
 "Show me every benefit available for locomotor disability" -> LIST_ALL
 "Which scheme is better for my daughter?" -> COMPARE
@@ -335,12 +349,61 @@ def _classify_llm(question: str, history: str) -> Intent | None:
     return None
 
 
+# --------------------------------------------------------------------------- children
+# Questions about a child need the WHOLE picture (school, health, money, aids,
+# care, rights), not one scheme — and must never skip the knowledge base, which
+# is what a "which school is best for my daughter?" turn did when it was
+# classified GENERAL.
+_CHILD_RE = re.compile(
+    r"\b(child|children|kid|kids|son|daughter|baby|infant|toddler|newborn|minor|teen\w*|"
+    r"boy|girl|school\w*|class\s*\d+|std\.?\s*\d+|grade\s*\d+|beta|beti|bachch?[aei])\b"
+    r"|\b(1[0-7]|[1-9])[\s-]*(years?|yrs?)[\s-]*old\b"
+    r"|बच्च|बेटा|बेटी|स्कूल|छात्र",
+    re.I,
+)
+
+_CHILD_INSTRUCTION = (
+    "\n\nTHE PERSON IS A CHILD. Parents need the whole picture. After answering the exact "
+    "question, cover EVERY area below that the reference material has information on, as one "
+    "short `###` section each, most relevant first:\n"
+    "  school and inclusive education (admission, special educators, home-based education, "
+    "exam concessions) · scholarships · health (screening, early intervention, therapy, "
+    "surgery, insurance) · aids and devices · money (allowances, pensions) · certificates "
+    "(disability certificate, UDID card) · day care, respite and residential care · legal "
+    "guardianship and rights.\n"
+    "- Write a section ONLY for areas the material actually covers. For any other area write "
+    "NOTHING: no heading, no 'No information available' line. Never fill an area from memory.\n"
+    "- If they asked for something the material does not have (for example a list of schools "
+    "in their town), say so in one line and name the office the material says handles it."
+)
+
+# Task types where the child overview helps. Narrow asks (a link, the steps, a
+# letter, a definition) still get only what was asked.
+_CHILD_INTENTS = {Intent.SCHEME_LOOKUP, Intent.ELIGIBILITY, Intent.LIST_ALL, Intent.GENERAL}
+
+
+def is_child_context(question: str, history: str = "") -> bool:
+    """True if the user (not the assistant's own past answers) is talking about a child."""
+    user_lines = "\n".join(l for l in (history or "").splitlines() if l.startswith("User:"))
+    return bool(_CHILD_RE.search(question or "") or _CHILD_RE.search(user_lines))
+
+
 def classify(question: str, history: str = "") -> Route:
     """
     Resolve a message to a Route. Order: deterministic fast path, then the LLM,
-    then a safe default of SCHEME_LOOKUP (the original behaviour).
+    then a safe default of SCHEME_LOOKUP (the original behaviour). Questions
+    about a child are widened: retrieval is forced on and made broad, and the
+    child overview instruction is added.
     """
     intent = _fast_path(question) or _classify_llm(question, history) or Intent.SCHEME_LOOKUP
+    # "Indore" on its own is the answer to "which district do you live in?", not small talk.
+    if intent in (Intent.SMALL_TALK, Intent.GENERAL) and len(question.split()) <= 6 and any(find_place(question)):
+        intent = Intent.SCHEME_LOOKUP
+    if intent in _CHILD_INTENTS and is_child_context(question, history):
+        if intent == Intent.GENERAL:
+            intent = Intent.SCHEME_LOOKUP
+        base = ROUTES[intent]
+        return replace(base, retrieval_depth="broad", instruction=base.instruction + _CHILD_INSTRUCTION)
     return ROUTES[intent]
 
 

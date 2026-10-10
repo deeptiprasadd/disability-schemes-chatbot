@@ -17,9 +17,9 @@ langchain-classic==1.0.3
 langchain-openai==1.1.12
 langchain-ollama==1.1.0
 langchain-groq>=1.0.0,<2.0.0
-langchain-huggingface==1.2.1
-sentence-transformers>=2.0.0
-torchvision>=0.16.0
+# Embeddings run as ONNX via fastembed: same vectors as sentence-transformers
+# without PyTorch, which keeps the server under 512 MB RAM (free hosting tiers).
+fastembed>=0.4
 faiss-cpu>=1.8.0
 tiktoken>=0.7.0
 rank_bm25>=0.2.2

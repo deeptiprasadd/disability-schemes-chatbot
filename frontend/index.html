@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Disability Schemes Assistant</title>
   <meta name="description"
         content="Government welfare schemes for persons with disabilities in India — ask by text or voice, in any Indian language." />
-  <!-- Inline emoji favicon: avoids the /favicon.ico 404 without an extra request -->
+  <meta name="theme-color" content="#0F6E56" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0F1513" media="(prefers-color-scheme: dark)" />
+  <!-- Inline favicon: avoids the /favicon.ico 404 without an extra request -->
   <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%E2%99%BF</text></svg>" />
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230F6E56'/><circle cx='16' cy='9' r='2.4' fill='white'/><path d='M12 14l4 1.4 4-1.4M16 15.4v3.4l-3 4.6M16 18.8l3 4.6' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  <!-- Installable app (PWA): home-screen icon, standalone window, offline shell -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Schemes Help" />
   <link rel="stylesheet" href="/style.css" />
   <!-- Markdown rendering + code highlighting (production CDN; can be vendored) -->
   <link rel="stylesheet"
@@ -19,75 +26,183 @@
 </head>
 <body>
   <!-- Skip link for keyboard / screen-reader users -->
-  <a class="skip-link" href="#composer">Skip to message box</a>
+  <a class="skip-link" href="#input">Skip to message box</a>
 
-  <div class="layout">
-    <!-- ------------------------------------------------ Sidebar -->
-    <aside class="sidebar" id="sidebar" aria-label="Conversations and settings">
-      <div class="sidebar-head">
-        <span class="brand">♿ Schemes Assistant</span>
-        <button id="new-chat" class="btn-primary" type="button">＋ New chat</button>
+  <div class="app">
+    <!-- ================================================ Top bar -->
+    <header class="topbar">
+      <button id="menu-toggle" class="icon-btn only-drawer" type="button"
+              aria-label="Open chats and settings" aria-controls="sidebar" aria-expanded="false">
+        <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-menu-2"/></svg>
+      </button>
+
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"><svg class="icon"><use href="/icons.svg#i-accessible"/></svg></span>
+        <span class="brand-text">
+          <h1 class="brand-name">
+            <span class="long">Disability Schemes Assistant</span>
+            <span class="short">Schemes Assistant</span>
+          </h1>
+          <span class="brand-tag">Official sources · 13 Indian languages</span>
+        </span>
       </div>
 
-      <nav class="conversations" aria-label="Conversation history">
-        <h2 class="side-title">Conversations</h2>
+      <div class="topbar-tools">
+        <button id="install-btn" class="tool-btn" type="button" hidden>
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-download"/></svg>
+          <span class="tool-label">Install app</span>
+        </button>
+        <button id="text-size" class="tool-btn" type="button" aria-label="Text size: normal">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-text-size"/></svg>
+          <span class="tool-label">Text size</span>
+        </button>
+        <button id="contrast-toggle" class="tool-btn" type="button" aria-pressed="false">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-contrast"/></svg>
+          <span class="tool-label">High contrast</span>
+        </button>
+        <button id="tts-toggle" class="tool-btn" type="button" aria-pressed="true">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-volume"/></svg>
+          <span class="tool-label">Speak answers</span>
+        </button>
+        <button id="new-chat-top" class="icon-btn only-drawer" type="button" aria-label="New chat">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg>
+        </button>
+        <button id="panel-toggle" class="matches-btn only-sheet" type="button"
+                aria-controls="insights" aria-expanded="false">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-list-details"/></svg>
+          <span>Matches</span>
+          <span id="match-badge" class="badge" hidden>0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ================================================ History + settings -->
+    <aside class="history" id="sidebar" aria-label="Chats and settings">
+      <div class="history-head">
+        <button id="new-chat" class="btn-primary" type="button">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg>New chat
+        </button>
+        <button id="sidebar-close" class="icon-btn only-drawer" type="button" aria-label="Close chats and settings">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-x"/></svg>
+        </button>
+      </div>
+
+      <nav class="conversations" aria-labelledby="recent-title">
+        <h2 class="side-title" id="recent-title">Recent chats</h2>
         <ul id="conversation-list" role="list"></ul>
       </nav>
 
       <div class="settings">
         <h2 class="side-title">Settings</h2>
-
-        <label for="lang-select">Response language</label>
+        <label for="lang-select">Answer language</label>
         <select id="lang-select" aria-describedby="lang-help">
-          <option value="auto" selected>🌐 Auto-detect (recommended)</option>
+          <option value="auto" selected>Auto-detect (recommended)</option>
         </select>
-        <p id="lang-help" class="hint">Detected from your voice or text unless you force one.</p>
-
-        <label class="switch">
-          <input type="checkbox" id="tts-toggle" checked />
-          <span>🔊 Speak answers aloud</span>
-        </label>
-
-        <label for="doc-upload" class="upload-label">📎 Ask about a document</label>
-        <input type="file" id="doc-upload" accept=".pdf,.txt,.md"
-               aria-describedby="doc-status" />
-        <p id="doc-status" class="hint" aria-live="polite"></p>
+        <p id="lang-help" class="hint">Detected from your voice or text unless you choose one.</p>
+        <p class="hint privacy-note">Your chats are saved only in this browser, on this device.</p>
       </div>
     </aside>
 
-    <!-- ------------------------------------------------ Main -->
+    <!-- ================================================ Chat -->
     <main class="main">
-      <header class="topbar">
-        <button id="menu-toggle" class="icon-btn" type="button"
-                aria-label="Toggle sidebar" aria-expanded="true">☰</button>
-        <h1>Disability Schemes Assistant</h1>
-      </header>
-
-      <!-- Chat transcript -->
       <section id="chat" class="chat" role="log" aria-live="polite" aria-label="Conversation">
-        <div id="empty-state" class="empty-state">
-          <div class="empty-emoji" aria-hidden="true">♿</div>
-          <h2>How can I help?</h2>
-          <p>Ask about pensions, scholarships, the UDID card, aids &amp; appliances,
-             or any government scheme for persons with disabilities — by text or voice,
-             in any Indian language.</p>
-          <div class="suggestions" id="suggestions"></div>
+        <div id="empty-state" class="home">
+          <div class="home-hero">
+            <h2 class="home-title">Namaste</h2>
+            <p class="home-sub">How can I help you today?</p>
+            <p class="home-lede">Ask about pensions, scholarships, the UDID card, aids and devices,
+               or any government scheme for persons with disabilities. Type or speak in any Indian language.</p>
+          </div>
+
+          <div class="lang-chips" id="lang-chips" role="group" aria-label="Answer language"></div>
+
+          <div class="topics" id="topics" role="group" aria-label="Popular topics"></div>
+
+          <div class="home-mic">
+            <button id="home-mic" class="big-mic" type="button" aria-pressed="false"
+                    aria-label="Ask by voice">
+              <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-microphone"/></svg>
+            </button>
+            <span class="big-mic-label" aria-hidden="true">Tap and speak</span>
+          </div>
+
+          <div class="examples" id="suggestions" role="group" aria-label="Example questions"></div>
+
+          <p class="home-note">Independent student project, not a government website. Answers come from
+             official government sources; confirm on the official portal before applying.
+             Your chats stay in this browser.</p>
         </div>
       </section>
 
       <!-- Composer -->
-      <form id="composer" class="composer" aria-label="Send a message">
-        <button id="mic-btn" class="mic-btn" type="button"
-                aria-label="Record a voice question" aria-pressed="false">
-          <span class="mic-icon" aria-hidden="true">🎤</span>
-        </button>
-        <textarea id="input" rows="1" autocomplete="off"
-                  placeholder="Ask about pensions, scholarships, UDID, aids & appliances…"
-                  aria-label="Message"></textarea>
-        <button id="send-btn" class="send-btn" type="submit" aria-label="Send message">➤</button>
-      </form>
-      <p id="status-line" class="status-line" aria-live="polite"></p>
+      <div class="composer-wrap">
+        <div id="doc-chip" class="doc-chip" hidden>
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-file-text"/></svg>
+          <span id="doc-name"></span>
+          <button id="doc-remove" class="icon-btn sm" type="button" aria-label="Stop using this document">
+            <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-x"/></svg>
+          </button>
+        </div>
+        <form id="composer" class="composer" aria-label="Send a message">
+          <input type="file" id="doc-upload" class="sr-only" accept=".pdf,.txt,.md"
+                 aria-label="Ask about a document (PDF or text)" />
+          <label class="icon-btn attach" for="doc-upload" title="Ask about a document (PDF or text)" aria-hidden="true">
+            <svg class="icon"><use href="/icons.svg#i-paperclip"/></svg>
+          </label>
+          <textarea id="input" rows="1" autocomplete="off"
+                    placeholder="Ask about any scheme…"
+                    aria-label="Message"></textarea>
+          <button id="mic-btn" class="mic-btn" type="button"
+                  aria-label="Ask by voice" aria-pressed="false">
+            <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-microphone"/></svg>
+          </button>
+          <button id="send-btn" class="send-btn" type="submit" aria-label="Send message">
+            <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-send"/></svg>
+          </button>
+        </form>
+        <p id="status-line" class="status-line" aria-live="polite"></p>
+      </div>
     </main>
+
+    <!-- ================================================ Profile + matched schemes -->
+    <aside class="insights" id="insights" aria-labelledby="insights-title">
+      <div class="sheet-grip only-sheet" aria-hidden="true"></div>
+      <div class="panel-head">
+        <h2 id="insights-title">Your matches</h2>
+        <button id="panel-close" class="icon-btn only-sheet" type="button" aria-label="Close matches">
+          <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-x"/></svg>
+        </button>
+      </div>
+
+      <section class="panel-sec" aria-labelledby="profile-title">
+        <h3 class="sec-title" id="profile-title">Your profile</h3>
+        <ul id="profile-chips" class="profile" role="list"></ul>
+        <p id="profile-empty" class="hint">Tell me your state, age, type of disability and family income.
+           I'll check which schemes you qualify for.</p>
+      </section>
+
+      <section class="panel-sec" aria-labelledby="schemes-title">
+        <h3 class="sec-title" id="schemes-title">Matched schemes</h3>
+        <div id="schemes-loading" class="loading" hidden>
+          <span class="skeleton"></span><span class="skeleton"></span>
+          <span class="sr-only">Checking schemes…</span>
+        </div>
+        <ul id="scheme-list" class="schemes" role="list" aria-live="polite"></ul>
+        <p id="schemes-empty" class="hint">Matching schemes will appear here as we talk.</p>
+      </section>
+
+      <section class="panel-sec" aria-labelledby="sources-title" id="sources-sec" hidden>
+        <h3 class="sec-title" id="sources-title">Sources used</h3>
+        <ul id="source-list" class="source-list" role="list"></ul>
+      </section>
+
+      <p class="panel-note">
+        <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-alert-circle"/></svg>
+        Eligibility is a guide based on what you've shared. Confirm on the official portal before applying.
+      </p>
+    </aside>
+
+    <div id="scrim" class="scrim" hidden></div>
   </div>
 </body>
 </html>

@@ -17,7 +17,7 @@ flowchart LR
     Sources[sources.json] --> ScrapeAgent[scrape_schemes.py]
     ScrapeAgent -->|Extracts Text & PDFs| HashCheck{Has MD5 changed?}
     HashCheck -->|No| Skip[Skip URL]
-    HashCheck -->|Yes| LLM[LLM Formatting Agent: Llama-3.3-70b]
+    HashCheck -->|Yes| LLM[LLM Formatting Agent: GPT-OSS 120B]
     LLM --> Write[Save to knowledge-base/]
     Write --> IndexAgent[embed_docs.py]
     IndexAgent -->|Recursive Text Splitter| Embed[Sentence Transformer Model]
@@ -36,7 +36,10 @@ This agent handles web scraping and structures unstructured government documents
 * It calculates the MD5 hash of the raw text and checks it against [seen_hashes.json](file:///c:/Users/Deepti%20Prasad/Desktop/disability-schemes-chatbot/scripts/seen_hashes.json). If the hash matches, it skips the URL to save API tokens.
 
 ### 2. LLM Structuring Phase
-* If changes are detected, the agent sends the raw text to `llama-3.3-70b-versatile` on Groq.
+* If changes are detected, the agent sends the raw text to `openai/gpt-oss-120b` on Groq (override with `GROQ_SCRAPE_MODEL`).
+* Long pages are processed in **10,000-character parts** (up to 8 per source). The old single 4,000-character cut saw under 10% of a scheme guideline PDF, so amounts and eligibility rules deeper in the document never reached the knowledge base.
+* The prompt carries **accuracy rules**: use only facts in the text, copy amounts and eligibility rules exactly, and write "Not stated in the source." rather than filling a gap.
+* `python scripts/scrape_schemes.py --new-only` scrapes only sources that have never been scraped (for example, right after adding some to `sources.json`).
 * The LLM acts as an agent to extract scheme details and format them into structured Markdown containing:
   - **YAML Frontmatter Parameters**: `scheme_name`, `ministry`, `category`, `disability_types`, `last_updated`, and `source_url`.
   - **Standard Headers**: `## Overview`, `## Benefits`, `## Eligibility criteria`, `## Required documents`, `## How to apply`, and `## Contact`.
@@ -45,7 +48,18 @@ This agent handles web scraping and structures unstructured government documents
 ### 3. File System Storage
 * The scheme name is converted into an alphanumeric URL-friendly slug.
 * Files are saved to `knowledge-base/<category>/<slug>-<date>.md`. If a filename collision occurs, it appends a counter (`_1`, `_2`) to prevent overwriting existing data.
-* The script updates `seen_hashes.json` with the new MD5 hash.
+* The script updates `seen_hashes.json` with the new MD5 hash **only after the LLM step succeeds**. Recording it first meant a page whose LLM call failed was skipped forever as "No changes detected".
+
+---
+
+## 🏫 Directory Agent: `fetch_directory.py`
+
+The knowledge base describes **schemes**; it cannot name a school. This script builds `knowledge-base/directory/centres.json` from official lists of actual organisations:
+
+* **National Trust Registered Organisations** (~450, all states, by district): name, address, contact, and which National Trust schemes each runs (Disha early intervention, Vikaas day care, Samarth respite care, Gharaunda group homes, Niramaya enrolment). They serve autism, cerebral palsy, intellectual disability and multiple disabilities.
+* **DEPwD National Institutes and Composite Regional Centres**: national and regional centres for every disability type, with websites. Their state names are normalised (DEPwD writes "A.P.", "Chattisgarh" or nothing).
+
+The site pages its list 10 at a time and, past the end, keeps returning the last page rather than an empty one, so the script stops on a short page. It waits 1 second between pages. `chatbot/directory.py` looks entries up by the district or state named in the conversation. `update_all.py` refreshes the file after scraping and embedding; a failure there is not fatal.
 
 ---
 

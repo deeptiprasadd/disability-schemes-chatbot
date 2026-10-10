@@ -30,13 +30,12 @@ sequenceDiagram
         API-->>UI: Transcript + language code
     end
     UI->>API: POST /api/chat (message, history, lang, doc_text)
-    API->>Trans: translate_to_english()
-    API->>RAG: ask_stream()
-    loop Streaming
+    API->>Trans: to_english() (question only, for retrieval)
+    API->>RAG: ask_stream(reply_lang)
+    loop Streaming (already in the user's language)
         RAG-->>API: token
         API-->>UI: SSE {type:"token"}
     end
-    API->>Trans: translate_to_language()
     API-->>UI: SSE {type:"final", answer, sources, lang}
     UI->>API: POST /api/followups
     API-->>UI: 3-5 contextual questions
@@ -55,6 +54,7 @@ sequenceDiagram
 | `/api/health` | GET | Liveness probe; returns the supported-language map used to populate the UI dropdown. |
 | `/api/chat` | POST | Streams the answer as Server-Sent Events. |
 | `/api/followups` | POST | Returns 3–5 contextual follow-up questions for the latest turn. |
+| `/api/insights` | POST | Returns the user's stated profile and matched schemes (eligible / check / not eligible) for the side panel. |
 | `/api/transcribe` | POST | Multipart audio → `{text, lang}` via Whisper. |
 | `/api/tts` | POST | `{text, lang}` → `audio/mpeg`. Returns **204** when the language has no voice. |
 | `/api/upload` | POST | PDF/TXT/MD → extracted plain text for document Q&A. |
@@ -62,18 +62,18 @@ sequenceDiagram
 
 ### Streaming contract (`/api/chat`)
 
-The English generation is streamed token-by-token for a live typing effect, then a single `final` event carries the translated answer and metadata:
+The answer is generated **directly in the user's language** and streamed token-by-token, then a single `final` event carries the link-checked answer and metadata:
 
 ```jsonc
 {"type": "token", "text": "..."}          // repeated
 {"type": "final",
- "answer": "...",             // translated into the user's language
- "english": "...",            // English original (fed to follow-up generation)
- "english_question": "...",   // English question (fed to follow-up generation)
+ "answer": "...",             // in the user's language
+ "english_question": "...",   // English question (used for routing, retrieval and the matches panel)
  "sources": ["scheme.md"],
+ "source_links": [{"name": "State Disability Pension", "url": "https://..."}],  // from KB front matter
  "lang": "hi",
  "tts_available": true}
-{"type": "error", "message": "..."}       // on failure
+{"type": "error", "code": "rate_limit", "message": "..."}  // plain-language message; detail in the server log
 ```
 
 Static files are mounted **last** so `/api/*` routes take precedence over the catch-all mount.
@@ -84,13 +84,29 @@ Static files are mounted **last** so `/api/*` routes take precedence over the ca
 
 Plain ES2020 — no framework, no bundler, no build step.
 
+### Layout
+
+One responsive page, no separate mobile app:
+
+| Width | Layout |
+|---|---|
+| ≥ 1280px | Chat history · conversation · **Your matches** panel (profile + matched schemes + sources) |
+| 1024–1279px | Conversation · matches panel; chat history moves into a drawer |
+| < 1024px | Conversation only; matches open as a drawer (tablet) or bottom sheet (phone) |
+
+Phones get a voice-first home screen (topic tiles, language chips, a large mic button) and a 17px base font. Icons are an SVG sprite (`frontend/icons.svg`, Tabler Icons, MIT).
+
+### Matched schemes (`chatbot/insights.py`)
+
+After each answer that used retrieval, the client calls `/api/insights`. One LLM call extracts the facts the user has *stated* (state, age, disability, %, income, occupation) and judges up to 4 retrieved schemes against their Benefits/Eligibility sections. Scheme names and links come from the knowledge-base front matter, never the model, so the panel cannot invent a scheme or URL. Unknown criteria produce **Check details** rather than a guess.
+
 ### Key capabilities
 
 1. **Streaming rendering** — `readSSE()` parses the SSE body from `fetch`, re-rendering Markdown on each token. A three-dot typing indicator shows before the first token arrives.
 2. **Conversation management** — multiple conversations persist in `localStorage`, auto-titled from the first message. Audio blobs are stripped before persisting (they are not serialisable).
 3. **Follow-up chips** — after each answer, `loadFollowups()` fetches contextual questions and renders them as clickable pills. Chips belong to the **latest turn only**: they are cleared when a new message is sent, so suggestions always reflect the current topic.
 4. **Voice input** — the `MediaRecorder` API records WebM audio and posts it to `/api/transcribe`. The detected language is then forced as the reply language for that turn.
-5. **Voice output** — the **raw Markdown** is posted to `/api/tts`; the server normalises it. Playback uses a native `<audio controls>` element, which is keyboard- and screen-reader-accessible for free (play/pause/seek/replay).
+5. **Voice output** — the **raw Markdown** is posted to `/api/tts`; the server normalises it. Each answer has a **Listen / Stop** button (`aria-pressed`); with *Speak answers* on, the latest answer plays automatically.
 6. **Document Q&A** — an uploaded file is extracted server-side and attached to subsequent questions as `doc_text`.
 7. **Markdown + code** — rendered with `marked`, highlighted with `highlight.js` (CDN; can be vendored for offline use).
 
@@ -104,7 +120,8 @@ The LLM is instructed to emit structured Markdown, which the stylesheet renders 
 - `aria-label` on every icon control; `aria-pressed` on the mic; `aria-current` on the active conversation.
 - Visible `:focus-visible` outlines throughout; full keyboard operation (Enter sends, Shift+Enter newlines).
 - `prefers-reduced-motion` disables all animation.
-- `prefers-color-scheme` light/dark themes; responsive down to mobile with a collapsible sidebar.
+- `prefers-color-scheme` light/dark themes, plus a **High contrast** toggle (pure black/white) and a three-step **Text size** control, both remembered per browser.
+- Drawers and the bottom sheet close with Escape and return focus to the control that opened them.
 
 ---
 
@@ -131,8 +148,20 @@ English (`en`), Hindi (`hi`), Tamil (`ta`), Telugu (`te`), Marathi (`mr`), Benga
 
 ### Functions
 
-- **`translate_to_english(text) -> (translated, detected_code)`** — normalises input to English for retrieval quality. Falls back to the original text on failure.
-- **`translate_to_language(text, lang_code) -> str`** — translates the answer back. Returns the input unchanged for `en`/`None`/errors.
+### How answers reach the user's language
+
+Answers, follow-up chips and the matches panel are **written by the LLM directly in the user's language** (`_language_instruction()` in `rag_pipeline.py`). The earlier design generated English and machine-translated it; the free Google endpoint rejects texts over ~5,000 characters and rate-limits bursts, and every failure silently fell back to English. That is why a long Hindi answer could arrive in English while the short follow-up chips were translated fine.
+
+Machine translation now has two narrow jobs:
+- **The question → English**, because the embeddings are English-only. `to_english()` tries Google first and falls back to the LLM if Google fails.
+- **A safety net**: if the model still answers in English when another language was wanted, the answer is translated (`translate_to_language()`, which now splits long text into chunks and retries once).
+
+**Hinglish** ("mujhe pension chahiye") detects as English, so `is_romanized()` spots text that changed substantially in translation, and the model is shown the user's original words and asked to reply in the same style.
+
+### Functions
+
+- **`translate_to_english(text) -> (translated, ok)`** — returns `ok=False` when the service failed, so callers can fall back.
+- **`translate_to_language(text, lang_code) -> str`** — chunked, with one retry. Returns the input unchanged for `en`/`None`/errors.
 - **`detect_language(text) -> str`** — `langdetect` with a fixed seed for deterministic results. Returns only supported codes, else `"en"`. Used for typed input when the language selector is on **Auto-detect**.
 - **`get_language_code(name) -> str`** — display name → ISO code.
 

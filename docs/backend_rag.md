@@ -29,10 +29,10 @@ flowchart TD
 
 | Intent | Retrieves? | Depth | History | Behaviour |
 |---|---|---|---|---|
-| `SCHEME_LOOKUP` | ✅ | narrow | facts | Full sectioned layout (💰 / ✅ / 📝 / 📄 / 📞) for the best-fit few schemes |
+| `SCHEME_LOOKUP` | ✅ | medium | facts | Full sectioned layout (💰 / ✅ / 📝 / 📄 / 📞) for the best-fit few schemes |
 | `LIST_ALL` | ✅ | **broad** | facts | Numbered, categorized enumeration of every distinct scheme found — no per-scheme sections |
 | `COMPARE` | ✅ | **broad** | facts | Markdown comparison table across schemes, then a reasoned recommendation |
-| `ELIGIBILITY` | ✅ | narrow | facts | Verdict first, then the deciding criteria |
+| `ELIGIBILITY` | ✅ | medium | facts | Verdict first, then the deciding criteria |
 | `RESOURCE_LINK` | ✅ | narrow | none | Link first, no headings, **never invents a URL** |
 | `WRITE_DOCUMENT` | ✅ | narrow | facts | Outputs the **actual letter/application** with placeholders |
 | `STEPS` | ✅ | narrow | none | Only the numbered application procedure — no scheme description |
@@ -46,6 +46,18 @@ A presentation request — *"put this in a table"*, *"as a checklist"* — is no
 ### Why LIST_ALL and COMPARE needed a second retriever, not just a new prompt
 
 `FlashrankRerank()` defaults to `top_n=3`. Every request — regardless of intent — was silently capped to 3 reranked chunks, often from the same one or two schemes. That's invisible for a single-scheme question but structurally breaks *"list all schemes"* or *"compare X and Y"*: the model can never see more than 3 fragments no matter what instruction it's given. `load_pipeline()` now builds a second, wider pipeline (`k=20` per retriever instead of 10, `FlashrankRerank(top_n=15)` instead of the default 3) stored as `retriever_broad`; `Route.retrieval_depth` picks which one `_build_prompt_inputs` uses. Confirmed live: the same query returns 3 docs on the narrow retriever and 15 on the broad one.
+
+A third depth, `retriever_medium` (`top_n=6` over the narrow candidates), serves `SCHEME_LOOKUP` and `ELIGIBILITY`. With only 3 chunks, *"my child cannot study"* got three scholarship chunks (the word "study" ranks them first) and never saw the pension, health or care schemes it needed. Before retrieval, `_expand_query()` also appends the official term for everyday wording ("mentally disabled" → *intellectual disability*, "spastic" → *cerebral palsy*), because the scheme documents only use the official terms.
+
+**Questions about a child.** `is_child_context()` in `router.py` spots a child in the user's own words (child, son, daughter, school, "13 years old", बच्चा, बेटी, …; the assistant's past answers are ignored). For lookup, eligibility, list-all and general questions it then (1) turns GENERAL into SCHEME_LOOKUP, so the knowledge base is never skipped (*"which school is best for my disabled daughter?"* used to be answered from nothing); (2) uses the **broad** retriever; and (3) adds an instruction to cover every area a parent needs that the sources mention (school and exams, scholarships, health and early intervention, aids, money, certificates/UDID, care, guardianship and rights), skipping any area the sources are silent on. Narrow asks (a link, the steps, a letter) still get only what was asked.
+
+**Scheme-labelled chunks and full rules.** Several knowledge-base files hold more than one scheme, and a 500-character chunk rarely names its scheme. So retrieval could not match *"health insurance for my child"* to NIRAMAYA's chunks, and the model mixed rules between schemes (it gave the Delhi pension, open to ages 0–60, the UP pension's "above 18" rule). Two fixes:
+- `embed_docs.py` prefixes every chunk with the scheme it belongs to, e.g. `[Scheme: NIRAMAYA Health Insurance Scheme | For: autism, cerebral palsy, …]`, and stores `scheme_name` in its metadata.
+- `kb_utils.scheme_rules_block()` appends each retrieved scheme's **complete** Benefits and Eligibility sections (up to 6 schemes) to the context, and the prompt says a rule belongs only to the scheme it is labelled with. The eligibility instruction now gives one verdict **per scheme**.
+
+**Finding actual schools and centres (`chatbot/directory.py`).** The knowledge base describes schemes, so *"which schools are best for my child in my area?"* had nothing to name. `scripts/fetch_directory.py` builds `knowledge-base/directory/centres.json` from official lists: the National Trust's ~450 Registered Organisations (district-level NGOs running special schools, early intervention, day care and respite care for autism, cerebral palsy, intellectual disability and multiple disabilities) plus DEPwD's National Institutes and Composite Regional Centres. For a question about finding a school or centre, `directory_block()` matches the district or state named in the conversation and puts those organisations (address, contact, which schemes they run) into the prompt, with a rule to name only listed organisations. If the place is missing or unknown, the bot asks for the district and suggests close matches. A short reply that is just a district name ("Indore") is routed as a lookup, not small talk. `update_all.py` refreshes the directory.
+
+`kb_utils.drop_empty_sections()` removes sections whose whole body says "no information available" (English, Hindi and Hinglish phrasings), which the model writes despite being told to skip them.
 
 ### Classification strategy
 1. **Deterministic fast path** — unambiguous regexes (greetings, recap, "write an application", "list all schemes", "compare X and Y", "how do I apply", bare link requests). Zero latency. Ordered so writing dominates a bare "link" mention (the composite *"link + write it"* case), and compare/list-all are checked before the generic link regex so an incidental "portal" mention in a compare question doesn't misroute it.
@@ -189,11 +201,13 @@ Because generation is exposed on its own endpoint (`/api/followups`) rather than
 
 | `LLM_PROVIDER` | Backend | Relevant variables |
 |---|---|---|
-| `groq` *(default)* | Groq cloud | `GROQ_API_KEY`, `GROQ_MODEL` |
+| `groq` *(default)* | Groq cloud (`openai/gpt-oss-20b` by default) | `GROQ_API_KEY`, `GROQ_MODEL`, `GROQ_REASONING_EFFORT` |
 | `ollama` | **Local** model, no external network | `OLLAMA_MODEL`, `OLLAMA_BASE_URL` |
 | `openai` | Any OpenAI-compatible endpoint | `OPENAI_API_KEY`, `OPENAI_MODEL`, `OPENAI_BASE_URL` |
 
 Provider modules are imported lazily, so unused SDKs are never required at startup.
+
+**Reasoning models.** `gpt-oss` thinks before it answers, and that thinking counts against the reply's token budget. At the default effort it sometimes used the whole budget thinking and returned an **empty** answer (`finish_reason="length"`), so `make_llm()` sets `reasoning_effort="low"` (override with `GROQ_REASONING_EFFORT`) and `max_tokens=4096` for any `gpt-oss` model.
 
 ### Troubleshooting: `403 — Access denied. Please check your network settings`
 
@@ -216,7 +230,7 @@ LLM_PROVIDER=ollama
 | Function | Purpose |
 |---|---|
 | `classify(question, history)` *(router.py)* | Resolves a message to a `Route`. |
-| `load_pipeline()` | Selects CUDA/CPU, loads FAISS, builds BM25 + ensemble + reranker, and returns the cached component set. |
+| `load_pipeline()` | Loads FAISS, builds BM25 + ensemble + one shared reranker, and returns the cached component set. |
 | `route_for(question, chat_history)` | Public helper so the API can classify once and reuse the result. |
 | `_build_prompt_inputs(...)` | Assembles context and history **conditionally**, per the route. |
 | `ask(question, chat_history, extra_context)` | Blocking call returning `{"answer", "sources", "intent"}`. |
@@ -232,7 +246,7 @@ LLM_PROVIDER=ollama
 ## ⚡ Performance notes
 
 - The pipeline is built **once** and cached in module globals; only the first request pays the load cost.
-- Embeddings run on **CUDA** when available, falling back to CPU automatically.
+- Embeddings run on CPU as **ONNX via fastembed** (`chatbot/embeddings.py`): the same vectors as sentence-transformers (cosine 1.00000 in testing) without PyTorch. That cut the server from ~1.5 GB to ~400 MB of RAM, so it fits free 512 MB hosting. `langchain_core` imports `transformers` (and with it PyTorch) only if installed, so `requirements.txt` deliberately leaves them out.
 - Conversation history fed to the prompt is capped at the **last 8 turns** to bound token usage.
 - Uploaded document context is truncated to **6,000 characters**.
 - Follow-up generation is a separate request, keeping it off the answer's critical path.
