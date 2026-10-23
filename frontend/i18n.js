@@ -18,7 +18,8 @@ const STRINGS = {
   en: {
     skip: "Skip to message box",
     openMenu: "Open chats and settings",
-    brandTag: "Government schemes made simple · 13 Indian languages",
+    pageTitle: "Sneh Saathi · Help for persons with disabilities",
+    brandTag: "Help for persons with disabilities · 13 Indian languages",
     install: "Install app",
     textSize: "Text size",
     textSizeAria: "Text size: {size}",
@@ -38,8 +39,8 @@ const STRINGS = {
     composerAria: "Send a message",
     privacy: "Your chats are saved only in this browser, on this device.",
     greeting: "Namaste",
-    homeSub: "How can I help you today?",
-    homeLede: "Ask about pensions, scholarships, the UDID card, aids and devices, schools, or any government scheme for persons with disabilities. Type or speak in any Indian language.",
+    homeSub: "Government help for persons with disabilities and their families.",
+    homeLede: "Pensions, scholarships, the UDID card, aids and devices, schools and more. Type or speak in any Indian language.",
     topicsAria: "Popular topics",
     askByVoice: "Ask by voice",
     tapAndSpeak: "Tap and speak",
@@ -126,7 +127,8 @@ const STRINGS = {
   hi: {
     skip: "संदेश लिखने की जगह पर जाएँ",
     openMenu: "बातचीत और सेटिंग खोलें",
-    brandTag: "सरकारी योजनाएँ, आसान भाषा में · 13 भारतीय भाषाएँ",
+    pageTitle: "स्नेह साथी · दिव्यांगजनों के लिए मदद",
+    brandTag: "दिव्यांगजनों के लिए मदद · 13 भारतीय भाषाएँ",
     install: "ऐप इंस्टॉल करें",
     textSize: "अक्षर का आकार",
     textSizeAria: "अक्षर का आकार: {size}",
@@ -146,8 +148,8 @@ const STRINGS = {
     composerAria: "संदेश भेजें",
     privacy: "आपकी बातचीत सिर्फ़ इसी ब्राउज़र में, इसी डिवाइस पर सहेजी जाती है।",
     greeting: "नमस्ते",
-    homeSub: "आज मैं आपकी क्या मदद करूँ?",
-    homeLede: "पेंशन, छात्रवृत्ति, UDID कार्ड, उपकरण, स्कूल या दिव्यांगजनों की किसी भी सरकारी योजना के बारे में पूछें। किसी भी भारतीय भाषा में लिखें या बोलें।",
+    homeSub: "दिव्यांगजनों और उनके परिवारों के लिए सरकारी मदद।",
+    homeLede: "पेंशन, छात्रवृत्ति, UDID कार्ड, उपकरण, स्कूल और बहुत कुछ। किसी भी भारतीय भाषा में लिखें या बोलें।",
     topicsAria: "मुख्य विषय",
     askByVoice: "बोलकर पूछें",
     tapAndSpeak: "बोलकर पूछें",
@@ -265,6 +267,7 @@ function t(key, vars = {}) {
 function translatePage(root = document) {
   document.documentElement.lang = UI_LANG;
   document.documentElement.dir = RTL_LANGS.has(UI_LANG) ? "rtl" : "ltr";
+  document.title = t("pageTitle");
   root.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
   root.querySelectorAll("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
   root.querySelectorAll("[data-i18n-aria]").forEach((el) => { el.setAttribute("aria-label", t(el.dataset.i18nAria)); });

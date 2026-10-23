@@ -94,7 +94,7 @@ One responsive page, no separate mobile app:
 | 1024–1279px | Conversation · matches panel; chat history moves into a drawer |
 | < 1024px | Conversation only; matches open as a drawer (tablet) or bottom sheet (phone) |
 
-Phones get a voice-first home screen (topic tiles, language chips, a large mic button). Base text is 18px on every screen size (not the usual 16px), for older readers. Icons are an SVG sprite (`frontend/icons.svg`, Tabler Icons, MIT).
+The home screen says who the app is for before anything else: under "Namaste" it reads *"Government help for persons with disabilities and their families"*, followed by a one-line list of what it covers (shown on phones too). The top-bar tagline, the browser-tab title and the link preview shown when the address is shared (WhatsApp, Facebook: `og:` tags in `index.html`) say the same. Phones get a voice-first home screen (topic tiles, language chips, a large mic button). Base text is 18px on every screen size (not the usual 16px), for older readers. Icons are an SVG sprite (`frontend/icons.svg`, Tabler Icons, MIT).
 
 ### Matched schemes (`chatbot/insights.py`)
 
