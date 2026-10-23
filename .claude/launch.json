@@ -6,12 +6,6 @@
       "runtimeExecutable": "venv\\Scripts\\python.exe",
       "runtimeArgs": ["-m", "uvicorn", "server.main:app", "--host", "127.0.0.1", "--port", "8000"],
       "port": 8000
-    },
-    {
-      "name": "chatbot",
-      "runtimeExecutable": "venv\\Scripts\\python.exe",
-      "runtimeArgs": ["-m", "streamlit", "run", "chatbot/app.py", "--server.headless", "true", "--server.port", "8501"],
-      "port": 8501
     }
   ]
 }

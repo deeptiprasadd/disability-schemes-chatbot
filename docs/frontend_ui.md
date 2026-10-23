@@ -3,10 +3,9 @@
 This guide covers the web layer: the FastAPI backend, the vanilla-JS client, voice input/output, follow-up suggestions, accessibility, and translation. Files discussed:
 
 1. **API server**: `server/main.py`
-2. **Client**: `frontend/index.html`, `frontend/style.css`, `frontend/app.js`
+2. **Client**: `frontend/index.html`, `frontend/style.css`, `frontend/app.js`, `frontend/i18n.js` + `frontend/i18n/`
 3. **Voice utilities**: `chatbot/voice_utils.py`
 4. **Translation engine**: `chatbot/language_utils.py`
-5. **Legacy Streamlit UI**: `chatbot/app.py`
 
 ---
 
@@ -185,4 +184,4 @@ Machine translation now has two narrow jobs:
 ## ⚠️ Legacy notes
 
 - **Streamlit UI (removed)** — the original `chatbot/app.py` has been deleted. Streamlit's rerun-per-interaction model could not do true token streaming or full ARIA control, which is why the FastAPI + vanilla stack replaced it.
-- **`scripts/translate.py`** — legacy translation helper covering only 11 languages. Use `chatbot/language_utils.py` for all new work.
+- **`scripts/translate.py`, `chatbot/prompts.py` (removed)** — an old 11-language translation helper and an early prompt file, both replaced by `chatbot/language_utils.py` and the prompts inside `chatbot/rag_pipeline.py`.

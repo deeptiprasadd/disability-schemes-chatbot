@@ -6,7 +6,6 @@ venv
 __pycache__
 *.pyc
 .env
-test_output.txt
 research
 scripts/finetune_dataset.jsonl
 # Android signing keys must never end up inside an image either
