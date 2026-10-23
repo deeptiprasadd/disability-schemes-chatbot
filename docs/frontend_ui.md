@@ -123,6 +123,19 @@ The LLM is instructed to emit structured Markdown, which the stylesheet renders 
 - One light theme ("Lotus & Indigo"; there is no dark mode), plus a **High contrast** toggle (pure black/white) and a three-step **Text size** control (18px, A+, A++), both remembered per browser.
 - Drawers and the bottom sheet close with Escape and return focus to the control that opened them.
 
+### Interface language (`frontend/i18n.js`, `frontend/i18n/`)
+
+The whole interface (buttons, menus, messages, screen-reader labels, topic tiles, example questions) follows the chosen language, in all 13 languages, just as the answers do.
+
+- **Where the text lives.** English and Hindi are inside `i18n.js`, so the first screen never waits. The other 11 are `frontend/i18n/<code>.json` (`ta`, `te`, `mr`, `bn`, `gu`, `kn`, `ml`, `pa`, `or`, `as`, `ur`), downloaded the first time that language is needed. A key missing from a file falls back to English, so a new English string never breaks the page. When you add a key to `STRINGS.en`, add it to `hi` and to each JSON file.
+- **Which language.** A chosen language wins. On *Auto*, the interface follows the language the user last wrote or spoke in, else the phone's language, else English.
+- **Urdu** sets `dir="rtl"`: the layout mirrors (chat history on the right, drawers slide in from the right, the send arrow flips). The stylesheet uses start/end properties (`margin-inline-start`, `border-inline-end`, `text-align: start`) instead of left/right so this works without separate rules. Urdu text uses Nastaliq where the device has it, with taller lines.
+- **Profile labels** in the matches panel come from the server in English; the page shows its own translation by key (`profile_state`, `profile_age`, …).
+- **Long words.** Tamil, Kannada and Malayalam words are long; the topic tiles let a word wrap rather than overflow, and the tile names were chosen to fit a 360 px phone without splitting a word.
+- **Updates.** The JSON files are fetched with `cache: "no-cache"` (a small 304 when unchanged), so a corrected translation reaches users at once.
+
+> The 11 JSON translations were written for this project in plain, everyday wording and have not yet been checked by native speakers. Corrections only need an edit to that language's JSON file.
+
 ---
 
 ## 🎙️ Voice Engine (`chatbot/voice_utils.py`)

@@ -78,7 +78,7 @@
     </header>
 
     <!-- ================================================ History + settings -->
-    <aside class="history" id="sidebar" aria-label="Chats and settings">
+    <aside class="history" id="sidebar" aria-label="Chats and settings" data-i18n-aria="sidebarAria">
       <div class="history-head">
         <button id="new-chat" class="btn-primary" type="button">
           <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg><span data-i18n="newChat">New chat</span>
@@ -95,18 +95,18 @@
 
       <div class="settings">
         <h2 class="side-title" data-i18n="settings">Settings</h2>
-        <label for="lang-select" data-i18n="answerLanguage">Answer language</label>
+        <label for="lang-select" data-i18n="answerLanguage">Language</label>
         <select id="lang-select" aria-describedby="lang-help">
           <option value="auto" selected data-i18n="autoDetect">Auto-detect (recommended)</option>
         </select>
-        <p id="lang-help" class="hint" data-i18n="langHelp">Detected from your voice or text unless you choose one.</p>
+        <p id="lang-help" class="hint" data-i18n="langHelp">The app and its answers use this language. Auto-detect follows the language you speak or write in.</p>
         <p class="hint privacy-note" data-i18n="privacy">Your chats are saved only in this browser, on this device.</p>
       </div>
     </aside>
 
     <!-- ================================================ Chat -->
     <main class="main">
-      <section id="chat" class="chat" role="log" aria-live="polite" aria-label="Conversation">
+      <section id="chat" class="chat" role="log" aria-live="polite" aria-label="Conversation" data-i18n-aria="chatAria">
         <div id="empty-state" class="home">
           <div class="home-hero">
             <h2 class="home-title" data-i18n="greeting">Namaste</h2>
@@ -158,13 +158,13 @@
             <svg class="icon" aria-hidden="true"><use href="/icons.svg#i-x"/></svg>
           </button>
         </div>
-        <form id="composer" class="composer" aria-label="Send a message">
+        <form id="composer" class="composer" aria-label="Send a message" data-i18n-aria="composerAria">
           <input type="file" id="doc-upload" class="sr-only" accept=".pdf,.txt,.md"
                  aria-label="Ask about a document (PDF or text)" data-i18n-aria="attach" />
           <label class="icon-btn attach" for="doc-upload" title="Ask about a document (PDF or text)" data-i18n-title="attach" aria-hidden="true">
             <svg class="icon"><use href="/icons.svg#i-paperclip"/></svg>
           </label>
-          <textarea id="input" rows="1" autocomplete="off"
+          <textarea id="input" rows="1" autocomplete="off" dir="auto"
                     placeholder="Ask about any scheme…" data-i18n-ph="placeholder"
                     aria-label="Message" data-i18n-aria="message"></textarea>
           <button id="mic-btn" class="mic-btn" type="button"

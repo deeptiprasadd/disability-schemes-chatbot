@@ -28,7 +28,7 @@ Built on a Hybrid Search RAG pipeline (FAISS + BM25 + FlashRank reranking) with 
 - Multi-conversation sidebar, Markdown rendering, code highlighting.
 - Full keyboard navigation, ARIA labels, visible focus states, skip link, `prefers-reduced-motion` support.
 - Responsive "Lotus & Indigo" light theme with 18 px base text, a **High contrast** toggle and a **Text size** control.
-- Hindi or English interface; installable on phones as a web app, or as an Android app (APK).
+- The whole interface switches to any of the 13 languages (Urdu right-to-left); installable on phones as a web app, or as an Android app (APK).
 
 ---
 

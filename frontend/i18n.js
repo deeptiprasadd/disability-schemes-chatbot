@@ -1,14 +1,17 @@
 /* =========================================================================
- * Sneh Saathi — interface text in English and Hindi.
+ * Sneh Saathi — interface text in all 13 languages.
  *
- * Answers come in the user's own language (any of 13); this file covers the
- * interface around them (buttons, labels, messages). Hindi is used when the
- * user picks हिन्दी, or on Auto when they write in Hindi or their phone is
- * set to Hindi. Other languages keep the English interface.
+ * Answers come in the user's own language; this file covers the interface
+ * around them (buttons, labels, messages). The interface follows the chosen
+ * language, or on Auto the language the user last wrote in, else the phone's.
+ *
+ * English and Hindi are below, so the first screen never waits. The other 11
+ * live in /i18n/<code>.json and load when first needed; a key missing there
+ * falls back to English. Urdu switches the page to right-to-left.
  *
  * Static HTML marks text with data-i18n (textContent), data-i18n-ph
  * (placeholder), data-i18n-aria (aria-label) and data-i18n-title (title).
- * Plain, everyday Hindi on purpose: many readers are older.
+ * Plain, everyday wording on purpose: many readers are older.
  * ========================================================================= */
 
 const STRINGS = {
@@ -27,9 +30,12 @@ const STRINGS = {
     closeMenu: "Close chats and settings",
     recentChats: "Recent chats",
     settings: "Settings",
-    answerLanguage: "Answer language",
+    answerLanguage: "Language",
     autoDetect: "Auto-detect (recommended)",
-    langHelp: "Detected from your voice or text unless you choose one.",
+    langHelp: "The app and its answers use this language. Auto-detect follows the language you speak or write in.",
+    sidebarAria: "Chats and settings",
+    chatAria: "Conversation",
+    composerAria: "Send a message",
     privacy: "Your chats are saved only in this browser, on this device.",
     greeting: "Namaste",
     homeSub: "How can I help you today?",
@@ -58,6 +64,8 @@ const STRINGS = {
     closeMatches: "Close matches",
     profileTitle: "Your profile",
     profileEmpty: "Tell us your state, age, type of disability and family income. We'll check which schemes you qualify for.",
+    profile_state: "State", profile_age: "Age", profile_disability: "Disability",
+    profile_disability_percent: "Disability %", profile_income: "Family income", profile_occupation: "Occupation",
     schemesTitle: "Matched schemes",
     checkingSchemes: "Checking schemes…",
     schemesEmpty: "Matching schemes will appear here as we talk.",
@@ -130,9 +138,12 @@ const STRINGS = {
     closeMenu: "बंद करें",
     recentChats: "पिछली बातचीत",
     settings: "सेटिंग",
-    answerLanguage: "जवाब की भाषा",
+    answerLanguage: "भाषा",
     autoDetect: "अपने-आप पहचानें (सुझाया गया)",
-    langHelp: "आपकी आवाज़ या लिखे शब्दों से भाषा अपने-आप पहचानी जाती है, या आप खुद चुनें।",
+    langHelp: "पूरा ऐप और उसके जवाब इसी भाषा में होंगे। “अपने-आप पहचानें” चुनने पर आप जिस भाषा में बोलें या लिखें, वही अपनाई जाती है।",
+    sidebarAria: "बातचीत और सेटिंग",
+    chatAria: "बातचीत",
+    composerAria: "संदेश भेजें",
     privacy: "आपकी बातचीत सिर्फ़ इसी ब्राउज़र में, इसी डिवाइस पर सहेजी जाती है।",
     greeting: "नमस्ते",
     homeSub: "आज मैं आपकी क्या मदद करूँ?",
@@ -161,6 +172,8 @@ const STRINGS = {
     closeMatches: "बंद करें",
     profileTitle: "आपकी जानकारी",
     profileEmpty: "अपना राज्य, उम्र, दिव्यांगता का प्रकार और परिवार की आय बताइए। हम देखेंगे कि आप किन योजनाओं के पात्र हैं।",
+    profile_state: "राज्य", profile_age: "उम्र", profile_disability: "दिव्यांगता",
+    profile_disability_percent: "दिव्यांगता %", profile_income: "परिवार की आय", profile_occupation: "काम-धंधा",
     schemesTitle: "आपसे मिलती योजनाएँ",
     checkingSchemes: "योजनाएँ देखी जा रही हैं…",
     schemesEmpty: "बातचीत के साथ आपकी योजनाएँ यहाँ दिखेंगी।",
@@ -219,7 +232,27 @@ const STRINGS = {
   },
 };
 
+// Every language the assistant answers in has an interface too.
+const UI_LANGS = ["en", "hi", "ta", "te", "mr", "bn", "gu", "kn", "ml", "pa", "or", "as", "ur"];
+const RTL_LANGS = new Set(["ur"]);
+
 let UI_LANG = "en";
+
+const uiLoads = {};  // code -> pending load, so quick taps share one download
+
+/** Make sure the interface text for `code` is available; resolves false if it can't be loaded. */
+function loadUiStrings(code) {
+  if (STRINGS[code]) return Promise.resolve(true);
+  if (!UI_LANGS.includes(code)) return Promise.resolve(false);
+  // no-cache: always ask the server (a tiny 304 when unchanged), so a corrected
+  // translation reaches people at once instead of after the browser's own guess.
+  uiLoads[code] ??= fetch(`/i18n/${code}.json`, { cache: "no-cache" })
+    .then((res) => (res.ok ? res.json() : null))
+    .then((table) => { if (table) STRINGS[code] = table; return !!table; })
+    .catch(() => false)  // offline and never loaded before: the caller falls back to English
+    .finally(() => { delete uiLoads[code]; });
+  return uiLoads[code];
+}
 
 /** Interface text for `key`, with {placeholders} filled from `vars`. */
 function t(key, vars = {}) {
@@ -231,6 +264,7 @@ function t(key, vars = {}) {
 /** Translate every marked element on the page (static HTML and generated). */
 function translatePage(root = document) {
   document.documentElement.lang = UI_LANG;
+  document.documentElement.dir = RTL_LANGS.has(UI_LANG) ? "rtl" : "ltr";
   root.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
   root.querySelectorAll("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
   root.querySelectorAll("[data-i18n-aria]").forEach((el) => { el.setAttribute("aria-label", t(el.dataset.i18nAria)); });

@@ -310,8 +310,10 @@ let insightsLoading = false;
 function renderInsights(loading = insightsLoading) {
   const ins = current().insights || { profile: [], schemes: [], sources: [] };
 
+  // The server labels profile facts in English; show our own label by key.
+  const profileLabel = (p) => (`profile_${p.key}` in STRINGS.en ? t(`profile_${p.key}`) : p.label);
   els.profile.innerHTML = (ins.profile || []).map((p) =>
-    `<li><span class="k">${escapeHtml(p.label)}</span><span class="v" dir="auto">${escapeHtml(p.value)}</span></li>`
+    `<li><span class="k">${escapeHtml(profileLabel(p))}</span><span class="v" dir="auto">${escapeHtml(p.value)}</span></li>`
   ).join("");
   els.profileEmpty.hidden = (ins.profile || []).length > 0;
 
@@ -526,9 +528,9 @@ async function send(forcedText, forcedLang) {
     setStatus("");
     scrollDown();
 
-    // On Auto, follow the language people actually write in: a Hindi question
-    // switches the interface to Hindi (and an English one back).
-    if (final && els.lang.value === "auto" && ["hi", "en"].includes(final.lang) && final.lang !== UI_LANG) {
+    // On Auto, follow the language people actually write in: a Tamil question
+    // switches the interface to Tamil (and an English one back).
+    if (final && els.lang.value === "auto" && UI_LANGS.includes(final.lang) && final.lang !== UI_LANG) {
       pref("dsa_ui", final.lang);
       applyUiLanguage();
     }
@@ -852,24 +854,28 @@ function buildHome() {
 function setLanguage(code) {
   els.lang.value = [...els.lang.options].some((o) => o.value === code) ? code : "auto";
   pref("dsa_lang", els.lang.value);
-  if (code === "hi" || code === "en") pref("dsa_ui", code);
+  if (UI_LANGS.includes(code)) pref("dsa_ui", code);
+  syncLangChips();  // show the tap at once, even while the language's text loads
   applyUiLanguage();
 }
 
 /* --------------------------------------------------------------- interface language */
-// हिन्दी chosen -> Hindi interface. Another language -> English interface (the
-// answers still come in that language). Auto -> what the user last wrote in,
-// else the phone's own language.
+// The whole interface follows the chosen language, like the answers do.
+// Auto -> the language the user last wrote in, else the phone's own language.
 function chooseUiLang() {
   const sel = els.lang.value;
-  if (sel === "hi") return "hi";
-  if (sel !== "auto") return "en";
+  if (UI_LANGS.includes(sel)) return sel;
   const saved = pref("dsa_ui");
-  if (saved === "hi" || saved === "en") return saved;
-  return /^hi\b/i.test(navigator.language || "") ? "hi" : "en";
+  if (UI_LANGS.includes(saved)) return saved;
+  const phone = (navigator.language || "").slice(0, 2).toLowerCase();
+  return UI_LANGS.includes(phone) ? phone : "en";
 }
 
-function applyUiLanguage(lang = chooseUiLang()) {
+let uiSeq = 0;
+async function applyUiLanguage(lang = chooseUiLang()) {
+  const seq = ++uiSeq;
+  if (!(await loadUiStrings(lang))) lang = "en";
+  if (seq !== uiSeq) return;  // a newer choice arrived while this one was loading
   UI_LANG = lang;
   translatePage();
   // Generated parts, and texts that depend on state, are rebuilt here. The chat
@@ -969,11 +975,16 @@ window.addEventListener("DOMContentLoaded", async () => {
   applyContrast(pref("dsa_contrast") === "1");
   if (pref("dsa_tts") === "0") els.tts.click();
   if (matchMedia("(max-width: 479px)").matches) els.input.dataset.i18nPh = "placeholderShort";
-  UI_LANG = chooseUiLang();   // first paint in the right language (the select is still "auto")
+  // First paint in the right language when its text is already here (English,
+  // Hindi); otherwise paint English and fetch the language's text straight away,
+  // without waiting for the server's language list below.
+  const first = chooseUiLang();   // (the select is still "auto")
+  UI_LANG = STRINGS[first] ? first : "en";
   translatePage();
   buildHome();
   setupGetApp();
   renderAll();
+  if (first !== UI_LANG) applyUiLanguage(first);
   await loadLanguages();
   setLanguage(pref("dsa_lang") || "auto");
   if (!isPhone()) els.input.focus();
