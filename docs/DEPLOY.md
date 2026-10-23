@@ -85,3 +85,5 @@ The site is already an installable web app, so tools such as [PWABuilder](https:
 | "Its AI service key was rejected" | `GROQ_API_KEY` missing or wrong in Render's **Environment** tab. |
 | "Too many questions right now" | Groq's rate limit; see the Groq note above. |
 | First page load takes about a minute | The free service was asleep; see *Sleeping* above. |
+| A push doesn't appear on the site | Check the service's **Events**: if no deploy started, turn **Settings → Build & Deploy → Auto-Deploy** to *On Commit*, or use **Manual Deploy → Deploy latest commit**. Confirm with `https://sneh-saathi.onrender.com/api/app-info` or a new file's address. |
+| The site still looks old after a deploy | Press **Ctrl + Shift + R** once. The server sends `Cache-Control: no-cache` for app files (`server/main.py`) and the service worker fetches them from the server, so browsers check for updates on every visit; only copies saved before that change could linger. |

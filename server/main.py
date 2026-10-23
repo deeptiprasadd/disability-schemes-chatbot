@@ -74,6 +74,23 @@ async def security_headers(request: Request, call_next):
     return response
 
 
+# Without Cache-Control, browsers guess how long a file stays fresh (about a tenth
+# of its age), so after a deploy people kept the old app for a day or more. App
+# files are revalidated on every load instead (a small 304 when unchanged); fonts
+# and PNG icons, which rarely change, may be kept for a week.
+LONG_CACHE = "public, max-age=604800"
+
+
+@app.middleware("http")
+async def cache_headers(request: Request, call_next):
+    response = await call_next(request)
+    path = request.url.path
+    if not path.startswith("/api/") and "cache-control" not in response.headers:
+        rarely_changes = path.startswith("/fonts/") or path.endswith(".png")
+        response.headers["Cache-Control"] = LONG_CACHE if rarely_changes else "no-cache"
+    return response
+
+
 def _too_many() -> JSONResponse:
     return JSONResponse({"error": guard.TOO_MANY}, status_code=429)
 
