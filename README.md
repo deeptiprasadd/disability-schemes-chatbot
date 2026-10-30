@@ -199,8 +199,3 @@ Two GitHub Actions keep the knowledge base fresh:
 
 Visual impairment · Locomotor disability · Hearing impairment · Intellectual disability · Mental illness · Autism spectrum disorder · Cerebral palsy · Specific learning disability · Multiple disabilities
 
----
-
-## 📞 Support helpline
-
-Official national helpline: **1800-111-555**
